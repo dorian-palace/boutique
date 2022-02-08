@@ -7,7 +7,7 @@
           <ul>
             <li><a href="#">Cat1</a></li>
             <li><a href="#">cat2</a></li>
-            <li><a href="#">cat3</a></li>
+              <li><a href="#">cat3</a></li>
             <li><a href="#">cat4</a></li>
           </ul>
         </div>
