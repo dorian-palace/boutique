@@ -22,14 +22,17 @@
 
         <?php
 
-        require'app/User.php';
+        require 'app/User.php';
+        require_once 'app/Form.php';
         $singup = new User($login,$password);
+        
 
-        if(isset($_POST['envoyer'])){
+    
+        
+        $form = new User;
+        
+        $form->createForm();
 
-            $login = _P
-
-        }
 
         ?>
 
@@ -37,27 +40,6 @@
 
 
 
-
-
-
-        <form action="" method="post">
-            <label>Nom d'utilisateur</label>
-
-            <input type="text" name="login" placeholder="Nom d'utilisateur">
-
-            <label>Adresse Email</label>
-            <input type="email" name="email" placeholder="Email">
-
-            <label for="">ConMot de passe</label>
-            <input type="password" name="password" placeholder="Mot de passe">
-
-            <label for=""> Confirmer le Mot de passe</label>
-            <input type="password" name="password" placeholder="Confirmer le Mot de passe">
-
-
-            <input type="submit" name="valider">
-
-        </form>
     </main>
 
 

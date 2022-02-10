@@ -1,9 +1,13 @@
 <?php 
 
-require 'setting/db.php';
+
+require  'setting/db.php';
+require 'form.php';
 
 
-class User{
+
+
+class User {
 
 
     
@@ -39,7 +43,29 @@ class User{
 
 
     }
-    
+
+    public function createForm(){
+
+        $form = new Form;
+
+        $form->debutForm()
+                ->ajoutLabelFor('email', 'E-mail :')
+                ->ajoutinput('email', 'email', 'votre email', ['class => form-control'])
+                ->ajoutLabelFor('login', 'nom d\'utilisateur:')
+                ->ajoutInput('text','login','votre login',['require' => true, 'class' => 'form-control'])
+                ->ajoutLabelFor('pass','Mot de passe',)
+                ->ajoutInput('password','password','',['class' => 'from-control', 'require' => true])
+                ->ajoutLabelFor('pass','Confirmer le mode de passe')
+                ->ajoutInput('password', 'conf_password','')
+                ->ajoutBoutton('valider', ['class' => 'btn btn-primary'])
+                
+                ->finForm();
+
+                var_dump($form);
+                echo $form->create();
+                
+    }
+
 
 
 
