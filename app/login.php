@@ -5,26 +5,25 @@ class Login
 {
     private $login;
     private $password;
-    private $bdd;
 
-    public function __construct($login, $password)
+    function __construct($login, $password)
     {
-        $this->bdd = Database::connexion_db();
+        $this->db = new Db_connect();
+        $this->db = $this->db->return_connect();
         $this->login = $login;
         $this->password = $password;
     }
 
-    public static function Connexion($login, $password, $bdd)
+    public static function Connexion($login, $password)
     {
         $login = $_POST['login'];
         $req = "SELECT * FROM utilisateurs WHERE login = :login";
-        $prepare = $bdd->prepare($req);
+        $prepare = $this->db->prepare($req);
         $prepare->execute(array(
             ":login" => "$login"
         ));
         $result = $prepare->fetch();
 
         return $result;
-        var_dump($bdd);
     }
 }
