@@ -1,5 +1,5 @@
 <?php
-require_once('../setting/db.php');
+require_once('setting/db.php');
 
 class Login
 {
@@ -19,6 +19,12 @@ class Login
         $login = $_POST['login'];
         $req = "SELECT * FROM utilisateurs WHERE login = :login";
         $prepare = $bdd->prepare($req);
+        $prepare->execute(array(
+            ":login" => "$login"
+        ));
+        $result = $prepare->fetch();
 
+        return $result;
+        var_dump($bdd);
     }
 }

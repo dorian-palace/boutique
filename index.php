@@ -15,12 +15,12 @@
 <body>
     <!--- HEADER --->
     <main>
-    <!--- MAIN --->
+        <!--- MAIN --->
 
     </main>
 
     <article>
-    <!--- ARTICLE --->
+        <!--- ARTICLE --->
 
     </article>
 
