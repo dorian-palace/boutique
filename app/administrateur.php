@@ -12,6 +12,6 @@ class Admin
 
     public function gestion_stock()
     {
-        $req = ('SELECT * FROM produits ')
+        $req = ('SELECT * FROM produits ');
     }
 }
