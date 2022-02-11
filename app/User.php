@@ -7,20 +7,22 @@ require 'form.php';
 
 
 
-class User {
+class User extends Form {
 
 
     
     private $login;
     private $password;
-
+    private $mail;
 
     public function __construct(){
 
         $this->db = New Db_connect();
         $this->db = $this->db->return_connect();
-        $login = $this->login;
-        $password = $this->password;
+         // si isset prend a valeur de POST['login']  sinnon null
+        $this->login = isset($_POST['login']) ? $_POST['login'] : null;;
+        $this->password = isset($_POST['password']) ? $_POST['login'] : null;
+        $this->mail = isset($_POST['email']) ? $_POST['email'] : null;
 
     }
 
@@ -44,27 +46,65 @@ class User {
 
     }
 
+    public function start(){
+
+        if(!isset($this->login,$this->password,$this->mail) || empty($this->login) || empty($this->password) || empty($this->email)){
+
+            $msg = 'veuillez remplir tout les champs';
+            
+        }else{
+
+            $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droit,id_adresse)VALUES(?,?,?,?,?)');
+
+            $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
+
+            if($insert->execute(array($this->login,$this->mail,$hashed_password,1,1))) {
+            
+                if(filter_var($this->mail, FILTER_VALIDATE_EMAIL)){
+    
+                    
+                    return $insert;
+                    $msg = 'incription validé';
+                }
+
+            }
+
+            
+        }
+    }
+
+
+
+    public function displayMessage(){
+
+        if(isset($msg)){
+
+            return $msg;
+        }
+    }
+
     public function createForm(){
 
         $form = new Form;
 
-        $form->debutForm()
-                ->ajoutLabelFor('email', 'E-mail :')
-                ->ajoutinput('email', 'email', 'votre email', ['class => form-control'])
-                ->ajoutLabelFor('login', 'nom d\'utilisateur:')
-                ->ajoutInput('text','login','votre login',['require' => true, 'class' => 'form-control'])
-                ->ajoutLabelFor('pass','Mot de passe',)
-                ->ajoutInput('password','password','',['class' => 'from-control', 'require' => true])
-                ->ajoutLabelFor('pass','Confirmer le mode de passe')
-                ->ajoutInput('password', 'conf_password','')
-                ->ajoutBoutton('valider', ['class' => 'btn btn-primary'])
+        $form->debutForm('post','#',['class'=>'formUser'])
+                ->ajoutLabelFor('email', 'E-mail :',['class' => 'labelForm'])
+                ->ajoutinput('email', 'email', 'votre email', ['class'=> 'inputForm','require'=>true])
+                ->ajoutLabelFor('login', 'Nom d\'utilisateur :',['class'=> 'labelForm'])
+                ->ajoutInput('text','login','votre login',['require' => true, 'class'=> 'inputForm'])
+                ->ajoutLabelFor('pass','Mot de passe :',['class' => 'LabelForm'])
+                ->ajoutInput('password','password','Entrez votre mot de passe ',['class' => 'inputForm', 'require' => true])
+                ->ajoutLabelFor('pass','Confirmez le mode de passe :',['class'=> 'labelForm'])
+                ->ajoutInput('password', 'conf_password','Confirmez le mot de passe',['class' => 'inputForm'])
+                ->ajoutBoutton('valider', ['class' => 'btnForm'])
                 
                 ->finForm();
 
-                var_dump($form);
                 echo $form->create();
                 
     }
+
+
 
 
 

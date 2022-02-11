@@ -21,6 +21,7 @@ class Form
       * 
       * @return bool 
       */
+      
      public function validate(array $form, array $champs)
      {
          //on parcourt totu les champs 
