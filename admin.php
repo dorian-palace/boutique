@@ -4,7 +4,6 @@ require('app/administrateur.php');
 $user = new Administrateur();
 
 $var = $user->get_User();
-var_dump($var);
 $user->get_User();
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
