@@ -1,13 +1,12 @@
 <?php
 require_once('setting/db.php');
-
+require_once('User.php');
 class Administrateur
 {
 
     public $new_login;
     public $new_email;
     public $new_id_droits;
-
 
     public function __construct()
     {
@@ -18,30 +17,33 @@ class Administrateur
         $new_id_droits = $this->new_id_droits;
     }
 
-    public function get_User()
+    public function getUser()
     {
+        //récupère les infos des utilisateurs
         $req = 'SELECT * FROM utilisateurs';
         $query = $this->db->query($req);
-        $fetch = $query->fetch();
-        return $fetch;
+        return $query;
     }
 
-    public function upgrade_Droits()
+    public function updateUser()
     {
-        // $new_id_droits = $_POST['new_droits'];
-        // $new_login = $_POST['new_login'];
-        // $new_email = $_POST['new_email'];
-        // $id_user = $_POST['']
-        // $req = 'UPDATE utilisateurs SET id_droits = ?, login = ?, email = ? WHERE id = ?';
-        // $prepare = $this->db->prepare($req);
-        // $prepare->execute(array(
-        //     $new_id_droits, $new_login, $new_email, $id_user
-        // ));
+        // Modifie les informations et droit de l'utilisateurs
+        if (isset($_POST['update'])) {
+            $new_id_droits = $_POST['new_droits'];
+            $new_login = $_POST['new_login'];
+            $new_email = $_POST['new_email'];
+            $id_user = $_POST['update'];
+            $req = 'UPDATE utilisateurs SET id_droits = ?, login = ?, email = ? WHERE id = ?';
+            $prepare = $this->db->prepare($req);
+            $prepare->execute(array(
+                $new_id_droits, $new_login, $new_email, $id_user
+            ));
+        }
     }
 
-    public function delete_User($delete)
+    public function deleteUser($delete)
     {
-
+        // supprime l'utilisateurs
         $req = 'DELETE FROM utilisateurs WHERE id = ?';
         $prepare = $this->db->prepare($req);
         $prepare->execute(array(
@@ -51,18 +53,12 @@ class Administrateur
         $msg = 'Utilisateurs supprimer';
     }
 
-
-
-    public function gestion_Stock()
+    public function gestionStock()
     {
         $req = ('SELECT * FROM produits ');
     }
 
-    public function new_Categorie()
-    {
-    }
-
-    public function upgrade_Categorie()
+    public function newCategorie()
     {
     }
 }
