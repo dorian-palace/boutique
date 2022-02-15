@@ -23,7 +23,7 @@
     
     <div class="btn-container">
 
-      <button class="connexion-btn"><a href="connexion.php"></a>Se connecter</button>
+      <button class="connexion-btn"><a href="connexion.php">Se connecter</a></button>
     </div>
     <div class="btn-container">
 

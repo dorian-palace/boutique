@@ -2,7 +2,6 @@
 
 
 require  'setting/db.php';
-require 'form.php';
 
 
 
@@ -61,32 +60,7 @@ class User  {
         
     }
 
-    public function start(){
-
-        if(!isset($this->login,$this->password,$this->mail) || empty($this->login) || empty($this->password) || empty($this->email)){
-
-            $msg = 'veuillez remplir tout les champs';
-            
-        }else{
-
-            $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droit,id_adresse)VALUES(?,?,?,"1","1")');
-
-            $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
-
-            if($insert->execute(array($this->login,$this->email,$hashed_password))) {
-            
-                if(filter_var($this->email, FILTER_VALIDATE_EMAIL)){
     
-                    
-                    return $insert;
-                    $msg = 'incription validée';
-                }
-
-            }
-
-            
-        }
-    }
 
     public function confPassword(){
 
@@ -108,7 +82,7 @@ class User  {
         return false;
     }
 
-    public function userExist(){
+    public function checkUserSignup(){
 
         $stmt = $this->db->prepare("SELECT * FROM utilisateurs");
         $stmt->execute();
@@ -118,8 +92,8 @@ class User  {
         if($row < 0){
 
             return false;
-
         }
+
         return true;
 
         
@@ -127,39 +101,127 @@ class User  {
 
     public function confirmSingup(){
 
+    if($this->emptyInput()){
 
         if($this->confPassword()){
-
+            
             if($this->valideEmail()){
-
-                if($this->userExist()){
-
+                
+                if($this->checkUserSignup()){
+                    
                     
                     $this->signup();
                     
                     $this->displayMessage('inscription validée');
                 }else{
-
+                    
                     $this->displayMessage('utilisateur déjà pris');
                     
                 }
             }else{
-
+                
                 $this->displayMessage('email non valide');
             }
-       }else{
+        }else{
+            
+            $this->displayMessage('les mot de passe ne correspondent pas');
+        }
+    }else{
 
-        $this->displayMessage('les mot de passe ne correspondent pas');
-       }
+        $this->displayMessage('Veuillez remplir tous les champs');
+    }
 
     }
+
+    public function connect(){
+
+        $stmt = $this->db->prepare("SELECT * FROM Utilisateurs WHERE login = ?");
+        $stmt->execute(array($this->login));
+        $row = $stmt->rowCount();
+
+        if($row == 1 ){
+
+            $userinfo = $stmt->fetch();
+
+            $_SESSION['login'];
+            $_SESSION['id'];
+
+
+            password_verify($this->password, $userinfo['password']);
+
+            return true;
+        }
+
+
+        
+        return false;
+    }
+
+    public function checkUserLogin(){
+
+        $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+        $stmt->execute(array($this->login));
+
+        $row = $stmt->rowcount();
+
+        if($row == 1){
+
+            return true;
+        }
+        
+        return false;
+
+        
+    }
+
+    public function ConfirmConnect(){
+
+    if($this->emptyInput()){
+
+        if($this->confPassword()){
+            
+            if($this->valideEmail()){
+                
+                if($this->checkUserLogin()){
+                    
+                    $this->signup();
+                    
+                    $this->displayMessage('vous êtes connecté');    
+                }else{
+                    
+                    $this->displayMessage('L\'utilisateur n\'existe pas, veuillez vous inscrire'); 
+                }
+            }else{
+                
+                $this->displayMessage('email non valide');
+            }
+        }else{
+            
+            $this->displayMessage('les mot de passe ne correspondent pas');
+        }
+    }else{
+
+        $this->displayMessage('Veuillez remplir tout les champs');
+    }
+        
+    }
+
+public function emptyInput(){
+
+    if(!empty($this->login)|| !empty($this->password) ||!empty($this->email) || !empty($this->confpassword)){
+
+        return true;
+    }
+
+    return false;
+}
 
 
     public function displayMessage($msg){
 
         if(isset($msg)){
 
-            echo  $msg;
+            echo $msg;
         }
     }
 
