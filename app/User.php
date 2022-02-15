@@ -143,8 +143,8 @@ class User  {
 
             $userinfo = $stmt->fetch();
 
-            $_SESSION['login'];
-            $_SESSION['id'];
+            $_SESSION['login'] = $userinfo['login'];
+            $_SESSION['id'] = $userinfo['id']; 
 
 
             password_verify($this->password, $userinfo['password']);
@@ -184,7 +184,7 @@ class User  {
                 
                 if($this->checkUserLogin()){
                     
-                    $this->signup();
+                    $this->connect();
                     
                     $this->displayMessage('vous êtes connecté');    
                 }else{

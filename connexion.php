@@ -2,9 +2,6 @@
 session_start();
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +17,7 @@ session_start();
 
 <body>
     <header>
-        <?php require_once 'elements/header.php' ?>
+        <?php require_once 'elements/header.php'; ?>
     </header>
 
     <main classe="user-main">
@@ -31,14 +28,12 @@ session_start();
         <?php
         require_once('app/User.php');
 
-        if (isset($_SESSION['id'])) {
-            header('Location: index.php');
-        }
-        
+       
+
         if(isset($_POST['valider'])){
 
             
-            if (isset($_POST['login'],$_POST['password'],$_POST['email'],$_POST['confpassword'])) {
+            if (isset($_POST['login'],$_POST['password'],$_POST['email'],$_POST['confpassword'])){
                 
                 $login = $_POST['login'];
                 $password = $_POST['password'];
@@ -49,9 +44,14 @@ session_start();
 
                 $log->ConfirmConnect();
 
+
+
             }
+        
         }
             ?>
+
+         
 
         
 
@@ -76,6 +76,13 @@ session_start();
 
             </form>
         </div>
+
+        <?php if(isset($_SESSION['login'])){
+
+        ?> <h2 id="session_title">Bienvenu  <?=$_SESSION['login']?></h2>
+        
+        <?php } ?> 
+    
     </main>
 
     <footer>

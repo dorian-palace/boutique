@@ -59,3 +59,11 @@ margin-top: 2%;
 
     margin-bottom: 3%;
 }
+
+#session_title{
+
+  text-align: center;
+  color: black;
+  margin-top: 5%;
+  font-size: 30px;
+}
