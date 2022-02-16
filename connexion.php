@@ -76,6 +76,14 @@ session_start();
 
             </form>
         </div>
+
+            
+                <?php if(isset($_SESSION['login'])){
+                
+                ?> <h4>Binevenu <?=$_SESSION['login']?></h4>
+
+               <?php } ?>
+           
     </main>
 
     <footer>
