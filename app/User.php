@@ -5,7 +5,6 @@ require  'setting/db.php';
 
 
 
-
 class User  {
 
 
