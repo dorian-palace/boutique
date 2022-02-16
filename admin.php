@@ -6,7 +6,10 @@ $admin = new Administrateur();
 $admin->getUser();
 $get_user = $admin->getUser();
 $admin->updateUser();
+$admin->newCategorie();
+$get_categorie = $admin->getCategorie();
 
+var_dump($get_categorie);
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     //delete admin
     $delete = (int)$_GET['delete'];
@@ -27,8 +30,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
 <body>
 
-    <pre><?php //var_dump(); 
-            ?></pre>
+
     <pre><?php //var_dump(); 
             ?></pre>
     <pre><?php //var_dump(); 
@@ -36,6 +38,36 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     <!--- HEADER --->
     <main>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Création de catégorie</legend>
+                <input type="text" name="name_categorie">
+                <input type="submit" name="new_categorie">
+            </fieldset>
+        </form>
+
+        <?php
+
+        ?>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Ajout Produit</legend>
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+
+                <select name="categorie" id="">Catégorie nouveau produit
+                    <?php while ($result_categorie = $get_categorie->fetch()) { ?>
+                        <option value=""><?= $result_categorie['nom_categorie'];
+                                        } ?></option>
+                </select>
+                <input type="submit">
+            </fieldset>
+        </form>
+        <?php   ?>
+
         <?php while ($result = $get_user->fetch()) { ?>
             <!--- UPDATE & MODIFICATION utilisateurs --->
             <form action="admin.php" method="post">
@@ -51,7 +83,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
             </form>
         <?php }
         ?>
-        <pre><?php  ?></pre>
+        <pre><?php var_dump($result_categorie); ?></pre>
         <aside>
         </aside>
     </main>

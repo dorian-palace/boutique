@@ -58,7 +58,44 @@ class Administrateur
         $req = ('SELECT * FROM produits ');
     }
 
+    public function categorieExist()
+    {
+        //$req = 'SELECT * FROM categories '
+    }
+
     public function newCategorie()
+    {
+
+        if (isset($_POST['new_categorie'])) {
+
+            $name_categorie = $_POST['name_categorie'];
+            $req_exist = 'SELECT nom_categorie FROM categories WHERE nom_categorie = ?';
+            $stmt = $this->db->prepare($req_exist);
+            $stmt->execute(array(
+                $name_categorie
+            ));
+            $count = $stmt->rowCount();
+
+            if ($count == 0) {
+
+                $req = "INSERT INTO categories (nom_categorie) VALUES ('$name_categorie')";
+                $query = $this->db->query($req);
+            } else {
+                $msg = 'categories éxiste déjà';
+            }
+            return $query;
+        }
+    }
+
+    public function getCategorie()
+    {
+        $req = 'SELECT * FROM categories';
+        $query = $this->db->query($req);
+        //$fetch = $query->fetch();
+        return $query;
+    }
+
+    public function newProduits()
     {
     }
 }
