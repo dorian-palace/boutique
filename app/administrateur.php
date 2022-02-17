@@ -95,17 +95,43 @@ class Administrateur
     {
         $req = 'SELECT * FROM categories';
         $query = $this->db->query($req);
-        
+
         //$fetch = $query->fetch();
         return $query;
     }
 
-    public function newProduits()
-    {
-        $select = 'SELECT * from categories';
-        $query = $this->db->query($select);
-        $fetch = $query->fetch();
-        
-        return $fetch;
+    // public function newProduits()
+    // {
+    //     $select = 'SELECT * from categories';
+    //     $query = $this->db->query($select);
+    //     $fetch = $query->fetch();
+
+    //     return $fetch;
+    // }
+
+    public function newRegions(){
+        if (isset($_POST['new_regions'])) {
+
+            $name_regions = $_POST['regions'];
+            $req_exist = 'SELECT nom_region FROM regions WHERE nom_region = ?';
+            $stmt = $this->db->prepare($req_exist);
+            $stmt->execute(array(
+                $name_regions
+            ));
+            $count = $stmt->rowCount();
+
+            if ($count == 0) {
+                $req = "INSERT INTO regions (nom_region) VALUES ('$name_regions')";
+                $query = $this->db->query($req);
+            } else {
+                $msg = 'categories éxiste déjà';
+            }
+        }
+    }
+
+    public function getRegions(){
+        $req = 'SELECT * FROM regions';
+        $query = $this->db->query($req);
+        return $query;
     }
 }

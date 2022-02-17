@@ -8,6 +8,8 @@ $get_user = $admin->getUser();
 $admin->updateUser();
 $admin->newCategorie();
 $get_categorie = $admin->getCategorie();
+$admin->newRegions();
+$get_regions = $admin->getRegions();
 
 if (isset($_POST['submit3'])) {
     echo 'salut';
@@ -51,11 +53,17 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <form action="" method="post">
             <fieldset>
                 <legend>Ajout Produit</legend>
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
+                <input type="text" placeholder="titre">
+                <input type="text" placeholder="description">
+                <input type="text" placeholder="stock">
+                <select name="region">
+                    <?php while ($result_regions = $get_regions->fetch()) {  ?>
+                        <option value="<?= $result_regions['id']; ?>">
+                        <?= $result_regions['nom_region']; ?>
+                        </option>
+                    <?php } ?>
+                </select>
+                <input type="text" placeholder="prix">
 
                 <select name="categorie">Catégorie nouveau produit
                     <?php while ($result_categorie = $get_categorie->fetch()) { ?>
@@ -73,7 +81,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <form action="" method="post">
             <fieldset>
                 <legend>Création de catégorie</legend>
-                <input type="text" name="name_categorie">
+                <input type="text" name="name_categorie" placeholder="catégorie">
                 <input type="submit" name="new_categorie">
             </fieldset>
         </form>
@@ -93,6 +101,14 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
             </form>
         <?php }
         ?>
+
+        <form action="" method="post">
+            <fieldset>
+                <legend>Ajout de régions</legend>
+                <input type="text" name="regions">
+                <input type="submit" name="new_regions">
+            </fieldset>
+        </form>
 
         <aside>
         </aside>
