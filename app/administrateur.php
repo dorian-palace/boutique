@@ -58,11 +58,6 @@ class Administrateur
         $req = ('SELECT * FROM produits ');
     }
 
-    public function categorieExist()
-    {
-        //$req = 'SELECT * FROM categories '
-    }
-
     public function newCategorie()
     {
 
@@ -77,25 +72,40 @@ class Administrateur
             $count = $stmt->rowCount();
 
             if ($count == 0) {
-
                 $req = "INSERT INTO categories (nom_categorie) VALUES ('$name_categorie')";
                 $query = $this->db->query($req);
             } else {
                 $msg = 'categories éxiste déjà';
             }
-            return $query;
         }
+    }
+
+    public function deleteCategorie($delete)
+    {
+        $req = 'DELETE FROM categories WHERE id = ?';
+        $prepare = $this->db->prepare($req);
+        $prepare->execute(array(
+            $delete
+        ));
+        return $prepare;
+        $msg = 'categorie supprimer';
     }
 
     public function getCategorie()
     {
         $req = 'SELECT * FROM categories';
         $query = $this->db->query($req);
+        
         //$fetch = $query->fetch();
         return $query;
     }
 
     public function newProduits()
     {
+        $select = 'SELECT * from categories';
+        $query = $this->db->query($select);
+        $fetch = $query->fetch();
+        
+        return $fetch;
     }
 }
