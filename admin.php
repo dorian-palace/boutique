@@ -10,17 +10,12 @@ $admin->newCategorie();
 $get_categorie = $admin->getCategorie();
 $admin->newRegions();
 $get_regions = $admin->getRegions();
+$admin->newProduits();
 
-if (isset($_POST['submit3'])) {
-    echo 'salut';
-    if (isset($_POST['categorie'])) {
-        echo 'sandstorm';
-        echo $_POST['categorie'];
-    }
-}
+
+var_dump ($_POST);
 
 if (isset($_POST['supprimer'])) {
-    echo $_POST['categorie'];
     $id = $_POST['categorie'];
     $admin->deleteCategorie($id);
 }
@@ -53,27 +48,28 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <form action="" method="post">
             <fieldset>
                 <legend>Ajout Produit</legend>
-                <input type="text" placeholder="titre">
-                <input type="text" placeholder="description">
-                <input type="text" placeholder="stock">
-                <select name="region">
+                <input type="text" placeholder="titre" name="titre_produit">
+                <input type="text" placeholder="description" name="description_produit">
+                <input type="text" placeholder="stock" name="stock_produit">
+                <select name="region_produit">
                     <?php while ($result_regions = $get_regions->fetch()) {  ?>
                         <option value="<?= $result_regions['id']; ?>">
                         <?= $result_regions['nom_region']; ?>
                         </option>
                     <?php } ?>
                 </select>
-                <input type="text" placeholder="prix">
 
-                <select name="categorie">Catégorie nouveau produit
+                <select name="categorie_produit">Catégorie nouveau produit
                     <?php while ($result_categorie = $get_categorie->fetch()) { ?>
                         <option value="<?= $result_categorie['id']; ?>">
                             <?= $result_categorie['nom_categorie']; ?>
                         </option>
                     <?php  } ?>
                 </select>
+                <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit">
+
                 <button name="supprimer">supprimer</button>
-                <input type="submit" name="submit3">
+                <input type="submit" name="submit_produit">
             </fieldset>
         </form>
 

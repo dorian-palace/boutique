@@ -100,16 +100,42 @@ class Administrateur
         return $query;
     }
 
-    // public function newProduits()
-    // {
-    //     $select = 'SELECT * from categories';
-    //     $query = $this->db->query($select);
-    //     $fetch = $query->fetch();
+    public function newProduits()
+    {
+        if (isset($_POST['submit_produit'])) {
 
-    //     return $fetch;
-    // }
+            $titre = $_POST['titre_produit'];
+            $description = $_POST['description_produit'];
+            $stock = $_POST['stock_produit'];
+            $id_categorie = $_POST['categorie_produit'];
+            $id_regions = $_POST['region_produit'];
+            $prix = $_POST['prix_produit'];
+            $new_produit = $_POST['submit_produit'];
 
-    public function newRegions(){
+            $select = 'SELECT titre from produits WHERE titre = ?';
+            $stmt = $this->db->prepare($select);
+            $stmt->execute(array(
+                $new_produit
+            ));
+            $count = $stmt->rowCount();
+
+            if ($count == 0) {
+
+                $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, id_regions, prix) VALUES (?,?,?,?,?,?)";
+                $prepare = $this->db->prepare($req);
+                $prepare->execute(array(
+                    $titre, $description, $stock, $id_categorie, $id_regions, $prix
+                ));
+                $msg = 'Produit ajouter';
+            } else {
+                $msg = 'Le produit existe déjà';
+            }
+        }
+        //return $fetch;
+    }
+
+    public function newRegions()
+    {
         if (isset($_POST['new_regions'])) {
 
             $name_regions = $_POST['regions'];
@@ -129,7 +155,8 @@ class Administrateur
         }
     }
 
-    public function getRegions(){
+    public function getRegions()
+    {
         $req = 'SELECT * FROM regions';
         $query = $this->db->query($req);
         return $query;
