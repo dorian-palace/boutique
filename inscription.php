@@ -25,7 +25,7 @@
 
     <main class="user-main">
 
-    
+        
 
 
         <?php require 'app/User.php'; ?>
@@ -66,7 +66,7 @@
             <form action="#" e method="post">
 
 
-                <label for="login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
+                  <label for="login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
                 <input type="text" class="inputForm" name="login">
 
                 <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
@@ -80,7 +80,6 @@
 
 
                 <button type="submit" name="valider" classe='btnFrom'>valider</button>
-
 
 
             </form>
