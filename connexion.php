@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 
@@ -29,11 +30,12 @@ session_start();
 
     <div class="container-form">
         <?php
+        var_dump($_SESSION);
         require_once('app/User.php');
 
-        if (isset($_SESSION['id'])) {
-            header('Location: index.php');
-        }
+        // if (isset($_SESSION['id'])) {
+        //     header('Location: index.php');
+        // }
         
         if(isset($_POST['valider'])){
 
@@ -49,6 +51,7 @@ session_start();
 
                 $log->ConfirmConnect();
 
+                
             }
         }
             ?>

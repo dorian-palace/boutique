@@ -81,17 +81,19 @@ class User
     public function checkUserSignup()
     {
 
-        $stmt = $this->db->prepare("SELECT * FROM utilisateurs");
-        $stmt->execute();
+        $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+        $stmt->execute(array($this->login));
 
         $row = $stmt->rowcount();
 
-        if ($row < 0) {
+        if ($row == 0) {
 
+            return true;
+        }else{
+            
             return false;
         }
 
-        return true;
     }
 
     public function confirmSingup()
@@ -137,20 +139,23 @@ class User
         if ($row == 1) {
 
             $userinfo = $stmt->fetch();
+            
+            
+            if(password_verify($this->password, $userinfo['password'])){
+                
+                            $_SESSION['login'] = $userinfo['login'];
+                            $_SESSION['id'] = $userinfo['id'];
+                            $_SESSION['email'] = $userinfo['email'];
+                            $_SESSION['password'] = $userinfo['password'];
 
-            $_SESSION['login'] = $userinfo['login'];
-            $_SESSION['id'] = $userinfo['login'];
-            $_SESSION['email'] = $userinfo['email'];
-
-
-            password_verify($this->password, $userinfo['password']);
-
-            return true;
+                return true;
+                
+            };
+            return false;
         }
 
 
 
-        return false;
     }
 
     public function checkUserLogin()
@@ -201,6 +206,7 @@ class User
         }
     }
 
+  
     public function emptyInput()
     {
 
@@ -218,51 +224,13 @@ class User
 
         if (isset($msg)) {
 
-            echo $msg;
+            echo '<div class="msg">' . $msg . '</div>';
         }
     }
 
-    public function update($id_utilisateur){
+    
 
-        $stmt = $this->db->prepare("UPDATE login,password,email FROM utilisateurs SET login=?,password=?, email=? WHERE id=?");
-
-        $id_utilisateur = $_SESSION['id'];
-        $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
-
-        $stmt->execute(array($this->login, $hashed_password,$this->email,$id_utilisateur));
-        
-       
-
-       
-
-            
-        
-    }
-
-    public function confirmUpdate($id_utilisateur){
-
-        $id_utilisateur = $_SESSION['id'];
-        if ($this->checkUserSignup()) {
-
-            if ($this->valideEmail()) {
-
-                $this->update($id_utilisateur);
-                $this->login = $_SESSION['login'];
-                
-
-                $this->displayMessage('modfication effectué');
-            } else {
-                $this->displayMessage('email non valide');
-            }
-        } else {
-
-            $this->displayMessage('utilisateur déjà pris');
-        }
-    // } else {
-        
-    //     $this->displayMessage('les mot de passes de sont pas identiques');
-    // }
-    }
+   
 
     public function userInfo($id_utilisateur){
 

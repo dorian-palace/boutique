@@ -12,22 +12,42 @@
       </ul>
     </div>
     <div class="products">
+    <?php  if(isset($_SESSION['id'])){
+
+?>
       <button>Mon compte</button>
       <ul>
-        <li><a href="#">Modifier mon profil</a></li>
+        <li><a href="profil.php">Modifier mon profil</a></li>
         <li><a href="#">test</a></li>
         <li><a href="#">test</a></li>
       </ul>
-
+<?php } ?>
     </div>
     
-    <div class="btn-container">
+    <?php  if(!isset($_SESSION['id'])){
 
+    ?>
+      <div class="btn-container">
+      
       <button class="connexion-btn"><a href="connexion.php">Se connecter</a></button>
-    </div>
-    <div class="btn-container">
+      </div>
+      <div class="btn-container">
+      
+      <button class="connexion-btn"><a href="inscription.php">S'inscrire</a></button>
+      </div>
+      </div>
+    <?php } ?>
 
-    <button class="connexion-btn"><a href="inscription.php">S'inscrire</a></button>
+
+
+  <?php if(isset($_SESSION)){
+
+  ?>  <div class="btn-container">
+  
+  <button class="connexion-btn"><a href="setting/deconnexion.php">Deconnexion</a></button>
+  <?php } ?>
+
+
     </div>
   </div>
 

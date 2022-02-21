@@ -1,4 +1,6 @@
 <?php session_start();
+require_once 'app/Update.php';
+require_once 'app/User.php';
 
 ?>
 <!DOCTYPE html>
@@ -27,35 +29,45 @@
         <?php
 
 
+        // if (isset($_POST['valider'])) {
 
-        if (isset($_POST['valider'])) {
 
         if (isset($_POST['new_login'], $_POST['new_password'], $_POST['new_email'], $_POST['conf_new_password'])) {
 
-            require_once 'app/User.php';
 
-            $new_login= $_POST['new_login'];
-            $new_password = $_POST['new_password'];
-            $conf_new_password = $_POST['conf_new_password'];
-            $new_email = $_POST['new_email'];
-            $id_utilisateur = $_SESSION['id'];
 
-            $user = new User($new_login,$new_password,$conf_new_password,$new_email);
-
-            $user->confirmUpdate($id_utilisateur);
-
-            $userinfo = $user->userInfo($id_utilisateur);
+            $update = new Update();
             
+            $user = New User($_POST['new_login'], $_POST['new_password'], $_POST['new_email'], $_POST['conf_new_password']);
+
+            if($_POST['new_password'] == $_POST['conf_new_password']){
+
+                if($user->checkUserSignup()){
+
+                    $update->update();
+                    $user->displayMessage('modification effectuée');
+                }else{
+
+                    $user->displayMessage('utilisateur déjà pris');
+                }
+            }else{
+
+                $user->displayMessage('les mot de passe ne sont pas idntiques');
+            }
+
+            
+            
+            
+              
         
-            
-
-           
-            
-
-        }
     } 
 
-    
+//}
+
+    if(isset($msg)){
+
+        echo $msg;
+    }
         ?>
             <form action="#" e method="post">
 
