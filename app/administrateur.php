@@ -95,9 +95,35 @@ class Administrateur
     {
         $req = 'SELECT * FROM categories';
         $query = $this->db->query($req);
-
-        //$fetch = $query->fetch();
         return $query;
+    }
+
+    public function getProduits()
+    {
+        $req = 'SELECT * FROM produits INNER JOIN categories ON produits.id_categorie = categories.id INNER JOIN regions ON produits.id_regions = regions.id';
+        $query = $this->db->query($req);
+        return $query;
+    }
+
+    public function updateProduits()
+    {
+        if (isset($_POST['submit_update'])) {
+
+            $titre = $_POST['update_titre'];
+            $description = $_POST['update_description'];
+            $stock = $_POST['update_stock'];
+            $id_categorie = $_POST['update_categorie'];
+            $id_regions = $_POST['update_region'];
+            $prix = $_POST['update_prix'];
+            $id = $_POST['submit_update'];
+         
+
+            $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, id_regions = ?, prix = ? WHERE id = ?';
+            $stmt = $this->db->prepare($req);
+            $stmt->execute(array(
+                $titre, $description, $stock, $id_categorie, $id_regions, $prix, $id
+            ));
+        }
     }
 
     public function newProduits()
@@ -115,7 +141,7 @@ class Administrateur
             $select = 'SELECT titre from produits WHERE titre = ?';
             $stmt = $this->db->prepare($select);
             $stmt->execute(array(
-                $new_produit
+                $titre
             ));
             $count = $stmt->rowCount();
 
@@ -131,7 +157,6 @@ class Administrateur
                 $msg = 'Le produit existe déjà';
             }
         }
-        //return $fetch;
     }
 
     public function newRegions()
