@@ -8,14 +8,26 @@ $get_user = $admin->getUser();
 $admin->updateUser();
 $admin->newCategorie();
 $get_categorie = $admin->getCategorie();
+$admin->newRegions();
+$get_regions = $admin->getRegions();
+$admin->newProduits();
+$get_produits = $admin->getProduits();
+$admin->updateProduits();
 
-var_dump($get_categorie);
+if (isset($_POST['supprimer'])) {
+    $id = $_POST['categorie'];
+    $admin->deleteCategorie($id);
+}
+
+var_dump($_POST);
+
+
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     //delete admin
     $delete = (int)$_GET['delete'];
+    $admin->deleteCategorie($delete);
     $admin->deleteUser($delete);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -29,44 +41,77 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 </head>
 
 <body>
-
-
-    <pre><?php //var_dump(); 
-            ?></pre>
-    <pre><?php //var_dump(); 
-            ?></pre>
-
     <!--- HEADER --->
     <main>
-        <form action="" method="post">
-            <fieldset>
-                <legend>Création de catégorie</legend>
-                <input type="text" name="name_categorie">
-                <input type="submit" name="new_categorie">
-            </fieldset>
-        </form>
 
-        <?php
 
-        ?>
+        <!--- Création produit --->
         <form action="" method="post">
             <fieldset>
                 <legend>Ajout Produit</legend>
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-
-                <select name="categorie" id="">Catégorie nouveau produit
-                    <?php while ($result_categorie = $get_categorie->fetch()) { ?>
-                        <option value=""><?= $result_categorie['nom_categorie'];
-                                        } ?></option>
+                <input type="text" placeholder="titre" name="titre_produit">
+                <input type="text" placeholder="description" name="description_produit">
+                <input type="text" placeholder="stock" name="stock_produit">
+                <select name="region_produit">
+                    <?php while ($result_regions = $get_regions->fetch()) {  ?>
+                        <option value="<?= $result_regions['id']; ?>">
+                            <?= $result_regions['nom_region']; ?>
+                        </option>
+                    <?php } ?>
                 </select>
-                <input type="submit">
+
+                <select name="categorie_produit">Catégorie nouveau produit
+                    <?php while ($result_categorie = $get_categorie->fetch()) { ?>
+                        <option value="<?= $result_categorie['id']; ?>">
+                            <?= $result_categorie['nom_categorie']; ?>
+                        </option>
+                    <?php  } ?>
+                </select>
+                <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit">
+
+                <input type="submit" name="submit_produit">
             </fieldset>
         </form>
-        <?php   ?>
+
+        <?php while ($result_produits = $get_produits->fetch()) { ?>
+
+            <form action="" method="post" >
+                <fieldset>
+                    <legend>Modification et suppréssion produits</legend>
+                    <input type="text" value="<?= $result_produits['titre']; ?>" name="update_titre">
+                    <input type="text" value="<?= $result_produits['description']; ?>" name="update_description">
+                    <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock">
+
+                    <select name="update_region" id="">
+                        <!---region produits-->
+                        <option value="<?= $result_produits['id_regions']; ?>" name="">
+                            <?= $result_produits['nom_region']; ?>
+                        </option>
+
+                    </select>
+
+                    <select name="update_categorie" id="">
+                        <!----categorie produits---->
+                        <option value="<?= $result_produits['id_categorie']; ?>" name="">
+                            <?= $result_produits['nom_categorie']; ?>
+                        </option>
+                    </select>
+                    <input type="number" step="0.01" placeholder="<?= $result_produits['prix']; ?>" name="update_prix">
+                    <button name="supprimer" value="<?php $result_produits['id'] ?>">supprimer</button>
+                    <button type="submit" value="<?= $result_produits['id'] ?>" name="submit_update">update</button>
+
+                </fieldset>
+            </form>
+        <?php  } ?>
+
+        <!--- Création catégorie --->
+        <form action="" method="post">
+            <fieldset>
+                <legend>Création de catégorie</legend>
+                <input type="text" name="name_categorie" placeholder="catégorie">
+                <input type="submit" name="new_categorie">
+            </fieldset>
+        </form>
 
         <?php while ($result = $get_user->fetch()) { ?>
             <!--- UPDATE & MODIFICATION utilisateurs --->
@@ -77,13 +122,22 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <input type="email" value="<?= $result['email']; ?>" name="new_email">
                     <input type="text" value="<?= $result['id_droits']; ?>" name="new_droits">
                     <button type="submit" value=" <?= $result['id'] ?>" name="update">Update</button>
-                    <a class="a_admin" href="admin.php?delete?=<?= $result['id'] ?>">Supprimer</a>
+                    <a class="a_admin" href="admin.php?delete=<?= $result['id'] ?>">Supprimer</a>
 
                 </fieldset>
             </form>
         <?php }
         ?>
-        <pre><?php var_dump($result_categorie); ?></pre>
+
+        <form action="" method="post">
+            <fieldset>
+                <legend>Ajout de régions</legend>
+                <input type="text" name="regions">
+                <input type="submit" name="new_regions">
+            </fieldset>
+        </form>
+
+
         <aside>
         </aside>
     </main>
