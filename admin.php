@@ -8,26 +8,28 @@ $get_user = $admin->getUser();
 $admin->updateUser();
 $admin->newCategorie();
 $get_categorie = $admin->getCategorie();
+$nb_categorie = $admin->getCategorie();
 $admin->newRegions();
 $get_regions = $admin->getRegions();
+$nb_regions = $admin->getRegions();
 $admin->newProduits();
 $get_produits = $admin->getProduits();
 $admin->updateProduits();
 
 if (isset($_POST['supprimer'])) {
-    $id = $_POST['categorie'];
+    $id = $_POST['supprimer'];
     $admin->deleteCategorie($id);
+    $admin->deleteRegions($id);
 }
-
-var_dump($_POST);
 
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     //delete admin
     $delete = (int)$_GET['delete'];
-    $admin->deleteCategorie($delete);
     $admin->deleteUser($delete);
+    $admin->deleteProduits($delete);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -49,10 +51,10 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <form action="" method="post">
             <fieldset>
                 <legend>Ajout Produit</legend>
-                <input type="text" placeholder="titre" name="titre_produit">
-                <input type="text" placeholder="description" name="description_produit">
-                <input type="text" placeholder="stock" name="stock_produit">
-                <select name="region_produit">
+                <input type="text" placeholder="titre" name="titre_produit" required>
+                <input type="text" placeholder="description" name="description_produit" required>
+                <input type="text" placeholder="stock" name="stock_produit" required>
+                <select name="region_produit" required>
                     <?php while ($result_regions = $get_regions->fetch()) {  ?>
                         <option value="<?= $result_regions['id']; ?>">
                             <?= $result_regions['nom_region']; ?>
@@ -60,22 +62,23 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <?php } ?>
                 </select>
 
-                <select name="categorie_produit">Catégorie nouveau produit
+                <select name="categorie_produit" required>Catégorie nouveau produit
                     <?php while ($result_categorie = $get_categorie->fetch()) { ?>
-                        <option value="<?= $result_categorie['id']; ?>">
+                        <option value="<?= $result_categorie['id']; ?>" required>
                             <?= $result_categorie['nom_categorie']; ?>
                         </option>
                     <?php  } ?>
                 </select>
-                <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit">
+                <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required>
 
                 <input type="submit" name="submit_produit">
             </fieldset>
         </form>
 
+
         <?php while ($result_produits = $get_produits->fetch()) { ?>
 
-            <form action="" method="post" >
+            <form action="" method="post">
                 <fieldset>
                     <legend>Modification et suppréssion produits</legend>
                     <input type="text" value="<?= $result_produits['titre']; ?>" name="update_titre">
@@ -96,9 +99,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <?= $result_produits['nom_categorie']; ?>
                         </option>
                     </select>
-                    <input type="number" step="0.01" placeholder="<?= $result_produits['prix']; ?>" name="update_prix">
-                    <button name="supprimer" value="<?php $result_produits['id'] ?>">supprimer</button>
-                    <button type="submit" value="<?= $result_produits['id'] ?>" name="submit_update">update</button>
+                    <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix">
+
+                    <a class="a_admin" href="admin.php?delete=<?= $result_produits['id_produits'] ?>">Supprimer</a>
+
+                    <button type="submit" value="<?= $result_produits['id_produits']; ?>" name="submit_update">update</button>
 
                 </fieldset>
             </form>
@@ -107,9 +112,20 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <!--- Création catégorie --->
         <form action="" method="post">
             <fieldset>
-                <legend>Création de catégorie</legend>
+                <legend>Création et suppréssion de catégorie </legend>
                 <input type="text" name="name_categorie" placeholder="catégorie">
                 <input type="submit" name="new_categorie">
+
+                <?php while ($result_cat = $nb_categorie->fetch()) {  ?>
+                    <select name="" id="">
+                        <option value="<?= $result_cat['id']; ?>">
+                            <?= $result_cat['nom_categorie']; ?>
+                        </option>
+                    </select>
+                    <button type="submit" name="supprimer" value="<?= $result_cat['id'] ?>">delete</button>
+                <?php } ?>
+
+
             </fieldset>
         </form>
 
@@ -131,9 +147,20 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
         <form action="" method="post">
             <fieldset>
-                <legend>Ajout de régions</legend>
-                <input type="text" name="regions">
+                <legend>Ajout et suppréssion de régions</legend>
+                <input type="text" name="regions" placeholder="régions">
                 <input type="submit" name="new_regions">
+
+                <?php while ($delete_regions = $nb_regions->fetch()) {  ?>
+
+                    <select name="" id="">
+                        <option value="<?= $delete_regions['id']; ?>">
+                            <?= $delete_regions['nom_region']; ?>
+                        </option>
+                    </select>
+                    <button type="submit" name="supprimer" value="<?= $delete_regions['id'] ?>">delete</button>
+                <?php } ?>
+
             </fieldset>
         </form>
 

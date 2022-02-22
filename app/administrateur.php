@@ -80,15 +80,25 @@ class Administrateur
         }
     }
 
-    public function deleteCategorie($delete)
+    public function deleteCategorie($id)
     {
         $req = 'DELETE FROM categories WHERE id = ?';
+        $prepare = $this->db->prepare($req);
+        $prepare->execute(array(
+            $id
+        ));
+        return $prepare;
+        $msg = 'categorie supprimer';
+    }
+
+    public function deleteProduits($delete)
+    {
+        $req = 'DELETE FROM produits WHERE id =?';
         $prepare = $this->db->prepare($req);
         $prepare->execute(array(
             $delete
         ));
         return $prepare;
-        $msg = 'categorie supprimer';
     }
 
     public function getCategorie()
@@ -100,7 +110,7 @@ class Administrateur
 
     public function getProduits()
     {
-        $req = 'SELECT * FROM produits INNER JOIN categories ON produits.id_categorie = categories.id INNER JOIN regions ON produits.id_regions = regions.id';
+        $req = 'SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories  ON produits.id_categorie = categories.id INNER JOIN regions ON produits.id_regions = regions.id';
         $query = $this->db->query($req);
         return $query;
     }
@@ -116,7 +126,6 @@ class Administrateur
             $id_regions = $_POST['update_region'];
             $prix = $_POST['update_prix'];
             $id = $_POST['submit_update'];
-         
 
             $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, id_regions = ?, prix = ? WHERE id = ?';
             $stmt = $this->db->prepare($req);
@@ -185,5 +194,15 @@ class Administrateur
         $req = 'SELECT * FROM regions';
         $query = $this->db->query($req);
         return $query;
+    }
+
+    public function deleteRegions($id)
+    {
+        $req = 'DELETE FROM regions WHERE id = ?';
+        $prepare = $this->db->prepare($req);
+        $prepare->execute(array(
+            $id
+        ));
+        return $prepare;
     }
 }
