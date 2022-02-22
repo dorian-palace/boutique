@@ -10,5 +10,11 @@ class Panier{
         $this->db = $this->db->return_connect();
     }
     
+    public function getProduits(){
+
+        $select = $this->db->prepare('SELECT * FROM produits');
+        $select->execute();
+        $res = $select->fetch();
+    }
 
 }
