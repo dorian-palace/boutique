@@ -12,9 +12,9 @@ $nb_categorie = $admin->getCategorie();
 $admin->newRegions();
 $get_regions = $admin->getRegions();
 $nb_regions = $admin->getRegions();
-$admin->newProduits();
 $get_produits = $admin->getProduits();
 $admin->updateProduits();
+
 
 if (isset($_POST['supprimer'])) {
     $id = $_POST['supprimer'];
@@ -29,7 +29,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $admin->deleteUser($delete);
     $admin->deleteProduits($delete);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,8 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
 
         <!--- Création produit --->
-        <form action="" method="post">
+        <?php $admin->newProduits(); ?>
+        <form action="" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Ajout Produit</legend>
                 <input type="text" placeholder="titre" name="titre_produit" required>
@@ -70,10 +70,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <?php  } ?>
                 </select>
                 <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required>
-
+                <input type="file" name="file" id="">
                 <input type="submit" name="submit_produit">
             </fieldset>
         </form>
+
 
 
         <?php while ($result_produits = $get_produits->fetch()) { ?>
@@ -169,7 +170,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         </aside>
     </main>
     <!--- FOOTER --->
-
 </body>
 
 </html>

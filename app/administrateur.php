@@ -7,6 +7,9 @@ class Administrateur
     public $new_login;
     public $new_email;
     public $new_id_droits;
+    public $limite;
+    public $debut;
+
 
     public function __construct()
     {
@@ -15,6 +18,14 @@ class Administrateur
         $new_login = $this->new_login;
         $new_email = $this->new_email;
         $new_id_droits = $this->new_id_droits;
+        $limite = $this->limite;
+        $debut = $this->debut;
+
+        // if (isset($_GET['page']) && !empty($_GET['page'])) {
+        //     $page = (int) strip_tags($_GET['page']);
+        // } else {
+        //     $page = 1;
+        // }
     }
 
     public function getUser()
@@ -29,10 +40,12 @@ class Administrateur
     {
         // Modifie les informations et droit de l'utilisateurs
         if (isset($_POST['update'])) {
+
             $new_id_droits = $_POST['new_droits'];
             $new_login = $_POST['new_login'];
             $new_email = $_POST['new_email'];
             $id_user = $_POST['update'];
+
             $req = 'UPDATE utilisateurs SET id_droits = ?, login = ?, email = ? WHERE id = ?';
             $prepare = $this->db->prepare($req);
             $prepare->execute(array(
@@ -64,6 +77,7 @@ class Administrateur
         if (isset($_POST['new_categorie'])) {
 
             $name_categorie = $_POST['name_categorie'];
+
             $req_exist = 'SELECT nom_categorie FROM categories WHERE nom_categorie = ?';
             $stmt = $this->db->prepare($req_exist);
             $stmt->execute(array(
@@ -72,6 +86,7 @@ class Administrateur
             $count = $stmt->rowCount();
 
             if ($count == 0) {
+
                 $req = "INSERT INTO categories (nom_categorie) VALUES ('$name_categorie')";
                 $query = $this->db->query($req);
             } else {
@@ -156,12 +171,39 @@ class Administrateur
 
             if ($count == 0) {
 
-                $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, id_regions, prix) VALUES (?,?,?,?,?,?)";
-                $prepare = $this->db->prepare($req);
-                $prepare->execute(array(
-                    $titre, $description, $stock, $id_categorie, $id_regions, $prix
-                ));
-                $msg = 'Produit ajouter';
+                if (isset($_FILES['file'])) {
+
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $type = $_FILES['file']['type'];
+                    $error = $_FILES['file']['error'];
+                    $size = $_FILES['file']['size'];
+                    move_uploaded_file($tmpName, './file/' . $name);
+                    //move_uploaded_file — Déplace un fichier téléchargé
+                    $tabExtension = explode('.', $name);
+                    //Scinde une chaîne de caractères en segments
+                    $extension = strtolower(end($tabExtension));
+                    //end — Positionne le pointeur de tableau en fin de tableau
+                    $extensions = ['jpg', 'png', 'jpeg'];
+                    $maxSize = 400000;
+
+                    if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+
+                        $uniqueName = uniqid('', true);
+                        //uniqid — Génère un identifiant unique
+                        $file = $uniqueName . "." . $extension;
+                        move_uploaded_file($tmpName, './file/' . $name);
+
+                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, id_regions, prix, image) VALUES (?,?,?,?,?,?,?)";
+                        $prepare = $this->db->prepare($req);
+                        $prepare->execute(array(
+                            $titre, $description, $stock, $id_categorie, $id_regions, $prix, $name
+                        ));
+                        $msg = 'Produit ajouter';
+                    } else {
+                        $msg = 'Mauvaise extension';
+                    }
+                }
             } else {
                 $msg = 'Le produit existe déjà';
             }
@@ -173,6 +215,7 @@ class Administrateur
         if (isset($_POST['new_regions'])) {
 
             $name_regions = $_POST['regions'];
+
             $req_exist = 'SELECT nom_region FROM regions WHERE nom_region = ?';
             $stmt = $this->db->prepare($req_exist);
             $stmt->execute(array(
@@ -181,6 +224,7 @@ class Administrateur
             $count = $stmt->rowCount();
 
             if ($count == 0) {
+
                 $req = "INSERT INTO regions (nom_region) VALUES ('$name_regions')";
                 $query = $this->db->query($req);
             } else {
