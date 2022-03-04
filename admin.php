@@ -29,6 +29,16 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $admin->deleteUser($delete);
     $admin->deleteProduits($delete);
 }
+
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+} else {
+    $page = 1;
+}
+
+$limite = 5;
+$debut = ($page - 1) * $limite;
+
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +89,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
         <?php while ($result_produits = $get_produits->fetch()) { ?>
 
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Modification et suppréssion produits</legend>
                     <input type="text" value="<?= $result_produits['titre']; ?>" name="update_titre">
@@ -101,6 +111,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                         </option>
                     </select>
                     <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix">
+                    
+                    <input type="file" name="update_file">
+                    <?= $result_produits['image']; ?>
+                  <pre>  <?php var_dump($result_produits); ?> </pre>
+                    <?= '<img src="file/' . $result_produits['image'] . '"/>' ?>
 
                     <a class="a_admin" href="admin.php?delete=<?= $result_produits['id_produits'] ?>">Supprimer</a>
 
@@ -169,6 +184,28 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <aside>
         </aside>
     </main>
+
+    <ul class="pagination">
+
+        <li class="page-item">
+
+            <?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link">
+                    < </a> <?php } ?>
+        </li class="page-item">
+
+        <li class="page-item">
+            <?php for ($i = 1; $i <= $nbpage; $i++) {
+            ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+            <?php } ?>
+        </li>
+
+        <li class="page-item">
+            <?php if ($page < $nbpage) { ?>
+                <a href="?page=<?= $page + 1; ?>">></a>
+            <?php } ?>
+        </li>
+
+    </ul>
     <!--- FOOTER --->
 </body>
 
