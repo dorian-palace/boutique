@@ -1,19 +1,23 @@
 <?php
 session_start();
-require('app/administrateur.php');
+require('admin/app/AdminUser.php');
+require('admin/app/administrateur.php');
+require('admin/app/AdminProduit.php');
 
 $admin = new Administrateur();
-$admin->getUser();
-$get_user = $admin->getUser();
-$admin->updateUser();
+$adminProduit = new AdminProduit();
+$adminUser = new AdminUser();
+$adminUser->getUser();
+$get_user = $adminUser->getUser();
+$adminUser->updateUser();
 $admin->newCategorie();
 $get_categorie = $admin->getCategorie();
 $nb_categorie = $admin->getCategorie();
 $admin->newRegions();
 $get_regions = $admin->getRegions();
 $nb_regions = $admin->getRegions();
-$get_produits = $admin->getProduits();
-$admin->updateProduits();
+$get_produits = $adminProduit->getProduits();
+$adminProduit->updateProduits();
 
 
 if (isset($_POST['supprimer'])) {
@@ -26,8 +30,8 @@ if (isset($_POST['supprimer'])) {
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     //delete admin
     $delete = (int)$_GET['delete'];
-    $admin->deleteUser($delete);
-    $admin->deleteProduits($delete);
+    $adminUser->deleteUser($delete);
+    $adminProduit->deleteProduits($delete);
 }
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -57,7 +61,7 @@ $debut = ($page - 1) * $limite;
 
 
         <!--- Création produit --->
-        <?php $admin->newProduits(); ?>
+        <?php $adminProduit->newProduits(); ?>
         <form action="" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Ajout Produit</legend>
