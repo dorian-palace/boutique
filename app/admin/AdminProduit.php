@@ -1,6 +1,5 @@
 <?php
 require_once('setting/db.php');
-require_once('User.php');
 class AdminProduit
 {
     public function __construct()
@@ -20,13 +19,22 @@ class AdminProduit
     {
         if (isset($_POST['submit_update'])) {
             echo 'ok';
-            if (isset($_FILES['file'])) {
+
+            $titre = $_POST['update_titre'];
+            $description = $_POST['update_description'];
+            $stock = $_POST['update_stock'];
+            $id_categorie = $_POST['update_categorie'];
+            $id_regions = $_POST['update_region'];
+            $prix = $_POST['update_prix'];
+            $id = $_POST['submit_update'];
+
+            if (isset($_FILES['update_file'])) {
                 echo 'ok2';
-                $tmpName = $_FILES['file']['tmp_name'];
+                $tmpName = $_FILES['update_file']['tmp_name'];
                 $name = $_FILES['update_file']['name'];
-                $type = $_FILES['file']['type'];
-                $error = $_FILES['file']['error'];
-                $size = $_FILES['file']['size'];
+                $type = $_FILES['update_file']['type'];
+                $error = $_FILES['update_file']['error'];
+                $size = $_FILES['update_file']['size'];
                 move_uploaded_file($tmpName, './file/' . $name);
                 //move_uploaded_file — Déplace un fichier téléchargé
                 $tabExtension = explode('.', $name);
@@ -42,14 +50,6 @@ class AdminProduit
                     //uniqid — Génère un identifiant unique
                     $file = $uniqueName . "." . $extension;
                     move_uploaded_file($tmpName, './file/' . $name);
-
-                    $titre = $_POST['update_titre'];
-                    $description = $_POST['update_description'];
-                    $stock = $_POST['update_stock'];
-                    $id_categorie = $_POST['update_categorie'];
-                    $id_regions = $_POST['update_region'];
-                    $prix = $_POST['update_prix'];
-                    $id = $_POST['submit_update'];
 
                     $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, id_regions = ?, prix = ?, image = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);

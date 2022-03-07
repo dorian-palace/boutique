@@ -1,31 +1,21 @@
 <?php
 session_start();
-require('admin/app/AdminUser.php');
-require('admin/app/administrateur.php');
-require('admin/app/AdminProduit.php');
+require('app/admin/AdminUser.php');
+// require('app/admin/administrateur.php');
+require('app/admin/AdminProduit.php');
+require('app/admin/AdminRegion.php');
+require('app/admin/AdminCategorie.php');
 
-$admin = new Administrateur();
+$adminCategorie = new AdminCategorie();
+$adminRegion = new AdminRegion();
 $adminProduit = new AdminProduit();
 $adminUser = new AdminUser();
-$adminUser->getUser();
-$get_user = $adminUser->getUser();
-$adminUser->updateUser();
-$admin->newCategorie();
-$get_categorie = $admin->getCategorie();
-$nb_categorie = $admin->getCategorie();
-$admin->newRegions();
-$get_regions = $admin->getRegions();
-$nb_regions = $admin->getRegions();
-$get_produits = $adminProduit->getProduits();
-$adminProduit->updateProduits();
-
 
 if (isset($_POST['supprimer'])) {
     $id = $_POST['supprimer'];
-    $admin->deleteCategorie($id);
-    $admin->deleteRegions($id);
+    $adminCategorie->deleteCategorie($id);
+    $adminRegion->deleteRegions($id);
 }
-
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     //delete admin
@@ -34,14 +24,14 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $adminProduit->deleteProduits($delete);
 }
 
-if (isset($_GET['page']) && !empty($_GET['page'])) {
-    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
-} else {
-    $page = 1;
-}
+// if (isset($_GET['page']) && !empty($_GET['page'])) {
+//     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+// } else {
+//     $page = 1;
+// }
 
-$limite = 5;
-$debut = ($page - 1) * $limite;
+// $limite = 5;
+// $debut = ($page - 1) * $limite;
 
 ?>
 
@@ -58,10 +48,9 @@ $debut = ($page - 1) * $limite;
 <body>
     <!--- HEADER --->
     <main>
-
-
         <!--- Création produit --->
         <?php $adminProduit->newProduits(); ?>
+        <?php $get_regions = $adminRegion->getRegions(); ?>
         <form action="" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Ajout Produit</legend>
@@ -75,6 +64,8 @@ $debut = ($page - 1) * $limite;
                         </option>
                     <?php } ?>
                 </select>
+
+                <?php $get_categorie = $adminCategorie->getCategorie(); ?>
 
                 <select name="categorie_produit" required>Catégorie nouveau produit
                     <?php while ($result_categorie = $get_categorie->fetch()) { ?>
@@ -90,7 +81,8 @@ $debut = ($page - 1) * $limite;
         </form>
 
 
-
+        <?php $adminProduit->updateProduits(); ?>
+        <?php $get_produits = $adminProduit->getProduits(); ?>
         <?php while ($result_produits = $get_produits->fetch()) { ?>
 
             <form action="" method="post" enctype="multipart/form-data">
@@ -115,10 +107,10 @@ $debut = ($page - 1) * $limite;
                         </option>
                     </select>
                     <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix">
-                    
+
                     <input type="file" name="update_file">
                     <?= $result_produits['image']; ?>
-                  <pre>  <?php var_dump($result_produits); ?> </pre>
+                    <pre>  <?php var_dump($result_produits); ?> </pre>
                     <?= '<img src="file/' . $result_produits['image'] . '"/>' ?>
 
                     <a class="a_admin" href="admin.php?delete=<?= $result_produits['id_produits'] ?>">Supprimer</a>
@@ -130,6 +122,8 @@ $debut = ($page - 1) * $limite;
         <?php  } ?>
 
         <!--- Création catégorie --->
+        <?php $adminCategorie->newCategorie(); ?>
+        <?php $nb_categorie = $adminCategorie->getCategorie(); ?>
         <form action="" method="post">
             <fieldset>
                 <legend>Création et suppréssion de catégorie </legend>
@@ -145,10 +139,12 @@ $debut = ($page - 1) * $limite;
                     <button type="submit" name="supprimer" value="<?= $result_cat['id'] ?>">delete</button>
                 <?php } ?>
 
-
             </fieldset>
         </form>
 
+        <?php $adminUser->getUser(); ?>
+        <?php $adminUser->updateUser(); ?>
+        <?php $get_user = $adminUser->getUser(); ?>
         <?php while ($result = $get_user->fetch()) { ?>
             <!--- UPDATE & MODIFICATION utilisateurs --->
             <form action="admin.php" method="post">
@@ -164,6 +160,9 @@ $debut = ($page - 1) * $limite;
             </form>
         <?php }
         ?>
+
+        <?php $adminRegion->newRegions(); ?>
+        <?php $nb_regions = $adminRegion->getRegions(); ?>
 
         <form action="" method="post">
             <fieldset>
@@ -184,9 +183,9 @@ $debut = ($page - 1) * $limite;
             </fieldset>
         </form>
 
-
         <aside>
         </aside>
+
     </main>
 
     <ul class="pagination">

@@ -1,6 +1,6 @@
 <?php
 require_once('setting/db.php');
-class AdminCategorie
+class AdminRegion
 {
 
     public $new_login;
@@ -15,23 +15,22 @@ class AdminCategorie
         $this->db = $this->db->return_connect();
     }
 
-    public function newCategorie()
+    public function newRegions()
     {
+        if (isset($_POST['new_regions'])) {
 
-        if (isset($_POST['new_categorie'])) {
+            $name_regions = $_POST['regions'];
 
-            $name_categorie = $_POST['name_categorie'];
-
-            $req_exist = 'SELECT nom_categorie FROM categories WHERE nom_categorie = ?';
+            $req_exist = 'SELECT nom_region FROM regions WHERE nom_region = ?';
             $stmt = $this->db->prepare($req_exist);
             $stmt->execute(array(
-                $name_categorie
+                $name_regions
             ));
             $count = $stmt->rowCount();
 
             if ($count == 0) {
 
-                $req = "INSERT INTO categories (nom_categorie) VALUES ('$name_categorie')";
+                $req = "INSERT INTO regions (nom_region) VALUES ('$name_regions')";
                 $query = $this->db->query($req);
             } else {
                 $msg = 'categories éxiste déjà';
@@ -39,23 +38,20 @@ class AdminCategorie
         }
     }
 
-    public function deleteCategorie($id)
+    public function getRegions()
     {
-        $req = 'DELETE FROM categories WHERE id = ?';
+        $req = 'SELECT * FROM regions';
+        $query = $this->db->query($req);
+        return $query;
+    }
+
+    public function deleteRegions($id)
+    {
+        $req = 'DELETE FROM regions WHERE id = ?';
         $prepare = $this->db->prepare($req);
         $prepare->execute(array(
             $id
         ));
         return $prepare;
-        $msg = 'categorie supprimer';
-    }
-
-
-
-    public function getCategorie()
-    {
-        $req = 'SELECT * FROM categories';
-        $query = $this->db->query($req);
-        return $query;
     }
 }

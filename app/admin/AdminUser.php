@@ -1,6 +1,5 @@
 <?php
 require_once('setting/db.php');
-require_once('User.php');
 class AdminUser
 {
     public function __construct()
