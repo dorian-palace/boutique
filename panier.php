@@ -64,7 +64,7 @@ var_dump($_SESSION);
             
             <div class="count">Nombre d'articles : <?=$panier->count()?></div>
             <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
-            
+            <div class="payer"><a href="payment.php">valider de le panier</a></div>
             
         </div>
         </form>
