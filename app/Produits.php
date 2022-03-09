@@ -15,12 +15,14 @@ class Produits{
 
     public function  getProduits(){
 
-        $select = $this->db->prepare("SELECT * FROM produits ");
-        $select->execute();
+        $produits = $this->db->prepare('SELECT * FROM produits');
 
-        
-       return $select ;
+        $produits->execute();
 
+    
+
+
+        return $produits;
 
 
 

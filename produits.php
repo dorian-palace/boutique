@@ -20,38 +20,60 @@ session_start()
 
      <main>
         <?php require_once 'app/Produits.php';
+                require_once 'app/Panier.php';
 
 
-            $produit = New Produits();
-            $result = $produit->getProduits();
-
-            var_dump($resutl);
-
-            while($res = $result->fetch()){ ?>
-
+            $produits = New Produits();
+            $result = $produits->getProduits();
+           
+            $panier = New Panier();
+           
+    
             
+           
+
+
+            var_dump($result);
+            
+            var_dump($produits);
+
+              $result = $produits->getProduits(); 
+             
+
+             var_dump($produits);
+          
+           while($res = $result->fetch()){ ?>
+
+               <?php var_dump($res) ?>
                 <div class = col-md-4>
                  
-                <form action="produits.php?action=id<?php echo $res['id'];?>" method="post">
+                <form action="#" method="post">
 
-                <h4 class="text-info"><?php echo $res['titre']?></h4>
-                <h4 class="text-danger"><?php echo $res['prix']?></h4>
-                <input type="submit"  name="add" class="btn btn-succes" value="Ajouter au panier">
+               
+                    
+                <h4 class="text-info"><?= $res['titre']?></h4>
+                <h4 class="text-danger"><?=number_format($res['prix'],2,',',' ')?>€</h4>
 
+                <label for="quantitie">Quantité</label>
+
+                <select name="quantite" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+
+                <a class = "add" href="addpanier.php?id=<?=$res['id']?>">Ajouter au panier</a>
+
+                
 
                 </form>
                 
                  </div>
                  
+                 
                  <?php } ?>
-
-
-
-
-
-
-
-
 
     
      </main>

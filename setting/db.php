@@ -30,4 +30,13 @@ class Db_connect{
         return  $this->db;
     }
 
+    public function query($sql){
+
+        $req = $this->db->prepare($sql);
+        $req->execute();
+
+        return $req->fetchAll();
+
+    }
+
 }
