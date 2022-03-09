@@ -53,6 +53,7 @@ session_start()
                     
                 <h4 class="text-info"><?= $res['titre']?></h4>
                 <h4 class="text-danger"><?=number_format($res['prix'],2,',',' ')?>€</h4>
+                
 
                 <label for="quantitie">Quantité</label>
 
