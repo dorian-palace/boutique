@@ -30,18 +30,30 @@ session_start()
             $db = new Db_connect();
            
             $panier = New Panier();
-           
-    
+            $result = $produits->getProduits(); 
             
-           
+
+            $req_categories = $db->query("SELECT * FROM categories");
+            
+
+            foreach($req_categories as $req_categorie){
+
+                ?>
+                <a href="produits.php?categorie=<?=$req_categorie['id']?>"><?=$req_categorie['nom_categorie']?></a>
+                
+                <?php  }
+            
+            
+          
+
+          
+        
+
+            
+                
+            
 
 
-         
-
-              $result = $produits->getProduits(); 
-             
-
-           
              if(isset($_GET['produits'])){
 
                 $get_produits = $_GET['produits'];
@@ -59,9 +71,33 @@ session_start()
                 
         <?php }
 
+                }
+
+                if(isset($_GET['categorie'])){
+
+                $get_categorie = $_GET['categorie'];
+            
+
+            
+            $req_categories = $db->query("SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id WHERE id_categorie = '$get_categorie'");
+
+            foreach($req_categories as $req_categorie){
+
+
+                ?>
+                <h4 class="text-info"><?=$req_categorie['titre']?></h4>
+            <h4 class="text-danger"><?= number_format($req_categorie['prix'],2,',',' ')?>€</h4>
+            <a class = "add" href="addpanier.php?id=<?=$req_categorie['id_produits']?>">Ajouter au panier</a>
+
+            <?php  }
+
          }else{
 
-             while($res = $result->fetch()){ ?>
+             while($res = $result->fetch()){ 
+                 
+                 
+                 
+                 ?>
                 
                 
                 <div class = "produits">
@@ -86,7 +122,10 @@ session_start()
                  </div>
                  
                  
-                 <?php } 
+                 <?php
+                 
+                
+                } 
                  
                 }
                 
