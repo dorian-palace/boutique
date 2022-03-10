@@ -58,11 +58,6 @@ class Administrateur
         $req = ('SELECT * FROM produits ');
     }
 
-    public function categorieExist()
-    {
-        //$req = 'SELECT * FROM categories '
-    }
-
     public function newCategorie()
     {
 
@@ -77,25 +72,118 @@ class Administrateur
             $count = $stmt->rowCount();
 
             if ($count == 0) {
-
                 $req = "INSERT INTO categories (nom_categorie) VALUES ('$name_categorie')";
                 $query = $this->db->query($req);
             } else {
                 $msg = 'categories éxiste déjà';
             }
-            return $query;
         }
+    }
+
+    public function deleteCategorie($delete)
+    {
+        $req = 'DELETE FROM categories WHERE id = ?';
+        $prepare = $this->db->prepare($req);
+        $prepare->execute(array(
+            $delete
+        ));
+        return $prepare;
+        $msg = 'categorie supprimer';
     }
 
     public function getCategorie()
     {
         $req = 'SELECT * FROM categories';
         $query = $this->db->query($req);
-        //$fetch = $query->fetch();
         return $query;
+    }
+
+    public function getProduits()
+    {
+        $req = 'SELECT * FROM produits INNER JOIN categories ON produits.id_categorie = categories.id INNER JOIN regions ON produits.id_regions = regions.id';
+        $query = $this->db->query($req);
+        return $query;
+    }
+
+    public function updateProduits()
+    {
+        if (isset($_POST['submit_update'])) {
+
+            $titre = $_POST['update_titre'];
+            $description = $_POST['update_description'];
+            $stock = $_POST['update_stock'];
+            $id_categorie = $_POST['update_categorie'];
+            $id_regions = $_POST['update_region'];
+            $prix = $_POST['update_prix'];
+            $id = $_POST['submit_update'];
+         
+
+            $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, id_regions = ?, prix = ? WHERE id = ?';
+            $stmt = $this->db->prepare($req);
+            $stmt->execute(array(
+                $titre, $description, $stock, $id_categorie, $id_regions, $prix, $id
+            ));
+        }
     }
 
     public function newProduits()
     {
+        if (isset($_POST['submit_produit'])) {
+
+            $titre = $_POST['titre_produit'];
+            $description = $_POST['description_produit'];
+            $stock = $_POST['stock_produit'];
+            $id_categorie = $_POST['categorie_produit'];
+            $id_regions = $_POST['region_produit'];
+            $prix = $_POST['prix_produit'];
+            $new_produit = $_POST['submit_produit'];
+
+            $select = 'SELECT titre from produits WHERE titre = ?';
+            $stmt = $this->db->prepare($select);
+            $stmt->execute(array(
+                $titre
+            ));
+            $count = $stmt->rowCount();
+
+            if ($count == 0) {
+
+                $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, id_regions, prix) VALUES (?,?,?,?,?,?)";
+                $prepare = $this->db->prepare($req);
+                $prepare->execute(array(
+                    $titre, $description, $stock, $id_categorie, $id_regions, $prix
+                ));
+                $msg = 'Produit ajouter';
+            } else {
+                $msg = 'Le produit existe déjà';
+            }
+        }
+    }
+
+    public function newRegions()
+    {
+        if (isset($_POST['new_regions'])) {
+
+            $name_regions = $_POST['regions'];
+            $req_exist = 'SELECT nom_region FROM regions WHERE nom_region = ?';
+            $stmt = $this->db->prepare($req_exist);
+            $stmt->execute(array(
+                $name_regions
+            ));
+            $count = $stmt->rowCount();
+
+            if ($count == 0) {
+                $req = "INSERT INTO regions (nom_region) VALUES ('$name_regions')";
+                $query = $this->db->query($req);
+            } else {
+                $msg = 'categories éxiste déjà';
+            }
+        }
+    }
+
+    public function getRegions()
+    {
+        $req = 'SELECT * FROM regions';
+        $query = $this->db->query($req);
+        return $query;
     }
 }
