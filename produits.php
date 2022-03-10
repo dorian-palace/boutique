@@ -44,16 +44,7 @@ session_start()
                 <?php  }
             
             
-          
-
-          
         
-
-            
-                
-            
-
-
              if(isset($_GET['produits'])){
 
                 $get_produits = $_GET['produits'];
@@ -67,13 +58,13 @@ session_start()
                 <h4 class="text-info"><?= $produit['titre']?></h4>
                 <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
                 <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
-
+                
                 
         <?php }
 
                 }
 
-                if(isset($_GET['categorie'])){
+                elseif(isset($_GET['categorie'])){
 
                 $get_categorie = $_GET['categorie'];
             
@@ -86,10 +77,12 @@ session_start()
 
                 ?>
                 <h4 class="text-info"><?=$req_categorie['titre']?></h4>
-            <h4 class="text-danger"><?= number_format($req_categorie['prix'],2,',',' ')?>€</h4>
-            <a class = "add" href="addpanier.php?id=<?=$req_categorie['id_produits']?>">Ajouter au panier</a>
+                <h4 class="text-danger"><?= number_format($req_categorie['prix'],2,',',' ')?>€</h4>
+                <a class = "add" href="addpanier.php?id=<?=$req_categorie['id_produits']?>">Ajouter au panier</a>
 
             <?php  }
+
+            
 
          }else{
 
