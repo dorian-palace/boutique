@@ -1,13 +1,9 @@
 <?php
 session_start();
 require('app/admin/AdminUser.php');
-// require('app/admin/administrateur.php');
 require('app/admin/AdminProduit.php');
 require('app/admin/AdminRegion.php');
 require('app/admin/AdminCategorie.php');
-// require('app/pagination.php');
-// $pagination = new Pagination();
-// $pagination->Current_page();
 $adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
 $adminRegion = new AdminRegion();
@@ -31,9 +27,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $adminUser->deleteUser($delete);
     $adminProduit->deleteProduits($delete);
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -83,8 +76,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                 <input type="submit" name="submit_produit">
             </fieldset>
         </form>
-
-
 
         <?php $adminProduit->updateProduits(); ?>
         <?php $get_produits = $adminProduit->getProduits(); ?>
@@ -192,16 +183,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     </main>
 
     <?php
+    //pagination 
     $debut = $adminProduit->page_Produit();
     $nb_elements = $debut->fetchColumn();
     $limite = 5;
     $nb_page = ceil($nb_elements / $limite);
-    var_dump($nb_page);
-
-
-    var_dump($nb_elements);
-
-
     ?>
 
     <nav>

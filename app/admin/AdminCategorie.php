@@ -13,15 +13,6 @@ class AdminCategorie
     {
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
-
-        // if (isset($_GET['page']) && !empty($_GET['page'])) {
-        //     $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
-        // } else {
-        //     $this->page = 1;
-        // }
-
-        // $this->limite = 5;
-        // $this->debut = ($this->page - 1) * $this->limite;
     }
 
     public function newCategorie()
@@ -33,8 +24,6 @@ class AdminCategorie
 
             $req_exist = 'SELECT nom_categorie FROM categories WHERE nom_categorie = ? ';
             $stmt = $this->db->prepare($req_exist);
-            // $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-            // $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
             $stmt->execute(array(
                 $name_categorie
             ));
@@ -61,14 +50,10 @@ class AdminCategorie
         $msg = 'categorie supprimer';
     }
 
-
-
     public function getCategorie()
     {
         $req = 'SELECT * FROM categories ';
         $stmt = $this->db->prepare($req);
-        // $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        // $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }

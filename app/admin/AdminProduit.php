@@ -24,42 +24,12 @@ class AdminProduit
         $this->debut = ($this->page - 1) * $this->limite;
     }
 
-    public function Pagination_product()
-    {
-
-        if (isset($_GET['page']) && !empty($_GET['page'])) {
-            $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
-        } else {
-            $page = 1;
-        }
-
-        $limite = 5;
-        $debut = ($page - 1) * $limite;
-    }
-
-    // public function page_Test()
-    // {
-    //     if (isset($_GET['page']) && !empty($_GET['page'])) {
-    //         $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
-    //     } else {
-    //         $page = 1;
-    //     }
-
-    //     $limite = 5;
-    //     $debut = ($page - 1) * $limite;
-    // }
-
     public function page_Produit(){
 
         $req = "SELECT count(*) FROM produits";
         $stmt = $this->db->query($req);
-        // $stmt->fetchColumn();
-        
-        // $nb_page = ceil($stmt / $limite);
         return $stmt;
     }
-
-
 
     public function getProduits()
     {
@@ -68,13 +38,6 @@ class AdminProduit
         $query->bindValue('limite', $this->limite, PDO::PARAM_INT);
         $query->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $query->execute();
-        // $query->bindValue(':debut', $debut, PDO::PARAM_INT);
-        // $query->bindValue(':limite', $limite, PDO::PARAM_INT);
-
-
-
-
-        //
 
         return $query;
     }

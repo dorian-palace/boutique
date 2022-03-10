@@ -7,7 +7,6 @@ class AdminUser
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
 
-
         if (isset($_GET['page']) && !empty($_GET['page'])) {
             $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
         } else {
@@ -57,5 +56,4 @@ class AdminUser
         return $prepare;
         $msg = 'Utilisateurs supprimer';
     }
-
 }
