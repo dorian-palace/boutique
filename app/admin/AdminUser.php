@@ -6,14 +6,26 @@ class AdminUser
     {
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
+
+
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+        } else {
+            $this->page = 1;
+        }
+
+        $this->limite = 5;
+        $this->debut = ($this->page - 1) * $this->limite;
     }
 
     public function getUser()
     {
         //récupère les infos des utilisateurs
-        $req = 'SELECT * FROM utilisateurs';
-        $query = $this->db->query($req);
-        return $query;
+        $req = 'SELECT * FROM utilisateurs LIMIT :limite OFFSET :debut';
+        $stmt = $this->db->prepare($req);
+        $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
+        $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
+        return $stmt;
     }
 
     public function updateUser()

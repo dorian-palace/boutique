@@ -5,11 +5,19 @@ require('app/admin/AdminUser.php');
 require('app/admin/AdminProduit.php');
 require('app/admin/AdminRegion.php');
 require('app/admin/AdminCategorie.php');
-
+// require('app/pagination.php');
+// $pagination = new Pagination();
+// $pagination->Current_page();
+$adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
 $adminRegion = new AdminRegion();
-$adminProduit = new AdminProduit();
 $adminUser = new AdminUser();
+
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+} else {
+    $page = 1;
+}
 
 if (isset($_POST['supprimer'])) {
     $id = $_POST['supprimer'];
@@ -24,14 +32,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $adminProduit->deleteProduits($delete);
 }
 
-// if (isset($_GET['page']) && !empty($_GET['page'])) {
-//     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
-// } else {
-//     $page = 1;
-// }
 
-// $limite = 5;
-// $debut = ($page - 1) * $limite;
 
 ?>
 
@@ -42,6 +43,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <title>Admin</title>
 </head>
 
@@ -69,16 +73,17 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
                 <select name="categorie_produit" required>Catégorie nouveau produit
                     <?php while ($result_categorie = $get_categorie->fetch()) { ?>
-                        <option value="<?= $result_categorie['id']; ?>" required>
+                        <option value="<?= $result_categorie['id']; ?>">
                             <?= $result_categorie['nom_categorie']; ?>
                         </option>
-                    <?php  } ?>
+                    <?php  }; ?>
                 </select>
                 <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required>
                 <input type="file" name="file" id="">
                 <input type="submit" name="submit_produit">
             </fieldset>
         </form>
+
 
 
         <?php $adminProduit->updateProduits(); ?>
@@ -109,9 +114,8 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix">
 
                     <input type="file" name="update_file">
-                    <?= $result_produits['image']; ?>
-                    <pre>  <?php var_dump($result_produits); ?> </pre>
-                    <?= '<img src="file/' . $result_produits['image'] . '"/>' ?>
+                    <!--  //$result_produits['image']; ?> -->
+                    <?= '<img src="file/' . $result_produits['image'] . '" height=250 width=400 />' ?></br>
 
                     <a class="a_admin" href="admin.php?delete=<?= $result_produits['id_produits'] ?>">Supprimer</a>
 
@@ -155,7 +159,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <input type="text" value="<?= $result['id_droits']; ?>" name="new_droits">
                     <button type="submit" value=" <?= $result['id'] ?>" name="update">Update</button>
                     <a class="a_admin" href="admin.php?delete=<?= $result['id'] ?>">Supprimer</a>
-
                 </fieldset>
             </form>
         <?php }
@@ -188,27 +191,42 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     </main>
 
-    <ul class="pagination">
+    <?php
+    $debut = $adminProduit->page_Produit();
+    $nb_elements = $debut->fetchColumn();
+    $limite = 5;
+    $nb_page = ceil($nb_elements / $limite);
+    var_dump($nb_page);
 
-        <li class="page-item">
 
-            <?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link">
-                    < </a> <?php } ?>
-        </li class="page-item">
+    var_dump($nb_elements);
 
-        <li class="page-item">
-            <?php for ($i = 1; $i <= $nbpage; $i++) {
-            ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
-            <?php } ?>
-        </li>
 
-        <li class="page-item">
-            <?php if ($page < $nbpage) { ?>
-                <a href="?page=<?= $page + 1; ?>">></a>
-            <?php } ?>
-        </li>
+    ?>
 
-    </ul>
+    <nav>
+        <ul class="pagination">
+
+            <li class="page-item">
+
+                <?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
+                        < </a> <?php } ?>
+            </li class="page-item">
+
+            <li class="page-item">
+                <?php for ($i = 1; $i <= $nb_page; $i++) {
+                ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+                <?php } ?>
+            </li>
+
+            <li class="page-item">
+                <?php if ($page < $nb_page) { ?>
+                    <a href="?page=<?= $page + 1; ?>">></a>
+                <?php } ?>
+            </li>
+
+        </ul>
+    </nav>
     <!--- FOOTER --->
 </body>
 

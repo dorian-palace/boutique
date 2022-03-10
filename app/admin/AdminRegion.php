@@ -7,12 +7,23 @@ class AdminRegion
     public $new_email;
     public $new_id_droits;
     public $limite;
-    public $debut;
+    // public $debut = 1;
 
     public function __construct()
     {
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
+
+        // $this->limite = 5;
+        // $this->de    but = $debut;
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+        } else {
+            $this->page = 1;
+        }
+
+        $this->limite = 5;
+        $this->debut = ($this->page - 1) * $this->limite;
     }
 
     public function newRegions()
@@ -21,8 +32,10 @@ class AdminRegion
 
             $name_regions = $_POST['regions'];
 
-            $req_exist = 'SELECT nom_region FROM regions WHERE nom_region = ?';
+            $req_exist = "SELECT nom_region FROM regions WHERE nom_region = ? LIMIT :limite OFFSET :debut ";
             $stmt = $this->db->prepare($req_exist);
+            $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
+            $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
             $stmt->execute(array(
                 $name_regions
             ));
@@ -40,9 +53,12 @@ class AdminRegion
 
     public function getRegions()
     {
-        $req = 'SELECT * FROM regions';
-        $query = $this->db->query($req);
-        return $query;
+        $req = 'SELECT * FROM regions LIMIT :limite OFFSET :debut';
+        $stmt = $this->db->prepare($req);
+        $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
+        $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
     }
 
     public function deleteRegions($id)
