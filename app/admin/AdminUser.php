@@ -24,6 +24,7 @@ class AdminUser
         $stmt = $this->db->prepare($req);
         $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
         $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt;
     }
 

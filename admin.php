@@ -152,7 +152,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <a class="a_admin" href="admin.php?delete=<?= $result['id'] ?>">Supprimer</a>
                 </fieldset>
             </form>
-        <?php }
+        <?php  }
         ?>
 
         <?php $adminRegion->newRegions(); ?>
