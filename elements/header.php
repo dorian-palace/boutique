@@ -12,6 +12,7 @@
       </ul>
     </div>
     <div class="products">
+    
     <?php  if(isset($_SESSION['id'])){
 
 ?>

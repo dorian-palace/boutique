@@ -22,7 +22,7 @@ var_dump($_SESSION);
 
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/panier.css">
-    <title>Document</title>
+    <title>panier</title>
 </head>
 <body >
     <?php require_once 'elements/header.php';

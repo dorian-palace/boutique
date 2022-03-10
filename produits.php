@@ -9,7 +9,8 @@ session_start()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/header.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/css/produits.css">
+  
 
     <title>Document</title>
 </head>
@@ -21,10 +22,12 @@ session_start()
      <main>
         <?php require_once 'app/Produits.php';
                 require_once 'app/Panier.php';
+                require_once 'setting/Db.php';
 
 
             $produits = New Produits();
             $result = $produits->getProduits();
+            $db = new Db_connect();
            
             $panier = New Panier();
            
@@ -33,19 +36,35 @@ session_start()
            
 
 
-            var_dump($result);
-            
-            var_dump($produits);
+         
 
               $result = $produits->getProduits(); 
              
 
-             var_dump($produits);
-          
-           while($res = $result->fetch()){ ?>
+           
+             if(isset($_GET['produits'])){
 
-               <?php var_dump($res) ?>
-                <div class = col-md-4>
+                $get_produits = $_GET['produits'];
+
+                $produits_id = $db->query("SELECT * FROM produits WHERE id = '$get_produits'");
+              
+
+                foreach($produits_id as $produit){
+
+                    ?>
+                <h4 class="text-info"><?= $produit['titre']?></h4>
+                <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
+                <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
+
+                
+        <?php }
+
+         }else{
+
+             while($res = $result->fetch()){ ?>
+                
+                
+                <div class = "produits">
                  
                 <form action="#" method="post">
 
@@ -53,16 +72,10 @@ session_start()
                     
                 <h4 class="text-info"><?= $res['titre']?></h4>
                 <h4 class="text-danger"><?=number_format($res['prix'],2,',',' ')?>€</h4>
+                <a href="produits.php?produits=<?=$res['id']?>">voir le produit</a>
 
-                <label for="quantitie">Quantité</label>
-
-                <select name="quantite" id="">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                </select>
+              
+              
 
                 <a class = "add" href="addpanier.php?id=<?=$res['id']?>">Ajouter au panier</a>
 
@@ -73,7 +86,15 @@ session_start()
                  </div>
                  
                  
-                 <?php } ?>
+                 <?php } 
+                 
+                }
+                
+                ?>
+
+                
+                
+ 
 
     
      </main>

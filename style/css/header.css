@@ -6,6 +6,7 @@
 
 .header-nav button{
 
+  
   font-family: Dancing Script;
   
 
@@ -17,7 +18,6 @@
   margin: auto;
   display: flex;
   justify-content: space-around;
-  
   align-items: center;
 }
 
