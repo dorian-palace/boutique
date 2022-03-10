@@ -5,11 +5,17 @@ require_once'db.php';
 
 
 
+
 if(isset($_GET['q']) AND !empty($_GET['q'])) {
+
+   
+
     $q = htmlspecialchars($_GET['q']);
 
-    $articles = $db ->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu)LIKE "%'.$q.'%" ORDER BY id DESC');
+    $articles = $db->('SELECT titre FROM articles WHERE CONCAT(titre, contenu)LIKE "%'.$q.'%" ORDER BY id DESC');
+
         if($articles->rowCount() ==  0) {
+
             $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
         }
     
