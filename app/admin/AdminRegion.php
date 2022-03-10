@@ -30,13 +30,10 @@ class AdminRegion
 
             $name_regions = $_POST['regions'];
 
-            $req_exist = "SELECT nom_region FROM regions WHERE nom_region = ? LIMIT :limite OFFSET :debut ";
+            $req_exist = "SELECT nom_region FROM regions WHERE nom_region = $name_regions LIMIT :limite OFFSET :debut ";
             $stmt = $this->db->prepare($req_exist);
             $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
             $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
-            $stmt->execute(array(
-                $name_regions
-            ));
             $count = $stmt->rowCount();
 
             if ($count == 0) {

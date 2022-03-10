@@ -206,7 +206,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
             <li class="page-item">
                 <?php if ($page < $nb_page) { ?>
-                    <a href="?page=<?= $page + 1; ?>"class="page-link">></a>
+                    <a href="?page=<?= $page + 1; ?>" class="page-link">></a>
                 <?php } ?>
             </li>
 
