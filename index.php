@@ -30,7 +30,9 @@
 
 
     <!--- FOOTER --->
-
+    <footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
 </body>
 
 </html>
