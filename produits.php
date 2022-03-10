@@ -55,6 +55,7 @@ session_start()
                 foreach($produits_id as $produit){
 
                     ?>
+                    <a href="produits.php">Retour aux produits</a>
                 <h4 class="text-info"><?= $produit['titre']?></h4>
                 <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
                 <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
@@ -76,6 +77,9 @@ session_start()
 
 
                 ?>
+                <a href="produits.php">Retour aux produits</a>
+
+
                 <h4 class="text-info"><?=$req_categorie['titre']?></h4>
                 <h4 class="text-danger"><?= number_format($req_categorie['prix'],2,',',' ')?>€</h4>
                 <a class = "add" href="addpanier.php?id=<?=$req_categorie['id_produits']?>">Ajouter au panier</a>
