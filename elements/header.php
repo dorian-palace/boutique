@@ -19,6 +19,7 @@
         <li><a href="#">test</a></li>
       </ul>
 
+      <?php require_once 'app/barre.php'?>
     </div>
     
     <div class="btn-container">
