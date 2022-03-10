@@ -3,15 +3,16 @@
   <div class="dropdown">
     <button><a href="index.php" class="home">Accueil</a></button>
     <div class="projects">
-      <button>Projects</button>
+      <button>Produits</button>
       <ul>
-        <li><a href="#">Cat1</a></li>
+        <li><a href="produits.php">Produits</a></li>
         <li><a href="#">cat2</a></li>
         <li><a href="#">cat3</a></li>
         <li><a href="#">cat4</a></li>
       </ul>
     </div>
     <div class="products">
+    
     <?php  if(isset($_SESSION['id'])){
 
 ?>
@@ -37,6 +38,12 @@
       </div>
       </div>
     <?php } ?>
+
+
+    <div class="btn-container">
+      
+      <button class="connexion-btn"><a href="panier.php">Panier</a></button>
+      </div>
 
 
 
