@@ -30,6 +30,7 @@ class Produits{
     }
 
     public function getProduitsId(){
+        
 
         $produits_id = $_GET['produits'];
         
@@ -40,6 +41,18 @@ class Produits{
        $res =  $produits->fetch();
 
         return $res;
+    }
+
+    public function categorie(){
+
+        $req_categories = $this->db->prepare("SELECT * FROM categories");
+        $req_categories->execute();
+        $res = $req_categories->fetch();
+
+        return $res;
+            
+
+        
     }
 
 
