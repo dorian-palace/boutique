@@ -21,23 +21,13 @@ class User
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
 
-        $this->login = $login;
-        $this->password = $password;
-        $this->email = $email;
-        $this->confpassword = $confpassword;
+        $this->login = htmlspecialchars($login);
+        $this->password =  htmlspecialchars($password);
+        $this->email = htmlspecialchars($email);
+        $this->confpassword = htmlspecialchars($confpassword);
     }
 
-    public function sigup()
-    {
-
-        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droits,id_adresse)VALUES(?,?,?,1,1)');
-
-        $insert->execute(array($this->login, $this->email, $this->password));
-
-
-
-        return $insert;
-    }
+    
 
     public function signup()
     {
