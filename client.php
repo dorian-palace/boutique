@@ -2,32 +2,17 @@
 session_start();
 require_once('setting/db.php');
 require('app/client/Client_info.php');
-$client_info = new Client_info(); //class infos utilisateurs TEST
+$client_info = new Client_info();
 $id_utilisateur = $_SESSION['id'];
+$clientInfos = $client_info->clientInfos($id_utilisateur);
+$resultInfos = $clientInfos->fetch();
+$client_info->clientCommande();
+$clientCommande = $client_info->clientCommande();
+$resultCommande = $clientCommande->fetch();
+print_r($resultCommande);
 
-$adresse_client = $client_info->clientAdresse($id_utilisateur); //TEST INNER JOIN user / adresse
-
-$resultAdresse = $adresse_client->fetchAll(); //
-
-foreach ($resultAdresse as $key) {
-    // print_r($key);
-
-    // Information utilisateurs 
-    echo
-     'login: ' . ' ' . $key['login'] . ' ' . 'email: ' . $key['email'] . ' ' . ' numero de commande' . ' ' . $key['numero_commande'] . ' ' . ' prenom: ' . $key['prenom'] . ' ' . ' nom: ' . $key['nom'] . ' ' . 'adresse: ' . $key['adresse'] . ' ' . 'ville: ' . $key['ville'] . ' ' . 'code postal: ' . $key['code_postal'] . ' ' . 'telephone: ' . $key['telephone'];
-}
-
-$infoPanier = $client_info->clientPanier();
-$resultPanier = $infoPanier->fetchAll();
-
-foreach($resultPanier as $key){
-    print_r($key);
-    // DB FK id_produit / ID de la table produit a update 
-
-}
-
+// print_r($clientCommande);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,12 +24,50 @@ foreach($resultPanier as $key){
 </head>
 
 <body>
+    <fieldset>
+        <h2 for="">Information utilisateur</h2>
+        <table>
+            <tr>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+            </tr>
+            <tr>
+                <td><?= $resultInfos['login']; ?></td>
+                <td><?= $resultInfos['email']; ?></td>
+                <td><?= $resultInfos['prenom']; ?></td>
+                <td><?= $resultInfos['nom']; ?></td>
+            </tr>
+        </table>
+    </fieldset>
 
-    <?php
+    <fieldset>
+        <h2>Information de commande</h2>
+        <?php foreach ($resultCommande as $key => $value) {
+        ?>
+            <table>
 
-    //PAGINATION
 
-    ?>
+                <tr>
+                    <th><?= $key ?></th>
+                    <!-- <th>Adresse de livraison</th>
+                <th>Date de commande</th>
+                <th>Statut</th> -->
+                </tr>
+                <tr>
+                    <td><?= $value ?></td>
+                    <!-- <td></td>
+                    <td</td>
+                    <td</td>
+                </tr> -->
+            </table>
+        <?php } ?>
+
+    </fieldset>
+
+
+
 </body>
 
 </html>

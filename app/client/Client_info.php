@@ -27,26 +27,37 @@ class Client_info
         $this->id_client = $_SESSION['id'];
     }
 
-    public function clientAdresse()
+    public function clientInfos()
     {
-
-        $req = "SELECT * FROM utilisateurs INNER JOIN adresse_livraison ON utilisateurs.id = adresse_livraison.id_utilisateur LIMIT :limite OFFSET :debut";
+        $id_utilisateurs = $_SESSION['id'];
+        $req = "SELECT * FROM utilisateurs WHERE id = ?";
         $stmt = $this->db->prepare($req);
-        $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute(array(
+            $id_utilisateurs
+        ));
 
         return $stmt;
     }
 
-    public function clientPanier()
-    {
-        $req = "SELECT * FROM utilisateurs INNER JOIN panier WHERE utilisateurs.id = panier.id_utilisateur LIMIT :limite OFFSET :debut";
-        $stmt = $this->db->prepare($req);
-        $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
-        $stmt->execute();
+    // public function clientPanier()
+    // {
+    //     $req = "SELECT * FROM utilisateurs INNER JOIN panier WHERE utilisateurs.id = panier.id_utilisateur LIMIT :limite OFFSET :debut";
+    //     $stmt = $this->db->prepare($req);
+    //     $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
+    //     $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
+    //     $stmt->execute();
 
+    //     return $stmt;
+    // }
+
+    public function clientCommande()
+    {
+
+        $req = "SELECT * FROM commande INNER JOIN utilisateurs WHERE utilisateurs.id = commande.id_utilisateur";
+        // SELECT adr_facturation,adr_livraison,date_commande,statut FROM commande INNER JOIN utilisateurs WHERE utilisateurs.id = commande.id_utilisateur
+        $stmt = $this->db->prepare($req);
+        $stmt->execute();
+        // $stmt->fetch();
         return $stmt;
     }
 }
