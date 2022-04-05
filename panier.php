@@ -60,11 +60,12 @@ var_dump($_SESSION);
             
             <?php } ?>
 
-            <input type="submit" value="Envoyé" name="submit">
-            
             <div class="count">Nombre d'articles : <?=$panier->count()?></div>
             <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
             
+            <input type="submit" value="Envoyé" name="submit">
+            
+            <form action="" method="post"></form>
             
         </div>
         </form>
