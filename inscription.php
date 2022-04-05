@@ -72,6 +72,13 @@
                 <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
                 <input type="email" class="inputForm" name="email">
 
+                <label for="prenom" class="'labelForm" placeholder="Votre prénom"> Prénom </label>
+                <input type="prenom" class="inputForm" name="prenom">
+
+                
+                <label for="nom"class="'labelForm" placeholder="Votre nom">nom</label>
+                <input type="prenom" class="inputForm" name="prenom">
+
                 <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
                 <input type="password" class="inputForm" name="password">
 
