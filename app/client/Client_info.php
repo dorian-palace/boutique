@@ -41,7 +41,12 @@ class Client_info
 
     public function clientPanier()
     {
-        $req = "SELECT * FROM utilisateurs INNER JOIN panier WHERE utilisateurs.id = panier.id_utilisateur";
+        $req = "SELECT quantite, titre, description, stock, prix, adr_facturation, adr_livraison, date_commande, nom_categorie, nom_region FROM panier 
+        INNER JOIN utilisateurs ON id_utilisateur = utilisateurs.id 
+        INNER JOIN produits ON id_produits = produits.id 
+        INNER jOIN commande ON id_commande = commande.id 
+        INNER JOIN categories ON id_categorie = categories.id 
+        INNER JOIN regions ON id_regions = regions.id";
         $query = $this->db->prepare($req);
         $query->execute();
         $stmt = $query->fetch();
@@ -53,13 +58,11 @@ class Client_info
     {
         $id_utilisateurs = $_SESSION['id'];
         $req = "SELECT adr_facturation,adr_livraison,date_commande,statut,utilisateurs.id FROM utilisateurs INNER JOIN commande WHERE utilisateurs.id = ?";
-        // $req = "SELECT *, id AS id_commande FROM commande INNER JOIN utilisateurs WHERE id.utilisateurs = ?";
-        // SELECT adr_facturation,adr_livraison,date_commande,statut FROM commande INNER JOIN utilisateurs WHERE utilisateurs.id = commande.id_utilisateur
         $stmt = $this->db->prepare($req);
         $stmt->execute(array(
             $id_utilisateurs
         ));
-        // $stmt->fetch();
+        $stmt->fetch();
         return $stmt;
     }
 }

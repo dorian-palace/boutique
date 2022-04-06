@@ -11,11 +11,13 @@ $clientCommande = $client_info->clientCommande($id_utilisateur);
 $resultCommande = $clientCommande->fetch();
 $panierClient = $client_info->clientPanier();
 
-echo "<pre>";
-// var_dump($value);
-echo "</pre>";
+// echo "<pre>";
+// var_dump($_SESSION);
+// echo "</pre>";
 // print_r($clientCommande);
-
+// echo "<pre>";
+// print_r($panierClient);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,42 +26,78 @@ echo "</pre>";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>Client</title>
 </head>
 
 <body>
+
+    <!-- <fieldset>
+        <legend>Information utilisateur</legend> -->
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Login</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?= $resultInfos['login']; ?></td>
+                    <td><?= $resultInfos['email']; ?></td>
+                    <td><?= $resultInfos['prenom']; ?></td>
+                    <td><?= $resultInfos['nom']; ?></td>
+                </tr>
+            </tbody>
+        <!-- </table>
+    </fieldset> -->
+
     <fieldset>
-        <h2 for="">Information utilisateur</h2>
-        <table>
-            <tr>
-                <th>Login</th>
-                <th>Email</th>
-                <th>Prenom</th>
-                <th>Nom</th>
-            </tr>
-            <tr>
-                <td><?= $resultInfos['login']; ?></td>
-                <td><?= $resultInfos['email']; ?></td>
-                <td><?= $resultInfos['prenom']; ?></td>
-                <td><?= $resultInfos['nom']; ?></td>
-            </tr>
-        </table>
+        <legend>Information de commande</legend>
+        <?php foreach ($resultCommande as $key => $value) { ?>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th><?= $key; ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= $value; ?></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        <?php } ?>
+
     </fieldset>
 
     <fieldset>
-        <h2>Information de commande</h2>
-        <table>
-            <?php foreach ($resultCommande as $key => $value) { ?>
-                <tr>
-                    <th><?= $key; ?></th>
-                </tr>
-                <tr>
-                    <td><?= $value; ?></td>
-                </tr>
-            <?php } ?>
+        <legend>Contenue panier</legend>
+        <?php
+        foreach ($panierClient as $key => $value) {
+        ?>
+            <table class="table table-bordered">
+                <thead class="">
+                    <tr>
+                        <th scope="col"><?= $key; ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <?= $value; ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-        </table>
-
+        <?php } ?>
     </fieldset>
 
 </body>
