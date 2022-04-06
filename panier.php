@@ -48,28 +48,39 @@ var_dump($_SESSION);
         <form action="panier.php" method="post">
         <div class="row">
 
-        <?php while($res = $produits->fetch()){  ?>
-             
-            <div class="name"><?=$res['titre']?></div>
-            <div class="price">prix : <?=number_format($res['prix'],2,',',' ')?>€</div>
-            <div class="quantity"><input type="text" name="panier[quantity][<?=$res['id'];?>]" value="<?=$_SESSION['panier'][$res['id']]?>"</div>
-            <a href="panier.php?delpanier=<?=$res['id'];?>">Supprimer</a>
             
+        <?php
             
-            
-            
-            <?php } ?>
+            if(empty($produits)){
 
-            <div class="count">Nombre d'articles : <?=$panier->count()?></div>
-            <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
+                echo 'panier vide';
+
+            }else{
+    
+                while($res = $produits->fetch()){  ?>
+             
+             <div class="name"><?=$res['titre']?></div>
+             <div class="price">prix : <?=number_format($res['prix'],2,',',' ')?>€</div>
+             <div class="quantity"><input type="text" name="panier[quantity][<?=$res['id'];?>]" value="<?=$_SESSION['panier'][$res['id']]?>"</div>
+             <a href="panier.php?delpanier=<?=$res['id'];?>">Supprimer</a>
+             
+             <?php }
+            }
             
-            <input type="submit" value="Envoyé" name="submit">
+            if(!empty($produits)){ ?>
+
             
-            <form action="" method="post"></form>
-            
-        </div>
-        </form>
-        
+                <div class="count">Nombre d'articles : <?=$panier->count()?></div>
+                <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
+                
+                <input type="submit" value="Envoyé" name="submit">
+                
+                <form action="" method="post"></form>
+                
+            </div>
+                </form>
+                
+             <?php } ?>
         
    
    
