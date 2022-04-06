@@ -40,16 +40,17 @@ session_start();
         if(isset($_POST['valider'])){
 
             
-            if (isset($_POST['login'],$_POST['password'],$_POST['email'],$_POST['confpassword'])) {
+            if (isset($_POST['login'],$_POST['password'],$_POST['email'])) {
                 
                 $login = $_POST['login'];
                 $password = $_POST['password'];
                 $email = $_POST['email'];
-                $confpassword = $_POST['confpassword'];
 
-                $log = new User($login, $password, $email, $confpassword);
+
+                $log = new User($login, $password, $email);
 
                 $log->ConfirmConnect();
+
 
                 
             }
@@ -71,8 +72,6 @@ session_start();
                 <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
                 <input type="password" class="inputForm" name="password">
 
-                <label for="email" class="'labelForm" placeholder="confirmation">confirmez le mot de passe </label>
-                <input type="password" class="inputForm" name="confpassword">
 
 
                 <button type="submit" name="valider" classe='btnFrom'>valider</button>
