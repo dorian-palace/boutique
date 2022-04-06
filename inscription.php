@@ -73,7 +73,7 @@
                 <input type="text" class="inputForm" name="login">
 
                 <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
-                <input type="email" class="inputForm" name="email">
+                <input type="email" class="inputForm" name="email"> 
 
                 <label for="prenom" class="'labelForm" placeholder="Votre prénom"> Prénom </label>
                 <input type="prenom" class="inputForm" name="prenom">
