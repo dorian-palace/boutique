@@ -7,13 +7,15 @@ $id_utilisateur = $_SESSION['id'];
 $clientInfos = $client_info->clientInfos($id_utilisateur);
 $resultInfos = $clientInfos->fetch();
 $client_info->clientCommande();
-$clientCommande = $client_info->clientCommande();
+$clientCommande = $client_info->clientCommande($id_utilisateur);
 $resultCommande = $clientCommande->fetch();
 $panierClient = $client_info->clientPanier();
+
 echo "<pre>";
-var_dump($_SESSION);
+// var_dump($value);
 echo "</pre>";
 // print_r($clientCommande);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,19 +49,15 @@ echo "</pre>";
     <fieldset>
         <h2>Information de commande</h2>
         <table>
-            <tr>
-                <th>Adresse de facturation</th>
-                <th>Adresse de livraison</th>
-                <th>Date de commande</th>
-                <th>Statut de la commande</th>
-            </tr>
-            <tr>
-                <td><?= $resultCommande['adr_facturation']; ?></td>
-                <td><?= $resultCommande['adr_livraison']; ?></td>
-                <td><?= $resultCommande['date_commande']; ?></td>
-                <td><?= $resultCommande['statut']; ?></td>
+            <?php foreach ($resultCommande as $key => $value) { ?>
+                <tr>
+                    <th><?= $key; ?></th>
+                </tr>
+                <tr>
+                    <td><?= $value; ?></td>
+                </tr>
+            <?php } ?>
 
-            </tr>
         </table>
 
     </fieldset>
