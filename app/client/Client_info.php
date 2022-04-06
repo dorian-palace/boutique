@@ -39,16 +39,15 @@ class Client_info
         return $stmt;
     }
 
-    // public function clientPanier()
-    // {
-    //     $req = "SELECT * FROM utilisateurs INNER JOIN panier WHERE utilisateurs.id = panier.id_utilisateur LIMIT :limite OFFSET :debut";
-    //     $stmt = $this->db->prepare($req);
-    //     $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-    //     $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
-    //     $stmt->execute();
+    public function clientPanier()
+    {
+        $req = "SELECT * FROM utilisateurs INNER JOIN panier WHERE utilisateurs.id = panier.id_utilisateur";
+        $query = $this->db->prepare($req);
+        $query->execute();
+        $stmt = $query->fetch();
 
-    //     return $stmt;
-    // }
+        return $stmt;
+    }
 
     public function clientCommande()
     {

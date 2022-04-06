@@ -9,8 +9,9 @@ $resultInfos = $clientInfos->fetch();
 $client_info->clientCommande();
 $clientCommande = $client_info->clientCommande();
 $resultCommande = $clientCommande->fetch();
+$panierClient = $client_info->clientPanier();
 echo "<pre>";
-var_dump($_SESSION);
+var_dump($panierClient);
 echo "</pre>";
 // print_r($clientCommande);
 ?>
@@ -62,6 +63,7 @@ echo "</pre>";
         </table>
 
     </fieldset>
+
 </body>
 
 </html>
