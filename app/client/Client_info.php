@@ -51,11 +51,13 @@ class Client_info
 
     public function clientCommande()
     {
-
-        $req = "SELECT * FROM commande INNER JOIN utilisateurs WHERE utilisateurs.id = commande.id_utilisateur";
+        $id_utilisateurs = $_SESSION['id'];
+        $req = "SELECT * FROM commande INNER JOIN utilisateurs WHERE id = ?";
         // SELECT adr_facturation,adr_livraison,date_commande,statut FROM commande INNER JOIN utilisateurs WHERE utilisateurs.id = commande.id_utilisateur
         $stmt = $this->db->prepare($req);
-        $stmt->execute();
+        $stmt->execute(array(
+            $id_utilisateurs    
+        ));
         // $stmt->fetch();
         return $stmt;
     }

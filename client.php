@@ -11,7 +11,7 @@ $clientCommande = $client_info->clientCommande();
 $resultCommande = $clientCommande->fetch();
 $panierClient = $client_info->clientPanier();
 echo "<pre>";
-var_dump($panierClient);
+var_dump($_SESSION);
 echo "</pre>";
 // print_r($clientCommande);
 ?>
