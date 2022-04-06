@@ -24,7 +24,7 @@ class Client_info
 
         $this->limite = 5;
         $this->debut = ($this->page - 1) * $this->limite;
-        $this->id_client = $_SESSION['id'];
+        // $this->id_client = $_SESSION['id'];
     }
 
     public function clientInfos()

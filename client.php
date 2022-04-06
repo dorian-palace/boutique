@@ -9,8 +9,9 @@ $resultInfos = $clientInfos->fetch();
 $client_info->clientCommande();
 $clientCommande = $client_info->clientCommande();
 $resultCommande = $clientCommande->fetch();
-print_r($resultCommande);
-
+echo "<pre>";
+var_dump($_SESSION);
+echo "</pre>";
 // print_r($clientCommande);
 ?>
 <!DOCTYPE html>
@@ -44,30 +45,23 @@ print_r($resultCommande);
 
     <fieldset>
         <h2>Information de commande</h2>
-        <?php foreach ($resultCommande as $key => $value) {
-        ?>
-            <table>
-
-
-                <tr>
-                    <th><?= $key ?></th>
-                    <!-- <th>Adresse de livraison</th>
+        <table>
+            <tr>
+                <th>Adresse de facturation</th>
+                <th>Adresse de livraison</th>
                 <th>Date de commande</th>
-                <th>Statut</th> -->
-                </tr>
-                <tr>
-                    <td><?= $value ?></td>
-                    <!-- <td></td>
-                    <td</td>
-                    <td</td>
-                </tr> -->
-            </table>
-        <?php } ?>
+                <th>Statut de la commande</th>
+            </tr>
+            <tr>
+                <td><?= $resultCommande['adr_facturation']; ?></td>
+                <td><?= $resultCommande['adr_livraison']; ?></td>
+                <td><?= $resultCommande['date_commande']; ?></td>
+                <td><?= $resultCommande['statut']; ?></td>
+
+            </tr>
+        </table>
 
     </fieldset>
-
-
-
 </body>
 
 </html>
