@@ -14,41 +14,36 @@ class User
     private $login;
     private $password;
     private $email;
+    private $nom;
+    private $prenom;
 
-    public function __construct($login, $password, $email, $confpassword)
+    public function __construct($login, $password, $email, $confpassword,$prenom,$nom)
     {
 
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
 
-        $this->login = $login;
-        $this->password = $password;
-        $this->email = $email;
-        $this->confpassword = $confpassword;
+        $this->login = htmlspecialchars($login);
+        $this->password =  htmlspecialchars($password);
+        $this->email = htmlspecialchars($email);
+        $this->confpassword = htmlspecialchars($confpassword);
+        $this->prenom = htmlspecialchars($prenom);
+        $this->nom = htmlspecialchars($nom);
+
     }
 
-    public function sigup()
-    {
-
-        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droits,id_adresse)VALUES(?,?,?,1,1)');
-
-        $insert->execute(array($this->login, $this->email, $this->password));
-
-
-
-        return $insert;
-    }
+    
 
     public function signup()
     {
 
 
 
-        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droits,id_adresse)VALUES(?,?,?,"1","1")');
+        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,prenom,nom,id_droits)VALUES(?,?,?,?,?,"1")');
 
         $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
 
-        if ($insert->execute(array($this->login, $this->email, $hashed_password))) {
+        if ($insert->execute(array($this->login, $this->email, $hashed_password,$this->nom,$this->prenom))) {
 
             return $insert;
         }
@@ -210,7 +205,7 @@ class User
     public function emptyInput()
     {
 
-        if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)) {
+        if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)|| !empty($this->nom) || !empty($this->prenom))  {
 
             return true;
         }

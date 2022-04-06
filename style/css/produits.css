@@ -14,3 +14,14 @@ main{
 
 }
  
+.categorie ,a { 
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.produits{
+
+    margin-top: 10%;
+}

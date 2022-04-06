@@ -131,5 +131,12 @@ class Panier{
          return array_sum($_SESSION['panier']);
 
        }
+
+       public function vilderPanier(){}{
+
+        
+       }
     }   
+
+
 
