@@ -14,10 +14,8 @@ class User
     private $login;
     private $password;
     private $email;
-    private $nom;
-    private $prenom;
 
-    public function __construct($login, $password, $email, $confpassword,$prenom,$nom)
+    public function __construct($login, $password, $email)
     {
 
         $this->db = new Db_connect();
@@ -26,24 +24,25 @@ class User
         $this->login = htmlspecialchars($login);
         $this->password =  htmlspecialchars($password);
         $this->email = htmlspecialchars($email);
-        $this->confpassword = htmlspecialchars($confpassword);
-        $this->prenom = htmlspecialchars($prenom);
-        $this->nom = htmlspecialchars($nom);
 
     }
 
-    
-
     public function signup()
+
     {
 
+        if(isset($_POST['nom'],$_POST['prenom'])){
+
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+        }
 
 
         $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,prenom,nom,id_droits)VALUES(?,?,?,?,?,"1")');
 
         $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
 
-        if ($insert->execute(array($this->login, $this->email, $hashed_password,$this->nom,$this->prenom))) {
+        if ($insert->execute(array($this->login, $this->email, $hashed_password,$nom,$prenom))) {
 
             return $insert;
         }
@@ -54,7 +53,9 @@ class User
     public function confPassword()
     {
 
-        if ($this->password == $this->confpassword) {
+        $confpassword = $_POST['confpassword'];
+
+        if ($this->password == $confpassword) {
 
             return true;
         }
@@ -127,9 +128,11 @@ class User
     public function connect()
     {
 
-        $stmt = $this->db->prepare("SELECT * FROM Utilisateurs WHERE login = ?");
+        $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE login = ?");
         $stmt->execute(array($this->login));
         $row = $stmt->rowCount();
+
+        
 
         if ($row == 1) {
 
@@ -174,8 +177,7 @@ class User
 
         if ($this->emptyInput()) {
 
-            if ($this->confPassword()) {
-
+                
                 if ($this->valideEmail()) {
 
                     if ($this->checkUserLogin()) {
@@ -187,25 +189,26 @@ class User
 
                         $this->displayMessage('L\'utilisateur n\'existe pas, veuillez vous inscrire');
                     }
+
                 } else {
 
                     $this->displayMessage('email non valide');
                 }
             } else {
 
-                $this->displayMessage('les mot de passe ne correspondent pas');
+                $this->displayMessage('Veuillez remplir tout les champs');
             }
-        } else {
-
-            $this->displayMessage('Veuillez remplir tout les champs');
+            
         }
-    }
-
   
-    public function emptyInput()
+             public function emptyInput()
     {
 
-        if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)|| !empty($this->nom) || !empty($this->prenom))  {
+      
+
+        if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)) 
+        
+        {
 
             return true;
         }
