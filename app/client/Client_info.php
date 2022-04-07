@@ -45,7 +45,9 @@ class Client_info
 
     public function clientPanier()
     {
-        $req = "SELECT quantite, titre, description, stock, prix, adr_facturation, adr_livraison, date_commande, nom_categorie, nom_region FROM panier 
+        $id_utilisateurs = $_SESSION['id'];
+   
+        $req = "SELECT utilisateurs.id, quantite, titre, description, stock, prix, adr_facturation, adr_livraison, date_commande, nom_categorie, nom_region FROM panier 
         INNER JOIN utilisateurs ON id_utilisateur = utilisateurs.id 
         INNER JOIN produits ON id_produits = produits.id 
         INNER jOIN commande ON id_commande = commande.id 
