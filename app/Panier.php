@@ -87,9 +87,6 @@ class Panier{
                 $produits->execute();
             }
 
-
-          
-
           return $produits;
        }
 
@@ -130,6 +127,37 @@ class Panier{
 
          return array_sum($_SESSION['panier']);
 
+       }
+
+       public function validerPanier(){
+
+    
+
+        if(isset($_POST['submit'])){
+
+            
+            $id_user = $_SESSION['id'];
+
+             $req = $this->db->prepare('SELECT * FROM utilisateurs INNER JOIN panier ON utilisateurs.id = panier.id_utilisateur INNER JOIN commande ON commande.id = panier.id_commande INNER JOIN produits ON produits.id = panier.id_produits');
+
+            $req->execute(array($id_user));
+
+         $res = $req->fetch();
+
+             $id_utilisateur = $_SESSION['id'];
+             $id_produits =     $_SESSION['panier'];
+            $id_commande = $res['id_commande'];
+           
+             $insert = $this->db->prepare('INSERT INTO panier(id_utilisateur, id_produits,id_commande,quantite,statut)VALUES(?,?,?,1,0)');
+
+            $insert->execute(array($id_utilisateur, $id_produits,$id_commande));
+            
+            var_dump($res);
+            var_dump($_SESSION['panier']);
+    
+        }
+
+ 
        }
     }   
 

@@ -76,6 +76,11 @@ var_dump($_SESSION);
                 <input type="submit" value="Envoyé" name="submit">
                 
                 <form action="" method="post"></form>
+
+                <?php
+
+                 $panier->validerPanier();
+                ?>
                 
             </div>
                 </form>
