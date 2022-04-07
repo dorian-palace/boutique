@@ -13,6 +13,11 @@ class Client_info
 
     public function __construct()
     {
+        if (!isset($_SESSION['id'])) {
+            header("Location: connexion.php");
+            exit;
+        }
+
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
 
@@ -24,7 +29,6 @@ class Client_info
 
         $this->limite = 5;
         $this->debut = ($this->page - 1) * $this->limite;
-        // $this->id_client = $_SESSION['id'];
     }
 
     public function clientInfos()
