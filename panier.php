@@ -61,7 +61,7 @@ var_dump($_SESSION);
              
              <div class="name"><?=$res['titre']?></div>
              <div class="price">prix : <?=number_format($res['prix'],2,',',' ')?>€</div>
-             <div class="quantity"><input type="text" name="panier[quantity][<?=$res['id'];?>]" value="<?=$_SESSION['panier'][$res['id']]?>"</div>
+             <div class="quantity"><input type="number" name="panier[quantity][<?=$res['id'];?>]" value="<?=$_SESSION['panier'][$res['id']]?>"</div>
              <a href="panier.php?delpanier=<?=$res['id'];?>">Supprimer</a>
              
              <?php }
