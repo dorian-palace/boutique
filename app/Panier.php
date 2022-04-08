@@ -4,6 +4,7 @@ require_once 'setting/db.php';
 class Panier{
 
     public function __construct()
+
     {
         if(!isset($_SESSION)){
 
@@ -47,31 +48,7 @@ class Panier{
    
     }
 
-    public function addProduits(){
-
-        // if(isset($_GET['id'])){
-
-            
-        //     $produits = $this->db->prepare("SELECT * FROM produits WHERE id = ?");
-        //     $produits->execute($_GET['id']);
-            
-        //     if(empty($produits)){
-    
-        //         die("ce produits n'est pas disponible");
-    
-        //     }
-    
-        //     $produits->add($produits[0]['id']);
-    
-            
-        //     die('le produit a été ajouté au panier');
-    
-        // }else{
-        
-        //     die("vous n'avez pas ajoutez de produits au panier");
-        // }
-    
-    }
+   
 
        public function getPanier(){
 
@@ -128,6 +105,8 @@ class Panier{
          return array_sum($_SESSION['panier']);
 
        }
+
+      
 
        public function validerPanier(){
 
