@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap");
+
+body{
+    background: linear-gradient(#710b0b, #ffffff, #18743e);
+}
+
+.titre
+{    
+    color: #1a5117;
+    font-size: 300%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.presentation
+{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(154, 168, 154); 
+    border-radius: 5px 10px  10px;
+    font-size: 130%;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 5%;
+    background-image: url(../img/pates1.jpeg);
+    min-height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+      }
+   
+
+
+
+.textpresentation{
+    display:flex;
+    justify-content: center;
+}
+
+
+/* DEGRADER DE COULEUR  */
+
+
+  
+  /* div {
+    width: 120px;
+    height: 120px;
+  } */
