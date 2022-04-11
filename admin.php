@@ -2,11 +2,9 @@
 session_start();
 require('app/admin/AdminUser.php');
 require('app/admin/AdminProduit.php');
-require('app/admin/AdminRegion.php');
 require('app/admin/AdminCategorie.php');
 $adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
-$adminRegion = new AdminRegion();
 $adminUser = new AdminUser();
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -18,7 +16,6 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 if (isset($_POST['supprimer'])) {
     $id = $_POST['supprimer'];
     $adminCategorie->deleteCategorie($id);
-    $adminRegion->deleteRegions($id);
 }
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
@@ -47,7 +44,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     <main>
         <!--- Création produit --->
         <?php $adminProduit->newProduits(); ?>
-        <?php $get_regions = $adminRegion->getRegions(); ?>
         <div class="container">
             <div class="form-group">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -56,13 +52,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                         <input type="text" placeholder="titre" name="titre_produit" required class="form-control">
                         <input type="text" placeholder="description" name="description_produit" required class="form-control">
                         <input type="text" placeholder="stock" name="stock_produit" required class="form-control">
-                        <select name="region_produit" required class="form-control">
-                            <?php while ($result_regions = $get_regions->fetch()) {  ?>
-                                <option value="<?= $result_regions['id']; ?>">
-                                    <?= $result_regions['nom_region']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
 
                         <?php $get_categorie = $adminCategorie->getCategorie(); ?>
 
@@ -90,14 +79,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <input type="text" value="<?= $result_produits['titre']; ?>" name="update_titre" class="form-control">
                             <input type="text" value="<?= $result_produits['description']; ?>" name="update_description" class="form-control">
                             <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control">
-
-                            <select name="update_region" id="" class="form-control">
-                                <!---region produits-->
-                                <option value="<?= $result_produits['id_regions']; ?>" name="">
-                                    <?= $result_produits['nom_region']; ?>
-                                </option>
-
-                            </select>
 
                             <select name="update_categorie" id="" class="form-control">
                                 <!----categorie produits---->
@@ -161,31 +142,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     </form>
                 </div>
             <?php } ?>
-
-            <?php $adminRegion->newRegions(); ?>
-            <?php $nb_regions = $adminRegion->getRegions(); ?>
-            <div class="form-group">
-                <form action="" method="post">
-                    <fieldset>
-                        <legend>Ajout et suppréssion de régions</legend>
-                        <input type="text" name="regions" placeholder="régions" class="form-control">
-                        <input type="submit" name="new_regions" class="form-control">
-
-                        <?php while ($delete_regions = $nb_regions->fetch()) {  ?>
-
-                            <select name="" id="" class="form-control">
-                                <option value="<?= $delete_regions['id']; ?>">
-                                    <?= $delete_regions['nom_region']; ?>
-                                </option>
-                            </select>
-                            <button type="submit" name="supprimer" value="<?= $delete_regions['id'] ?>">delete</button>
-                        <?php } ?>
-
-                    </fieldset>
-                </form>
-            </div>
-            <aside>
-            </aside>
 
     </main>
 
