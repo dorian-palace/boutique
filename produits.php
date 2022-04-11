@@ -57,7 +57,7 @@ session_start()
                     ?>
                     <a href="produits.php">Retour aux produits</a>
                 <h4 class="text-info"><?= $produit['titre']?></h4>
-                <?php  echo "<img src='Image/".$res['image']."' />" ?>
+                <?php  echo "<img src='file/".$produit['image']."' />" ?>
                 <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
                 <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
                 
@@ -105,7 +105,7 @@ session_start()
                
                     
                 <h4 class="text-info"><?= $res['titre']?></h4>
-               <?php  echo "<img src='Image/".$res['image']."' />" ?>
+               <?php  echo "<img src='file/".$res['image']."' />" ?>
                 <h4 class="text-danger"><?=number_format($res['prix'],2,',',' ')?>€</h4>
                 <a href="produits.php?produits=<?=$res['id']?>">voir le produit</a>
 
