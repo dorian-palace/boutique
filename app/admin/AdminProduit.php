@@ -137,7 +137,7 @@ class AdminProduit
                         $file = $uniqueName . "." . $extension;
                         move_uploaded_file($tmpName, './file/' . $name);
 
-                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?,?)";
+                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?)";
                         $prepare = $this->db->prepare($req);
                         $prepare->execute(array(
                             $titre, $description, $stock, $id_categorie, $prix, $name

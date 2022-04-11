@@ -132,10 +132,7 @@ class Panier{
 
        }
 
-       public function vilderPanier(){}{
-
-        
-       }
+       
     }   
 
 
