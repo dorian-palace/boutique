@@ -10,12 +10,9 @@ $client_info->clientCommande();
 $clientCommande = $client_info->clientCommande($id_utilisateur);
 $resultCommande = $clientCommande->fetch();
 $panierClient = $client_info->clientPanier($id_utilisateur);
-
-// echo "<pre>";
-// var_dump($_SESSION);
-// echo "</pre>";
-// print_r($clientCommande);
-
+echo "<pre>";
+var_dump($resultCommande);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,9 +79,7 @@ $panierClient = $client_info->clientPanier($id_utilisateur);
         <legend>Contenue panier</legend>
         <?php
         foreach ($panierClient as $key => $value) {
-            // echo "<pre>";
-            // print_r($panierClient);
-            // echo "</pre>";
+
         ?>
             <table class="table table-bordered">
                 <thead class="">
