@@ -10,9 +10,9 @@ $client_info->clientCommande();
 $clientCommande = $client_info->clientCommande($id_utilisateur);
 $resultCommande = $clientCommande->fetch();
 $panierClient = $client_info->clientPanier($id_utilisateur);
-echo "<pre>";
-var_dump($resultCommande);
-echo "</pre>";
+// echo "<pre>";
+// var_dump($resultCommande);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +22,6 @@ echo "</pre>";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/client.css">
-    <!-- CSS only -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-    <!-- JavaScript Bundle with Popper -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
     <title>Client</title>
 </head>
 
@@ -55,50 +51,55 @@ echo "</pre>";
             </table>
         </fieldset>
     </div>
+    <!--Information de commande de l'utilisateur-->
     <fieldset>
         <legend>Information de commande</legend>
-        <?php foreach ($resultCommande as $key => $value) { ?>
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th><?= $key; ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?= $value; ?></td>
-                    </tr>
-                </tbody>
+        <?php if (isset($resultCommande)) {
+            foreach ($resultCommande as $key => $value) { ?>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th><?= $key; ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?= $value; ?></td>
+                        </tr>
+                    </tbody>
 
-            </table>
-        <?php } ?>
+                </table>
+        <?php
+            }
+        } ?>
 
     </fieldset>
 
     <fieldset>
+        <!---Affichage du panier une fois en db--->
         <legend>Contenue panier</legend>
-        <?php
-        foreach ($panierClient as $key => $value) {
+        <?php if (isset($panierClient)) {
+            foreach ($panierClient as $key => $value) {
 
         ?>
-            <table class="table table-bordered">
-                <thead class="">
-                    <tr>
-                        <th scope="col"><?= $key; ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2">
-                            <?= $value; ?>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table table-bordered">
+                    <thead class="">
+                        <tr>
+                            <th scope="col"><?= $key; ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <?= $value; ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        <?php } ?>
+        <?php }
+        } ?>
     </fieldset>
 
 </body>
-
 </html>
