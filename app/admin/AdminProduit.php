@@ -24,7 +24,8 @@ class AdminProduit
         $this->debut = ($this->page - 1) * $this->limite;
     }
 
-    public function page_Produit(){
+    public function page_Produit()
+    {
 
         $req = "SELECT count(*) FROM produits";
         $stmt = $this->db->query($req);
@@ -33,7 +34,7 @@ class AdminProduit
 
     public function getProduits()
     {
-        $req = "SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories  ON produits.id_categorie = categories.id INNER JOIN regions ON produits.id_regions = regions.id LIMIT :limite OFFSET :debut";
+        $req = "SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories  ON produits.id_categorie = categories.id LIMIT :limite OFFSET :debut";
         $query = $this->db->prepare($req);
         $query->bindValue('limite', $this->limite, PDO::PARAM_INT);
         $query->bindValue('debut', $this->debut, PDO::PARAM_INT);
@@ -50,7 +51,6 @@ class AdminProduit
             $description = $_POST['update_description'];
             $stock = $_POST['update_stock'];
             $id_categorie = $_POST['update_categorie'];
-            $id_regions = $_POST['update_region'];
             $prix = $_POST['update_prix'];
             $id = $_POST['submit_update'];
 
@@ -77,16 +77,16 @@ class AdminProduit
                     $file = $uniqueName . "." . $extension;
                     move_uploaded_file($tmpName, './file/' . $name);
 
-                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, id_regions = ?, prix = ?, image = ? WHERE id = ?';
+                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?, image = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie, $id_regions, $prix, $name, $id
+                        $titre, $description, $stock, $id_categorie, $prix, $name, $id
                     ));
                 } else {
-                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, id_regions = ?, prix = ? WHERE id = ?';
+                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie, $id_regions, $prix, $id
+                        $titre, $description, $stock, $id_categorie,  $prix, $id
                     ));
                 }
             }
@@ -101,7 +101,6 @@ class AdminProduit
             $description = $_POST['description_produit'];
             $stock = $_POST['stock_produit'];
             $id_categorie = $_POST['categorie_produit'];
-            $id_regions = $_POST['region_produit'];
             $prix = $_POST['prix_produit'];
             $new_produit = $_POST['submit_produit'];
 
@@ -138,10 +137,10 @@ class AdminProduit
                         $file = $uniqueName . "." . $extension;
                         move_uploaded_file($tmpName, './file/' . $name);
 
-                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, id_regions, prix, image) VALUES (?,?,?,?,?,?,?)";
+                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?,?)";
                         $prepare = $this->db->prepare($req);
                         $prepare->execute(array(
-                            $titre, $description, $stock, $id_categorie, $id_regions, $prix, $name
+                            $titre, $description, $stock, $id_categorie, $prix, $name
                         ));
                         $msg = 'Produit ajouter';
                     } else {
