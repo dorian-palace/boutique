@@ -108,8 +108,6 @@ class AdminProduit
             $select = 'SELECT titre from produits WHERE titre = ? ';
 
             $stmt = $this->db->prepare($select);
-            // $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-            // $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
             $stmt->execute(array(
                 $titre
             ));

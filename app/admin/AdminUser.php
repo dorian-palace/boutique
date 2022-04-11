@@ -17,6 +17,13 @@ class AdminUser
         $this->debut = ($this->page - 1) * $this->limite;
     }
 
+    // public function idAdmin(){
+    //     $req = 'SELECT id FROM droits';
+    //     $query = $this->db->query($req);
+    //ID ADMIN A RECUPERER POUR ACCES PAGE ADMIN
+
+    // }
+
     public function getUser()
     {
         //récupère les infos des utilisateurs

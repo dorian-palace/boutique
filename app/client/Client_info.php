@@ -46,15 +46,13 @@ class Client_info
     public function clientPanier()
     {
         $id_utilisateurs = $_SESSION['id'];
-   
-        $req = "SELECT utilisateurs.id, quantite, titre, description, stock, prix, adr_facturation, adr_livraison, date_commande, nom_categorie, nom_region FROM panier 
-        INNER JOIN utilisateurs ON id_utilisateur = utilisateurs.id 
-        INNER JOIN produits ON id_produits = produits.id 
-        INNER jOIN commande ON id_commande = commande.id 
-        INNER JOIN categories ON id_categorie = categories.id 
-        INNER JOIN regions ON id_regions = regions.id";
+
+        $req = "SELECT utilisateurs.id, quantite, titre, description, stock, prix, adr_facturation, adr_livraison, date_commande, nom_categorie, nom_region FROM panier INNER JOIN utilisateurs ON id_utilisateur = utilisateurs.id INNER JOIN produits ON id_produits = produits.id INNER jOIN commande ON id_commande = commande.id INNER JOIN categories ON id_categorie = categories.id INNER JOIN regions ON id_regions = regions.id ORDER BY utilisateurs.id = ?";
+        //SELECT utilisateurs.id, quantite, titre, description, stock, prix, adr_facturation, adr_livraison, date_commande, nom_categorie, nom_region FROM panier INNER JOIN utilisateurs ON id_utilisateur = utilisateurs.id INNER JOIN produits ON id_produits = produits.id INNER jOIN commande ON id_commande = commande.id INNER JOIN categories ON id_categorie = categories.id INNER JOIN regions ON id_regions = regions.id ORDER BY utilisateurs.id = ?;
         $query = $this->db->prepare($req);
-        $query->execute();
+        $query->execute(array(
+            $id_utilisateurs
+        ));
         $stmt = $query->fetch();
 
         return $stmt;
