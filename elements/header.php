@@ -56,9 +56,9 @@
 
     ?>
   <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
-  <a href="panier.php"><i class=""></i></a>
+  <a href="panier.php"><i class=""></i>
 
-<i class="fas fa-shopping-cart"></i>
+<i class="fas fa-shopping-cart"></i></a>
 
         <li class="nav-item">
           <a class="nav-link " href="inscription.php">Inscription</a>
