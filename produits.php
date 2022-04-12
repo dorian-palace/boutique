@@ -129,7 +129,7 @@ session_start()
                 <a class = "add" href="addpanier.php?id=<?=$res['id']?>">Ajouter au panier</a>
 
                 
-
+                    <?php require_once 'addpanier.php' ?>
                 </form>
                 
                  </div>
