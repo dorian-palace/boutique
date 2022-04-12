@@ -108,36 +108,36 @@ class Panier{
 
       
 
-       public function validerPanier(){
+    //    public function validerPanier(){
 
     
 
-        if(isset($_POST['submit'])){
+    //     if(isset($_POST['submit'])){
 
             
-            $id_user = $_SESSION['id'];
+    //         $id_user = $_SESSION['id'];
 
-             $req = $this->db->prepare('SELECT * FROM produits INNER JOIN panier ON produits.id = panier.id_produits INNER JOIN commande ON commande.id = panier.id_commande INNER JOIN utilisateurs ON utilisateurs.id = panier.id_utilisateur');
+    //          $req = $this->db->prepare('SELECT * FROM produits INNER JOIN panier ON produits.id = panier.id_produits INNER JOIN commande ON commande.id = panier.id_commande INNER JOIN utilisateurs ON utilisateurs.id = panier.id_utilisateur');
 
-            $req->execute();
+    //         $req->execute();
 
-            $res = $req->fetch();
+    //         $res = $req->fetch();
 
-             $id_utilisateur = $_SESSION['id'];
-            // $id_produits =     $_SESSION['panier'];
+    //          $id_utilisateur = $_SESSION['id'];
+    //         // $id_produits =     $_SESSION['panier'];
            
-             $insert = $this->db->prepare('INSERT INTO panier(id_utilisateur, id_produits,id_commande,quantite,statut)VALUES(?,?,1,1,0)');
+    //          $insert = $this->db->prepare('INSERT INTO panier(id_utilisateur, id_produits,id_commande,quantite,statut)VALUES(?,?,1,1,0)');
 
-            $insert->execute(array($id_utilisateur, $id_produits));
+    //         $insert->execute(array($id_utilisateur, $id_produits));
             
-            var_dump($res);
+    //         var_dump($res);
            
             
             
     
-        }
+    //     }
 
  
-       }
+    //    }
     }   
 

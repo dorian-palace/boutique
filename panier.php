@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once 'app/Panier.php';
-require_once 'setting/Db.php';
 
 
 
@@ -75,7 +74,7 @@ var_dump($_SESSION);
             if(!empty($produits)){ ?>
 
             
-                <div class="count">Nombre d'articles : <?=$panier->count()?></div>
+                <div class="count">Nombre d'articles : <?= var_dump($panier->count())?></div>
                 <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
                 
                 <input type="submit" value="Envoyé" name="submit">

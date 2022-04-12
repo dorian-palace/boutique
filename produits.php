@@ -24,7 +24,6 @@ session_start()
      <main>
         <?php require_once 'app/Produits.php';
                 require_once 'app/Panier.php';
-                require_once 'setting/Db.php';
 
 
             $produits = New Produits();

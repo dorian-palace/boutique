@@ -1,7 +1,7 @@
 <?php
 
 
-require  'setting/db.php';
+require_once  'setting/db.php';
 
 
 

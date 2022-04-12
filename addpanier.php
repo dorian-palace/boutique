@@ -1,7 +1,7 @@
 <?php 
 
 require_once 'app/Panier.php';
-require_once 'setting/db.php';
+
 
 $db = new Db_connect;
 
