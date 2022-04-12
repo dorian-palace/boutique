@@ -1,7 +1,7 @@
 <?php
 
 
-require  'setting/db.php';
+require_once  'setting/db.php';
 
 
 
@@ -85,11 +85,10 @@ class User
         if ($row == 0) {
 
             return true;
-        }else{
-            
+        } else {
+
             return false;
         }
-
     }
 
     public function confirmSingup()
@@ -137,23 +136,19 @@ class User
         if ($row == 1) {
 
             $userinfo = $stmt->fetch();
-            
-            
-            if(password_verify($this->password, $userinfo['password'])){
-                
-                            $_SESSION['login'] = $userinfo['login'];
-                            $_SESSION['id'] = $userinfo['id'];
-                            $_SESSION['email'] = $userinfo['email'];
-                            $_SESSION['password'] = $userinfo['password'];
+
+
+            if (password_verify($this->password, $userinfo['password'])) {
+
+                $_SESSION['login'] = $userinfo['login'];
+                $_SESSION['id'] = $userinfo['id'];
+                $_SESSION['email'] = $userinfo['email'];
+                $_SESSION['password'] = $userinfo['password'];
 
                 return true;
-                
             };
             return false;
         }
-
-
-
     }
 
     public function checkUserLogin()
@@ -226,11 +221,12 @@ class User
         }
     }
 
-    
 
-   
 
-    public function userInfo($id_utilisateur){
+
+
+    public function userInfo($id_utilisateur)
+    {
 
         $select = $this->db->prepare("SELECT * FROM  utilisateurs where id = ? ");
         $select->execute(array($id_utilisateur));
