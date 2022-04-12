@@ -10,6 +10,8 @@ session_start()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/produits.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   
 
     <title>Document</title>
@@ -62,16 +64,11 @@ session_start()
 
                     <a href="produits.php">Retour aux produits</a>
                 <h4 class="text-info"><?= $produit['titre']?></h4>
-                <?php  echo "<img src='file/".$produit['image']." ' height=250 width=400 />" ?>
-                <h4 class="prix"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
-                <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
-                <h4 class="text-info"><?= $produit['description']?></h4>
-
-                </div>
+                <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
+                <a class = "add" href="produits.php?id=<?=$produit['id']?>">Ajouter au panier</a>
 
                 
-                
-        <?php }
+            <?php }
 
                 }
 
@@ -125,17 +122,17 @@ session_start()
 
               
               
-
-                <a class = "add" href="addpanier.php?id=<?=$res['id']?>">Ajouter au panier</a>
-
+                <a class = "add" href="produits.php?id=<?=$res['id']?>">Ajouter au panier</a>
+            
                 
-
                 </form>
+
+                <?php require 'addpanier.php'?>
+                
                 
                  </div>
-        
-                 <?php
-                    } 
+                 
+                 <?php } 
                  
                 }
                 

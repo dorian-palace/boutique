@@ -4,6 +4,7 @@ require_once 'setting/db.php';
 class Panier{
 
     public function __construct()
+
     {
         if(!isset($_SESSION)){
 
@@ -47,31 +48,7 @@ class Panier{
    
     }
 
-    public function addProduits(){
-
-        // if(isset($_GET['id'])){
-
-            
-        //     $produits = $this->db->prepare("SELECT * FROM produits WHERE id = ?");
-        //     $produits->execute($_GET['id']);
-            
-        //     if(empty($produits)){
-    
-        //         die("ce produits n'est pas disponible");
-    
-        //     }
-    
-        //     $produits->add($produits[0]['id']);
-    
-            
-        //     die('le produit a été ajouté au panier');
-    
-        // }else{
-        
-        //     die("vous n'avez pas ajoutez de produits au panier");
-        // }
-    
-    }
+   
 
        public function getPanier(){
 
@@ -86,9 +63,6 @@ class Panier{
                 $produits = $this->db->prepare('SELECT * FROM produits where id IN ('.implode(',',$id).')');
                 $produits->execute();
             }
-
-
-          
 
           return $produits;
        }
@@ -132,7 +106,39 @@ class Panier{
 
        }
 
-       
+      
+
+       public function validerPanier(){
+
+    
+
+        if(isset($_POST['submit'])){
+
+            
+            $id_user = $_SESSION['id'];
+
+             $req = $this->db->prepare('SELECT * FROM produits INNER JOIN panier ON produits.id = panier.id_produits INNER JOIN commande ON commande.id = panier.id_commande INNER JOIN utilisateurs ON utilisateurs.id = panier.id_utilisateur');
+
+            $req->execute();
+
+            $res = $req->fetch();
+
+             $id_utilisateur = $_SESSION['id'];
+            // $id_produits =     $_SESSION['panier'];
+           
+             $insert = $this->db->prepare('INSERT INTO panier(id_utilisateur, id_produits,id_commande,quantite,statut)VALUES(?,?,1,1,0)');
+
+            $insert->execute(array($id_utilisateur, $id_produits));
+            
+            var_dump($res);
+           
+            
+            
+    
+        }
+
+ 
+       }
     }   
 
 
