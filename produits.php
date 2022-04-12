@@ -65,10 +65,10 @@ session_start()
              while($res = $result->fetch()){ ?>
                 
                 
-                <div class = "produits">
-                 
+                
                 <form action="#" method="post">
-
+                    
+                    <div class = "produits">
                
                     
                 <h4 class="text-info"><?= $res['titre']?></h4>
@@ -79,13 +79,13 @@ session_start()
               
                 <a class = "add" href="produits.php?id=<?=$res['id']?>">Ajouter au panier</a>
             
-                
-                </form>
-
                 <?php require 'addpanier.php'?>
                 
+                </div>
+            </form>
+
                 
-                 </div>
+                
                  
                  <?php } 
                  

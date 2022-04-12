@@ -21,11 +21,12 @@ if(isset($_GET['id'])){
         die("le produits n'est pas disponible");
     }
 
-        $panier->add($produits[0]['id']);
+         $panier->add($produits[0]['id']);
     ?>
+    
     <div class="alert alert-success">
-  <strong> Produit ajouté au panier</strong>
-</div>
+    <strong> Produit ajouté au panier</strong>
+  </div>
 
 
     
