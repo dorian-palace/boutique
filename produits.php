@@ -105,7 +105,7 @@ session_start()
                                 <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                                <a href="produits.php?produits=<?= $req_categorie['id'] ?>" class="btn btn-primary">voir le produits</a>
+                                <a href="produits.php?produits=<?= $req_categorie['id_produits']?>" class="btn btn-primary">voir le produits</a>
 
                                 <a class="btn btn-primary mt-2" href="produits.php?id=<?= $req_categorie['id'] ?>">Ajouter au panier</a>
 
