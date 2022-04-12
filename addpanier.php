@@ -14,7 +14,6 @@ if(isset($_GET['id'])){
 
      $produits = $db->query("SELECT id FROM produits WHERE id = '$get_id'");
 
-     var_dump($produits);
     
         if(empty($produits)){
 
@@ -25,12 +24,12 @@ if(isset($_GET['id'])){
     ?>
     
     <div class="alert alert-success">
-    <strong> Produit ajouté au panier</strong>
+
+      <strong> Produit ajouté au panier</strong>
+      
   </div>
 
 
-    
-  
-<?php 
+    <?php 
 
 }

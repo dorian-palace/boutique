@@ -6,19 +6,13 @@ body{
 
 main{
     
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: 2%;
-
+  
 }
  
 
+.btn{
 
-.produits{
-
-
-    text-align: center;
-    margin-top: 10%;
+    margin: auto;
 }
 
 .produits form a {
