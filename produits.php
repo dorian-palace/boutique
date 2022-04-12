@@ -38,9 +38,12 @@ session_start()
 
             foreach($req_categories as $req_categorie){
 
+
                 ?>
+                <div class="categorie">
                 <a href="produits.php?categorie=<?=$req_categorie['id']?>"><?=$req_categorie['nom_categorie']?></a>
                 
+                </div>
                 <?php  }
             
             
@@ -55,13 +58,16 @@ session_start()
                 foreach($produits_id as $produit){
 
                     ?>
+                    <div class="produits">
+
                     <a href="produits.php">Retour aux produits</a>
                 <h4 class="text-info"><?= $produit['titre']?></h4>
                 <?php  echo "<img src='file/".$produit['image']." ' height=250 width=400 />" ?>
-                <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
+                <h4 class="prix"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
                 <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
                 <h4 class="text-info"><?= $produit['description']?></h4>
 
+                </div>
 
                 
                 
@@ -79,7 +85,7 @@ session_start()
 
             foreach($req_categories as $req_categorie){
 
-
+                
                 ?>
                 <a href="produits.php">Retour aux produits</a>
 
@@ -87,7 +93,7 @@ session_start()
                 <h4 class="text-info"><?=$req_categorie['titre']?></h4>
                 <?php  echo "<img src='file/".$req_categorie['image']." ' height=250 width=400 />" ?>
 
-                <h4 class="text-danger"><?= number_format($req_categorie['prix'],2,',',' ')?>€</h4>
+                <h4 class="prix"><?= number_format($req_categorie['prix'],2,',',' ')?>€</h4>
 
                 <a href="produits.php?produits=<?=$req_categorie['id_produits']?>">voir le produit</a>
 
@@ -114,7 +120,7 @@ session_start()
                     
                 <h4 class="text-info"><?= $res['titre']?></h4>
                <?php  echo "<img src='file/".$res['image']." ' height=250 width=400 />" ?>
-                <h4 class="text-danger"><?=number_format($res['prix'],2,',',' ')?>€</h4>
+                <h4 class="prix"><?=number_format($res['prix'],2,',',' ')?>€</h4>
                 <a href="produits.php?produits=<?=$res['id']?>">voir le produit</a>
 
               
