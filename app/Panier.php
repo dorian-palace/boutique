@@ -106,6 +106,8 @@ class Panier{
 
        }
 
+       
+
       
 
     //    public function validerPanier(){
