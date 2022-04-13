@@ -4,9 +4,23 @@ body{
     font-size: 20px;
 }
 
-main{
+.display-produits{
+
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
     
-  
+
+}
+
+
+.img-fluid{
+
+    align-self: center;
+    max-width: 100%;
+    height: auto;
+
 }
  
 
@@ -32,3 +46,4 @@ main{
     text-align: center;
 
 }
+

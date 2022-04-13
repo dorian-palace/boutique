@@ -64,10 +64,10 @@ session_start()
 
             ?>
 
-                <div class="produits">
+                <div class="display-produits">
 
                     <h4 class="text-info"><?= $produit['titre'] ?></h4>
-                    <?php echo "<img src='file/" . $produit['image'] . " ' height=250 width=400 />" ?>
+                    <?php echo "<img src='file/" . $produit['image'] . " ' height=150 width=170 class='img-fluid' />" ?>
                     <h4 class="prix"><?= number_format($produit['prix'], 2, ',', ' ') ?>€</h4>
                     <a class="add" href="produits.php?id=<?= $produit['id'] ?>">Ajouter au panier</a>
                     <h4 class="text-info"><?= $produit['description'] ?></h4>
@@ -94,12 +94,12 @@ session_start()
 
 
 
-                <div class="produits d-flex mx-2">
+                <div class="produits">
 
-                    <form action="#" method="post">
+                    
 
                         <div class="card" style="width: 18rem">
-                            <?php echo "<img src='file/" . $req_categorie['image'] . " ' height=150 width=300 />" ?>
+                            <?php echo "<img src='file/" . $req_categorie['image'] . " ' height=150 width=170 class='img-fluid' />" ?>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
                                 <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
@@ -116,42 +116,41 @@ session_start()
                             </div>
                         </div>
 
-                    </form>
-
+                    
+                </div>
             <?php  }
              
         } else {
-
-            while ($res = $result->fetch()) {
+           ?> <div class="container row text-center mb-4 gap-3">
+     
+            <?php while ($res = $result->fetch()) {
 
             ?>
-
-                <div class="produits d-flex mx-2">
-
-                    <form action="#" method="post">
-
-                        <div class="card" style="width: 18rem;">
-                            <?php echo "<img src='file/" . $res['image'] . " ' height=150 width=300 />" ?>
-                            <div class="card-body">
+            
+                        <div class="card col-md-3 mr-3 mb-4" >
+                            <?php echo "<img src='file/" . $res['image'] . " ' height=150 width=170 class='img-fluid '/>" ?>
+                            <div class="card-body ">
                                 <h5 class="card-title text-center"><?= $res['titre'] ?></h5>
                                 <h5 class="prix"><?= number_format($res['prix'], 2, ',', ' ') ?>€</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
+                                
                                 <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-primary">voir le produits</a>
 
                                 <a class="btn btn-primary mt-2" href="produits.php?id=<?= $res['id'] ?>">Ajouter au panier</a>
 
                                 <?php require_once 'addpanier.php' ?>
 
-                               
-
+                                
+                                
                             </div>
+                            
                         </div>
+                
 
-                    </form>
-            
-            <?php }
-        }
+            <?php } ?>
+             </div>
+             
+        <?php }
     ?>
             
 
