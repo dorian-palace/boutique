@@ -4,11 +4,9 @@ require_once 'app/Panier.php';
 
 
 
-$db = New Db_connect;
 
 
 
-var_dump($_SESSION);
 
 ?>
 <!DOCTYPE html>
