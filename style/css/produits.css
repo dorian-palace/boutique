@@ -4,21 +4,29 @@ body{
     font-size: 20px;
 }
 
-main{
+.display-produits{
+
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
     
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: 2%;
+
+}
+
+
+.img-fluid{
+
+    align-self: center;
+    max-width: 100%;
+    height: auto;
 
 }
  
 
+.btn{
 
-.produits{
-
-
-    text-align: center;
-    margin-top: 10%;
+    margin: auto;
 }
 
 .produits form a {
@@ -38,3 +46,4 @@ main{
     text-align: center;
 
 }
+
