@@ -19,7 +19,7 @@ class Commande
             $id_user = $_SESSION['id'];
 
             //INSERT INTO commande (adr_facturation, adr_livraison, id_utilisateur, date_commande) VALUES (?,?,?, NOW)
-            $req = " INSERT INTO commande (adr_facturation, adr_livraison, id_utilisateur, date_commande, statut) VALUES ('$facture','$livraison','$id_user',NOW(), 0)";
+            $req = " INSERT INTO commande (adr_facturation, adr_livraison, id_utilisateur, date_commande) VALUES ('$facture','$livraison','$id_user',NOW())";
             $stmt = $this->db->query($req);
             // $stmt->execute(array(
             //     $facture, $livraison, $id_user
