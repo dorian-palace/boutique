@@ -49,7 +49,7 @@ session_start()
                 <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a>
 
             </div>
-            <?php  }
+        <?php  }
 
 
 
@@ -60,21 +60,27 @@ session_start()
             $produits_id = $db->query("SELECT * FROM produits WHERE id = '$get_produits'");
 
 
-            foreach ($produits_id as $produit) {
+        ?>
+            
+                <?php foreach ($produits_id as $produit) {
 
-            ?>
+                ?>
 
-                <div class="display-produits">
+                            <div class="container">
+                            <?php echo "<img src='file/" .  $produit['image'] . " ' height=480 width=610 class='image-produit '/>" ?>
+                            <div class="info-produit">
+                                <div class="titre-produit"><?= $produit['titre']?></div>
+                                <div class="prix-produit"> <?=$produit['prix']?>€
 
-                    <h4 class="text-info"><?= $produit['titre'] ?></h4>
-                    <?php echo "<img src='file/" . $produit['image'] . " ' height=150 width=170 class='img-fluid' />" ?>
-                    <h4 class="prix"><?= number_format($produit['prix'], 2, ',', ' ') ?>€</h4>
-                    <a class="add" href="produits.php?id=<?= $produit['id'] ?>">Ajouter au panier</a>
-                    <h4 class="text-info"><?= $produit['description'] ?></h4>
-    
-                </div>
-
-            <?php }
+                                <div class="description"><?=$produit['description']?></div>
+                                
+                            </div>
+                            <div class="add-painer"><a class="btn btn-light mt-2" href="produits.php?id=<?= $req_categorie['id'] ?>">Ajouter au panier</a></div>
+                            <div class="avis"></div>
+                            </div>
+                <?php } ?>
+            
+        <?php
         } elseif (isset($_GET['categorie'])) {
 
             $get_categorie = $_GET['categorie'];
@@ -82,77 +88,68 @@ session_start()
 
             $req_categories = $db->query("SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id WHERE id_categorie = '$get_categorie'");
 
-            ?><a href="produits.php">Retour aux produits</a> 
+        ?><a href="produits.php">Retour aux produits</a>
 
-            <?php  
+            <div class="container row text-center offset-md-2 gap-3">
+                <?php
 
-            foreach ($req_categories as $req_categorie) {
+                foreach ($req_categories as $req_categorie) {
 
-            ?>
-            
-                
+                ?>
+
+                    <div class="card col-md-3 mr-3 mb-4">
+                        <?php echo "<img src='file/" .  $req_categorie['image'] . " ' height=150 width=170 class='img-fluid '/>" ?>
+                        <div class="card-body ">
+                            <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
+                            <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
 
 
+                            <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-succes">voir le produits</a>
 
-                <div class="produits">
+                            <a class="btn btn-light mt-2" href="produits.php?id=<?= $req_categorie['id'] ?>">Ajouter au panier</a>
 
-                    
+                            <?php require_once 'addpanier.php' ?>
 
-                        <div class="card" style="width: 18rem">
-                            <?php echo "<img src='file/" . $req_categorie['image'] . " ' height=150 width=170 class='img-fluid' />" ?>
-                            <div class="card-body">
-                                <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
-                                <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                                <a href="produits.php?produits=<?= $req_categorie['id_produits']?>" class="btn btn-primary">voir le produits</a>
-
-                                <a class="btn btn-primary mt-2" href="produits.php?id=<?= $req_categorie['id'] ?>">Ajouter au panier</a>
-
-                                <?php require_once 'addpanier.php' ?>
-
-                               
-
-                            </div>
                         </div>
 
-                    
-                </div>
-            <?php  }
-             
+                    </div>
+
+
+                <?php } ?>
+            </div>
+        <?php
         } else {
-           ?> <div class="container row text-center mb-4 gap-3">
-     
-            <?php while ($res = $result->fetch()) {
+        ?> <div class="container row text-center offset-md-2 gap-3">
 
-            ?>
-            
-                        <div class="card col-md-3 mr-3 mb-4" >
-                            <?php echo "<img src='file/" . $res['image'] . " ' height=150 width=170 class='img-fluid '/>" ?>
-                            <div class="card-body ">
-                                <h5 class="card-title text-center"><?= $res['titre'] ?></h5>
-                                <h5 class="prix"><?= number_format($res['prix'], 2, ',', ' ') ?>€</h5>
+                <?php while ($res = $result->fetch()) {
 
-                                
-                                <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-primary">voir le produits</a>
+                ?>
+                    <div class="card col-md-3 mr-3 mb-4">
+                        <?php echo "<img src='file/" . $res['image'] . " ' height=150 width=170 class='img-fluid '/>" ?>
+                        <div class="card-body ">
+                            <h5 class="card-title text-center"><?= $res['titre'] ?></h5>
+                            <h5 class="prix"><?= number_format($res['prix'], 2, ',', ' ') ?>€</h5>
 
-                                <a class="btn btn-primary mt-2" href="produits.php?id=<?= $res['id'] ?>">Ajouter au panier</a>
 
-                                <?php require_once 'addpanier.php' ?>
+                            <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-succes">voir le produits</a>
 
-                                
-                                
-                            </div>
-                            
+                            <a class="btn btn-light mt-2" href="produits.php?id=<?= $res['id'] ?>">Ajouter au panier</a>
+
+                            <?php require_once 'addpanier.php' ?>
+
+
+
                         </div>
-                
 
-            <?php } ?>
-             </div>
-             
+                    </div>
+
+
+                <?php } ?>
+            </div>
+
         <?php }
-    ?>
-            
+        ?>
+
 
 
 

@@ -17,9 +17,7 @@ body{
 
 .img-fluid{
 
-    align-self: center;
-    max-width: 100%;
-    height: auto;
+  margin-left ;
 
 }
  
@@ -47,3 +45,66 @@ body{
 
 }
 
+.container {  display: grid;
+    grid-template-columns: 1fr 0.4fr 1.6fr 1fr;
+    grid-template-rows: 1fr 2fr 0.1fr 1fr;
+    gap: 4px 40px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "image-produit image-produit info-produit info-produit"
+      "image-produit image-produit info-produit info-produit"
+      ". . . ."
+      "avis avis . .";
+
+    
+  }
+  
+  .image-produit {
+      
+
+    grid-area: image-produit;
+
+}
+  
+  .info-produit {  display: grid;
+    grid-template-columns: 1fr 1.4fr 0.6fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: px px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "titre-produit titre-produit titre-produit"
+      "prix-produit prix-produit prix-produit"
+      "add-painer add-painer add-painer";
+    grid-area: info-produit;
+  }
+  
+  .titre-produit { grid-area: titre-produit; }
+  
+  .prix-produit {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      "description description description"
+      "description description description";
+    grid-area: prix-produit;
+  }
+  
+  .description { grid-area: description; }
+  
+  .add-painer {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      ". . ."
+      ". . .";
+    grid-area: add-painer;
+  }
+  
+  .avis { grid-area: avis; }
+  
