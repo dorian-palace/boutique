@@ -24,7 +24,7 @@ session_start()
 
     <main>
         <?php require_once 'app/Produits.php';
-        require_once 'app/Panier.php';
+                require_once 'app/Panier.php';
 
 
 
@@ -91,11 +91,19 @@ session_start()
             ?>
             
                 
+<<<<<<< HEAD
 
 
 
                 <div class="produits">
 
+=======
+                
+                <form action="#" method="post">
+                    
+                    <div class = "produits">
+               
+>>>>>>> panier
                     
 
                         <div class="card" style="width: 18rem">

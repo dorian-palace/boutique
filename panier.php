@@ -1,11 +1,9 @@
 <?php 
 session_start();
 require_once 'app/Panier.php';
-require_once 'setting/Db.php';
 
 
 
-$db = New Db_connect;
 
 
 
@@ -74,17 +72,24 @@ $db = New Db_connect;
             if(!empty($produits)){ ?>
 
             
-                <div class="count">Nombre d'articles : <?=$panier->count()?></div>
+                <div class="count">Nombre d'articles : <?= var_dump($panier->count())?></div>
                 <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
                 
-                <input type="submit" value="Envoyé" name="submit">
+                <input type="submit" value="Valider" name="submit">
                 
                 <form action="" method="post"></form>
                 
             </div>
                 </form>
                 
-             <?php } ?>
+             <?php } 
+             
+            if(isset($_POST['sumbit'])){
+
+               header('location: commande.php ');
+            }
+             
+                 ?>
         
    
    
