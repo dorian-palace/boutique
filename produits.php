@@ -152,7 +152,7 @@ session_start()
                             <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-succes">voir le produits</a>
 
                             <a class="btn btn-light mt-2" href="produits.php?id=<?= $res['id'] ?>">Ajouter au panier</a>
-
+                            
 
                             <?php require_once 'addpanier.php' ?>
 
