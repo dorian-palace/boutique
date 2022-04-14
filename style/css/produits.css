@@ -1,4 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
+
 body{
     
     font-size: 20px;
@@ -35,6 +38,7 @@ body{
 
 .prix{
 
+
     color: red;
 
 }
@@ -68,7 +72,7 @@ body{
   
   .info-produit {  display: grid;
     grid-template-columns: 1fr 1.4fr 0.6fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
     gap: px px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -78,7 +82,10 @@ body{
     grid-area: info-produit;
   }
   
-  .titre-produit { grid-area: titre-produit; }
+  .titre-produit { 
+    font-family: 'Asap', sans-serif;
+    font-size: 30px;
+    grid-area: titre-produit; }
   
   .prix-produit {  display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -92,7 +99,9 @@ body{
     grid-area: prix-produit;
   }
   
-  .description { grid-area: description; }
+  .description { 
+    font-family: 'Asap', sans-serif;  
+    grid-area: description; }
   
   .add-painer {  display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -107,4 +116,157 @@ body{
   }
   
   .avis { grid-area: avis; }
+
+  .titre-produit{
+
+        height: 20%;
+        margin-bottom: 0;
+
+  }
   
+  .prix-produit{
+
+    
+    margin-top: 10%;
+    margin-bottom: 5%;
+    
+
+  }
+
+  #prix {
+
+    font-size: 30px;
+    color: red;
+    text-decoration: none;
+
+  }
+
+  .add-painer{
+
+    display: inline-block;
+  }
+
+
+
+  
+
+   main .categorie a  {
+
+            
+    list-style: none;
+    color: black;
+    display: flex;
+    text-decoration: none;
+
+}
+
+main .categorie{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+#retour{
+
+                
+    list-style: none;
+    color: black;
+
+    text-decoration: none;
+
+}
+
+.image-produit{
+
+    width: 100%;
+    align-items: center;    
+    border: 2px solid #555;
+}
+
+.add-avis a {
+
+
+    text-decoration: none;
+    color: black;
+    list-style: none;
+
+
+}
+
+.add-avis{
+
+    margin-top: 4%;
+    margin-left: 2%;
+}
+
+.page-link{
+
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 844px){
+
+    .container{
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        margin-left: 20%
+
+    }
+
+        .image-produit{
+
+            border: 1px solid #555;
+            border: 1px solid #555;
+           
+    }
+     
+        .info-produit{
+
+            margin-bottom: 40%;
+        }
+
+        .categorie {
+
+            
+            list-style: none;
+            color: black;
+
+            text-decoration: none;
+
+        }
+
+        .img-fluid{
+
+            
+        }
+
+  }
