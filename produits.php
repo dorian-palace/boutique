@@ -32,7 +32,7 @@ session_start()
         $result = $produits->getProduits();
         $db = new Db_connect();
 
-        
+
 
 
         $req_categories = $db->query("SELECT * FROM categories");
@@ -90,7 +90,7 @@ session_start()
                         <form action="" method="post">
 
 
-                            <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"> <input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
+                            <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
 
                         </form>
                         <?php
@@ -104,15 +104,22 @@ session_start()
 
                             </div>
 
+
+
                         <?php }
                         ?>
+                     
+                            
 
-                        <div class="add-avis"><a href="">rédiger un avis</a></div>
+                      
+
+
+                                
+                        </div>
 
                     </div>
+                
 
-
-                    <div class="avis"></div>
                 </div>
             <?php } ?>
 
@@ -134,7 +141,7 @@ session_start()
 
                 ?>
 
-                    
+
 
                     <div class="card col-md-3 mr-3 mb-4">
                         <?php echo "<img src='file/" . $req_categorie['image'] . " ' class='img-fluid '/>" ?>
@@ -143,9 +150,9 @@ session_start()
                             <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
 
 
-                            <a href="produits.php?produits=<?= $req_categorie['id_produits']?>" class="btn btn-succes">voir le produits</a>
+                            <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-succes">voir le produits</a>
 
-                            <form action="produits.php?categorie=<?=$req_categorie['id_categorie']?>&id=<?=$req_categorie['id_produits']?>" method="POST">
+                            <form action="produits.php?categorie=<?= $req_categorie['id_categorie'] ?>&id=<?= $req_categorie['id_produits'] ?>" method="POST">
 
 
                                 <input type="submit" name='submit' value='ajouter au panier' class="btn btn-success">
@@ -155,11 +162,11 @@ session_start()
                             <?php
                             if (isset($_POST['submit'])) {
 
-                                
+
 
                                 if ($req_categorie['id_produits'] == $_GET['id']) {
-                            ?>  
-                               <?php  require_once 'addpanier.php'; ?>
+                            ?>
+                                    <?php require_once 'addpanier.php'; ?>
 
                                     <div class="alert alert-success mt-3">
 
@@ -206,7 +213,7 @@ session_start()
                             if (isset($_POST['submit'])) {
 
                                 require_once 'addpanier.php';
-                                
+
                                 if ($res['id'] == $_GET['id']) {
                             ?>
                                     <div class="alert alert-success mt-3">
