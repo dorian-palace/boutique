@@ -18,11 +18,7 @@ body{
 }
 
 
-.img-fluid{
 
-  margin-left ;
-
-}
  
 
 .btn{
@@ -78,7 +74,7 @@ body{
     grid-template-areas:
       "titre-produit titre-produit titre-produit"
       "prix-produit prix-produit prix-produit"
-      "add-painer add-painer add-painer";
+      "add-panier add-panier add-panier";
     grid-area: info-produit;
   }
   
@@ -103,7 +99,7 @@ body{
     font-family: 'Asap', sans-serif;  
     grid-area: description; }
   
-  .add-painer {  display: grid;
+  .add-panier {  display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 0px 0px;
@@ -112,7 +108,7 @@ body{
       ". . ."
       ". . ."
       ". . .";
-    grid-area: add-painer;
+    grid-area: add-panier;
   }
   
   .avis { grid-area: avis; }
@@ -141,7 +137,7 @@ body{
 
   }
 
-  .add-painer{
+  .add-panier{
 
     display: inline-block;
   }

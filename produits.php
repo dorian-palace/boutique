@@ -32,8 +32,7 @@ session_start()
         $result = $produits->getProduits();
         $db = new Db_connect();
 
-        $panier = new Panier();
-        $result = $produits->getProduits();
+        
 
 
         $req_categories = $db->query("SELECT * FROM categories");
@@ -41,26 +40,27 @@ session_start()
 
         ?>
         <div class="categorie">
-        
-        <?php
-        if(isset($_GET['produits'],$_GET['categorie'])){ ?>
-        
-            <a href="produits.php" id="retour">Retour aux produits</a>
 
-        <?php } 
-        
+            <?php
+            if (isset($_GET['produits'], $_GET['categorie'])) { ?>
 
-        foreach ($req_categories as $req_categorie) {
+                <a href="produits.php" id="retour">Retour aux produits</a>
 
-            
-        ?>
+            <?php }
+
+
+            foreach ($req_categories as $req_categorie) {
+
+
+            ?>
                 <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a>
-                
-
-                <?php  }
 
 
-            ?> </div>
+            <?php  }
+
+
+            ?>
+        </div>
         <?php
         if (isset($_GET['produits'])) {
 
@@ -70,34 +70,52 @@ session_start()
 
 
         ?>
-            
-                <?php foreach ($produits_id as $produit) {
 
-                ?>
-                       <a href="produits.php" id="retour">Retour aux produits</a>
+            <?php foreach ($produits_id as $produit) {
 
-                            <div class="container">
-                            <?php echo "<img src='file/" . $produit['image'] . " ' height=480 width=610 class='image-produit '/>" ?>
-                            <div class="info-produit">
-                                <div class="titre-produit"><?= $produit['titre']?></div>
-                                <div class="prix-produit"> <a href="#" id='prix'><?=$produit['prix']?>€</a>
+            ?>
+                <a href="produits.php" id="retour">Retour aux produits</a>
 
-                                <div class="description"><?=$produit['description']?></div>
-                                
-                                
+                <div class="container">
+                    <?php echo "<img src='file/" . $produit['image'] . " ' height=480 width=610 class='image-produit '/>" ?>
+                    <div class="info-produit">
+                        <div class="titre-produit"><?= $produit['titre'] ?></div>
+                        <div class="prix-produit"> <a href="#" id='prix'><?= $produit['prix'] ?>€</a>
+
+                            <div class="description"><?= $produit['description'] ?></div>
+
+
+                        </div>
+
+                        <form action="" method="post">
+
+
+                            <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"> <input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
+
+                        </form>
+                        <?php
+                        if (isset($_POST['submit'])) {
+
+                            require_once 'addpanier.php'; ?>
+
+                            <div class="alert alert-success">
+
+                                <strong> Produit ajouté au panier</strong>
+
                             </div>
-                            <div class="add-painer"><a class="btn btn-success mt-2" href="produits.php?id=<?= $produit['id'] ?>">Ajouter au panier</a>
 
-                            <?php require_once 'addpanier.php' ?>
-                            
-                            <div class="add-avis"><a href="">rédiger un avis</a></div>
-                            </div>
-                            
+                        <?php }
+                        ?>
 
-                            <div class="avis"></div>
-                            </div>
-                <?php } ?>
-            
+                        <div class="add-avis"><a href="">rédiger un avis</a></div>
+
+                    </div>
+
+
+                    <div class="avis"></div>
+                </div>
+            <?php } ?>
+
         <?php
         } elseif (isset($_GET['categorie'])) {
 
@@ -105,6 +123,7 @@ session_start()
 
 
             $req_categories = $db->query("SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id WHERE id_categorie = '$get_categorie'");
+
 
         ?><a href="produits.php">Retour aux produits</a>
 
@@ -115,18 +134,43 @@ session_start()
 
                 ?>
 
+                    
+
                     <div class="card col-md-3 mr-3 mb-4">
-                        <?php echo "<img src='file/" .  $req_categorie['image'] . " ' height=150 width=170 class='img-fluid '/>" ?>
+                        <?php echo "<img src='file/" . $req_categorie['image'] . " ' class='img-fluid '/>" ?>
                         <div class="card-body ">
                             <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
                             <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
 
 
-                            <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-succes">voir le produits</a>
+                            <a href="produits.php?produits=<?= $req_categorie['id_produits']?>" class="btn btn-succes">voir le produits</a>
 
-                            <a class="btn btn-light mt-2" href="produits.php?id=<?= $req_categorie['id'] ?>">Ajouter au panier</a>
+                            <form action="produits.php?categorie=<?=$req_categorie['id_categorie']?>&id=<?=$req_categorie['id_produits']?>" method="POST">
 
-                            <?php require_once 'addpanier.php' ?>
+
+                                <input type="submit" name='submit' value='ajouter au panier' class="btn btn-success">
+
+                            </form>
+
+                            <?php
+                            if (isset($_POST['submit'])) {
+
+                                
+
+                                if ($req_categorie['id_produits'] == $_GET['id']) {
+                            ?>  
+                               <?php  require_once 'addpanier.php'; ?>
+
+                                    <div class="alert alert-success mt-3">
+
+                                        <strong> Produit ajouté au panier</strong>
+
+                                    </div>
+
+                            <?php }
+                            }
+                            ?>
+
 
                         </div>
 
@@ -151,12 +195,29 @@ session_start()
 
                             <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-succes">voir le produits</a>
 
-                            <a class="btn btn-light mt-2" href="produits.php?id=<?= $res['id'] ?>">Ajouter au panier</a>
-                            
-
-                            <?php require_once 'addpanier.php' ?>
+                            <form action="produits.php?id=<?= $res['id'] ?>" method="post">
 
 
+                                <a href="produits.php?produits=<?= $res['id'] ?>"><input type="submit" name='submit' value='ajouter au panier' class="btn btn-success"></a>
+
+                            </form>
+
+                            <?php
+                            if (isset($_POST['submit'])) {
+
+                                require_once 'addpanier.php';
+                                
+                                if ($res['id'] == $_GET['id']) {
+                            ?>
+                                    <div class="alert alert-success mt-3">
+
+                                        <strong> Produit ajouté au panier</strong>
+
+                                    </div>
+
+                            <?php }
+                            }
+                            ?>
 
                         </div>
 
@@ -165,24 +226,24 @@ session_start()
 
                 <?php } ?>
                 <nav aria-label="Page navigation example  ">
-                
-                <ul class="pagination justify-content-center ">
-                    <li class="page-item ">
-                    <a class="page-link " href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Précedent</span>
-                    </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Suivant</span>
-                    </a>
-                    </li>
-                </ul>
+
+                    <ul class="pagination justify-content-center ">
+                        <li class="page-item ">
+                            <a class="page-link " href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Précedent</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Suivant</span>
+                            </a>
+                        </li>
+                    </ul>
                 </nav>
             </div>
 
