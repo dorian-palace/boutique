@@ -27,35 +27,12 @@
     }
 }
 
-.cart {
-    background-color: #fff;
-    padding: 4vh 5vh;
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem
-}
 
-@media(max-width:767px) {
-    .cart {
-        padding: 4vh;
-        border-bottom-left-radius: unset;
-        border-top-right-radius: 1rem
-    }
-}
 
-.summary {
-    background-color: #ddd;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 4vh;
-    color: rgb(65, 65, 65)
-}
 
-@media(max-width:767px) {
-    .summary {
-        border-top-right-radius: unset;
-        border-bottom-left-radius: 1rem
-    }
-}
+
+
+
 
 .summary .col-2 {
     padding: 0
@@ -147,15 +124,7 @@ input:focus::-webkit-input-placeholder {
     border-radius: 0
 }
 
-.btn:focus {
-    box-shadow: none;
-    outline: none;
-    box-shadow: none;
-    color: white;
-    -webkit-box-shadow: none;
-    -webkit-user-select: none;
-    transition: none
-}
+
 
 .btn:hover {
     color: white
@@ -170,9 +139,9 @@ a:hover {
     text-decoration: none
 }
 
-#code {
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: center
+.form-panier{
+
+    display: flex;
+    justify-content: center;
 }
+
