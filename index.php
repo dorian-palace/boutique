@@ -31,10 +31,33 @@
 
         </main>
 
-        <h1 id="h1articleindex">
-            L'histoire de Pasta di Giovanni
+    <div class="h1index">
+        <h1 id="h1index">
+            Pasta di Giovanni
         </h1>
+    
 
+        <h2 id="h1index">
+            Pâtes fraîches, fromage et spécialités Italiennes
+        </h2>
+    </div> 
+
+    <div id="caroussel">
+        <div class="images">
+            <img src="pexel/1.png" alt="">
+            <img src="pexel/2.png" alt="">
+            <img src="pexel/3.png" alt="">
+            
+            <img src="pexel/5.png" alt="">
+
+        </div>
+    </div>
+    
+    
+                   
+
+    
+       
     <div id="articleindex">
         <article>
             <!--- ARTICLE --->
@@ -42,7 +65,7 @@
 
             Nous avons su garder un caractère artisanal (multiplicité des formats et farces), et évoluer en acquérant des outils de production moderne.
 
-            Ambassadeur de choix de la gastronomie locale, la marque “Pâtes fraîches et farcies” fleurie sur les cartes des grands restaurants et également dans les grands noms d’épicerie fine. Cette grande marque a su s’imposer comme la référence en pâtes fraîches originales et de qualité.
+            Ambassadeur de choix de la gastronomie locale, la marque “Pasta di Giovanni” fleurie sur les cartes des grands restaurants et également dans les grands noms d’épicerie fine. Cette grande marque a su s’imposer comme la référence en pâtes fraîches originales et de qualité.
 
             Tant les raviolis que les pâtes fraîches sont composés : de pâtes à base de farine de blé et de semoule extra fine ainsi que des différentes farces conçues par nous-même. Cette composition lui donne une particularité qui réside de la rapidité de cuisson : 3 minutes dans l’eau bouillante, feu doux.
 
