@@ -35,20 +35,17 @@
         <h1 id="h1index">
             Pasta di Giovanni
         </h1>
-    
-
-        <h2 id="h1index">
+        <h2 id="h2index">
             Pâtes fraîches, fromage et spécialités Italiennes
         </h2>
     </div> 
 
     <div id="caroussel">
         <div class="images">
-            <img src="pexel/1.png" alt="">
-            <img src="pexel/2.png" alt="">
-            <img src="pexel/3.png" alt="">
-            
-            <img src="pexel/5.png" alt="">
+            <img src="pexel/caroussel1.png" alt="">
+            <img src="pexel/caroussel2.png" alt="">
+            <img src="pexel/caroussel3.png" alt="">
+            <img src="pexel/caroussel4.png" alt="">
 
         </div>
     </div>
