@@ -56,7 +56,7 @@
     
        
     <div id="articleindex">
-        <article>
+        <article id="articleindex">
             <!--- ARTICLE --->
             Pasta di Giovanni fabrique artisanalement des pâtes fraîches et farcies est surtout connue pour ses différentes spécialités de gnocchis et raviolis frais, dont la plus ancienne remonte à 1990.
 

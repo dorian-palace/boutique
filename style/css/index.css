@@ -4,6 +4,32 @@
 } 
 
 
+/* ACCEUIL */
+
+
+#h1index{
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+#h2index{
+  margin-left: 5%;
+}
+
+#articleindex{
+  margin-left: 5%;
+  margin-right: 5%; 
+  margin-top: 2%;  
+  background-color: rgb(145, 238, 167);
+  border-radius: 30px;
+  
+}
+
+/* FIN ACCUEIL */
+
+
+
+
 /* CAROUSSEL */
 
 
@@ -41,25 +67,4 @@
   }
 }
 
-
-/* ACCEUIL */
-
-#h1index{
-  margin-top: 5%;
-  margin-left: 5%;
-}
-
-#h2index{
-  margin-left: 5%;
-}
-
-#articleindex{
-  background-color: rgb(145, 238, 167);
-  margin-left: 5%;
-  margin-right: 5%; 
-  margin-top: 2%;  
-}
-
-
-
-
+/* FIN CAROUSSEL */
