@@ -26,7 +26,7 @@
 }
 
 #presentation{
-  margin-top: 2%;
+  margin-top: 5%;
   margin-left: 6%;
   color: tomato;
 }
@@ -34,22 +34,34 @@
 
 .box{
   margin-top: 5%;
+  margin-bottom: 25%;
   margin-left: 5%;
   margin-right: 5%;
   display: flex;
   justify-content: start;
   flex-direction: row;
   justify-content: space-between;
-
 } 
 
 .divimgindex1{
-  width: 300px;
-  height: 190px;
-  background-color: cornflowerblue;
+  width: 250px;
+  height: 250px;
   margin: 3px;
 }
 
+
+.paraimg{
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.h1img{
+  display: flex;
+  justify-content: center;
+}
 
 
 
