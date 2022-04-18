@@ -24,6 +24,7 @@ body{
 .btn{
 
     margin: auto;
+    
 }
 
 .produits form a {
@@ -45,7 +46,7 @@ body{
 
 }
 
-.container {  display: grid;
+.container-produits {  display: grid;
     grid-template-columns: 1fr 0.4fr 1.6fr 1fr;
     grid-template-rows: 1fr 2fr 0.1fr 1fr;
     gap: 4px 40px;
@@ -55,6 +56,8 @@ body{
       "image-produit image-produit info-produit info-produit"
       ". . . ."
       "avis avis . .";
+      margin-left: 8%;
+    max-width: fit-content;
 
     
   }
@@ -76,6 +79,8 @@ body{
       "prix-produit prix-produit prix-produit"
       "add-panier add-panier add-panier";
     grid-area: info-produit;
+    max-width: fit-content;
+    margin-left: 8%;
   }
   
   .titre-produit { 
@@ -113,6 +118,7 @@ body{
   
   .avis { grid-area: avis; }
 
+
   .titre-produit{
 
         height: 20%;
@@ -143,7 +149,10 @@ body{
   }
 
 
-
+  main{
+    margin-top: 4%;
+    margin-left: 20%;
+  }
   
 
    main .categorie a  {
@@ -202,6 +211,10 @@ main .categorie{
     color: black;
 }
 
+.avis-produits{
+
+  margin-bottom: 40%;
+}
 
 
 
@@ -226,20 +239,39 @@ main .categorie{
 
 @media screen and (max-width: 844px){
 
-    .container{
+      
+    main{
+
+        margin-left: 12%;
+    }
+ 
+    .container-produits{
 
         display: flex;
 
         flex-direction: column;
 
-        align-items: center;
+        justify-content: center;
 
-        margin-left: 20%
+
+
+        margin-right: 30%;
+
+    }
+
+    .container{
+      display: flex;
+
+      justify-content: center;
+
+      
 
     }
 
         .image-produit{
-
+            
+           
+          width: 100%;
             border: 1px solid #555;
             border: 1px solid #555;
            
@@ -260,9 +292,22 @@ main .categorie{
 
         }
 
-        .img-fluid{
 
+        @media screen and (min-width : 1600px) {
+
+
+
+          .image-produit{
             
-        }
+            
+              height: 200px;
+              border: 1px solid #555;
+              border: 1px solid #555;
+             
+      }
 
+          
+
+
+          }
   }

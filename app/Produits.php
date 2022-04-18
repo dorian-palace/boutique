@@ -54,7 +54,43 @@ class Produits{
 
         
     }
+    
+    public function avis(){
 
+            if(isset($_GET['produits'])){
+
+
+                $get_produits = $_GET['produits'];
+                
+                $select = $this->db->prepare('SELECT * FROM avis INNER JOIN produits on produits.id = avis.id_produit INNER JOIN utilisateurs ON avis.id_utilisateur = utilisateurs.id INNER JOIN categories on avis.id_categorie = categories.id WHERE produits.id = ?  ');
+                $select->execute(array($get_produits));
+                
+                $res = $select;
+                
+                return $res;
+            }
+
+
+    
+
+
+
+    }
+       
+    
+    public function addAvis($id_categorie, $id_produits,$id_utilisateur){
+
+        $this->avis();
+
+       $insert = $this->db->prepare('INSERT INTO avis (commantaire,date,id_categorie, id_produit,id_utilisateur)VALUES(?,now(),?,?,?');
+
+       $insert->execute(array($id_categorie, $id_produits,$id_utilisateur));
+        
+
+
+
+    }
 
 
 }
+

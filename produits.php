@@ -12,6 +12,7 @@ session_start()
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/produits.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
     <title>Document</title>
@@ -76,23 +77,29 @@ session_start()
             ?>
                 <a href="produits.php" id="retour">Retour aux produits</a>
 
-                <div class="container">
-                    <?php echo "<img src='file/" . $produit['image'] . " ' height=480 width=610 class='image-produit '/>" ?>
+                <div class="container-produits">
+                    <?php echo "<img src='file/" . $produit['image'] . " 'class='image-produit '/>" ?>
+                
                     <div class="info-produit">
                         <div class="titre-produit"><?= $produit['titre'] ?></div>
                         <div class="prix-produit"> <a href="#" id='prix'><?= $produit['prix'] ?>€</a>
 
                             <div class="description"><?= $produit['description'] ?></div>
 
-
                         </div>
 
-                        <form action="" method="post">
+
+                        <form action="#" method="post" class="add-panier">
 
 
                             <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
 
+
+
                         </form>
+
+                        
+
                         <?php
                         if (isset($_POST['submit'])) {
 
@@ -103,24 +110,41 @@ session_start()
                                 <strong> Produit ajouté au panier</strong>
 
                             </div>
-
-
-
-                        <?php }
-                        ?>
-                     
                             
-
-                      
-
-
                                 
-                        </div>
+
+
+
+                        <?php } ?>
+
+                        <form action="" method="post" class="avis_form">
+
+                            <button type="button" name="btn_avis" class="btn btn-secondary text-left" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Poster un avis
+                            </button>
+
+                            <!-- <input type="submit" name="btn_avis" value="Poster un avis" class='btn btn-primary"'> -->
+
+                        </form>
+
 
                     </div>
-                
+                            
 
                 </div>
+
+                <div class="avis-produits">
+
+                                <?php require_once 'elements/avis.php' ?>
+                            </div>
+
+
+
+               
+
+
+                ?>
+
             <?php } ?>
 
         <?php
@@ -188,7 +212,7 @@ session_start()
             </div>
         <?php
         } else {
-        ?> <div class="container row text-center offset-md-2 gap-3 ">
+        ?> <div class="container row text-center offset-md-2 gap-3  ">
 
                 <?php while ($res = $result->fetch()) {
 
