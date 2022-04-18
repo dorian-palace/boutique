@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/index.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="pexel/PastadiGiovanni1.png">
+    <link rel="icon" type="image/png" sizes="50x50" href="pexel/PastadiGiovanni1.png">
     <title>Accueil</title>
 </head>
 
@@ -49,11 +49,34 @@
 
         </div>
     </div>
+
+    <section class="box">
+        
+        <div class="divimgindex1">
+            <img src="pexel/PastadiGiovanni.png" alt=""> 
+        </div>
+            
+        <div class="divimgindex1">
+            <img src="" alt=""> 
+        </div>
+                
+        <div class="divimgindex1">
+            <img src="" alt=""> 
+        </div>
+            
+        <div class="divimgindex1">
+            <img src="" alt=""> 
+        </div>
+           
+    </section>    
+    
     
     
                    
 
-    
+    <h1 id="presentation">
+        Présentation :
+    </h1>
        
     <div id="articleindex">
         <article id="articleindex">

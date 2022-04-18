@@ -1,7 +1,4 @@
 
-.body{
-  background-color: #91eea7;
-} 
 
 
 /* ACCEUIL */
@@ -9,11 +6,13 @@
 
 #h1index{
   margin-top: 5%;
-  margin-left: 5%;
+  margin-left: 39%;
+  color: tomato;
 }
 
 #h2index{
-  margin-left: 5%;
+  margin-left: 28%;
+  color: tomato;
 }
 
 #articleindex{
@@ -22,10 +21,42 @@
   margin-top: 2%;  
   background-color: rgb(145, 238, 167);
   border-radius: 30px;
-  
+  font-size: large;
+  color: tomato;
 }
 
+#presentation{
+  margin-top: 2%;
+  margin-left: 6%;
+  color: tomato;
+}
+
+
+.box{
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  justify-content: space-between;
+
+} 
+
+.divimgindex1{
+  width: 300px;
+  height: 190px;
+  background-color: cornflowerblue;
+  margin: 3px;
+}
+
+
+
+
+
 /* FIN ACCUEIL */
+
+
 
 
 
@@ -38,15 +69,15 @@
   height: 540px;
   overflow: hidden;
   border: 2px solid #333;
-  margin-left:5%; 
-  margin-top:2%; 
+  margin-left:22%; 
+  margin-top:2%;  
 }
 
 .images{
   display:flex;
   animation-duration: 20s;
   animation-name: mesImages;
-  animation-iteration-count: infinite;
+  animation-iteration-count: infinite; 
 }
 
 @keyframes mesImages{
