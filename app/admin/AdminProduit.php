@@ -34,10 +34,12 @@ class AdminProduit
 
     public function getProduits()
     {
-        $req = "SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories  ON produits.id_categorie = categories.id LIMIT :limite OFFSET :debut";
+        $req = "SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id LIMIT $this->limite OFFSET $this->debut";
         $query = $this->db->prepare($req);
-        $query->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        $query->bindValue('debut', $this->debut, PDO::PARAM_INT);
+
+
+        // $query->bindValue('limite', $this->limite, PDO::PARAM_INT);
+        // $query->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $query->execute();
 
         return $query;
@@ -46,6 +48,7 @@ class AdminProduit
     public function updateProduits()
     {
         if (isset($_POST['submit_update'])) {
+            echo 'ok1';
 
             $titre = $_POST['update_titre'];
             $description = $_POST['update_description'];
@@ -88,6 +91,7 @@ class AdminProduit
                     $stmt->execute(array(
                         $titre, $description, $stock, $id_categorie,  $prix, $id
                     ));
+                    echo 'ok2';
                 }
             }
         }

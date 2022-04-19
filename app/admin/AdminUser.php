@@ -27,10 +27,10 @@ class AdminUser
     public function getUser()
     {
         //récupère les infos des utilisateurs
-        $req = 'SELECT * FROM utilisateurs LIMIT :limite OFFSET :debut';
+        $req = "SELECT * FROM utilisateurs LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->db->prepare($req);
-        $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
+        // $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
+        // $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }

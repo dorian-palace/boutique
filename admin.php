@@ -70,7 +70,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
             </div>
             <?php $adminProduit->updateProduits(); ?>
             <?php $get_produits = $adminProduit->getProduits(); ?>
-            <?php while ($result_produits = $get_produits->fetch()) { ?>
+            <?php while ($result_produits = $get_produits->fetch()) {
+
+            ?>
                 <div class="form-group">
 
                     <form action="" method="post" enctype="multipart/form-data">
@@ -80,11 +82,18 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <input type="text" value="<?= $result_produits['description']; ?>" name="update_description" class="form-control">
                             <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control">
 
-                            <select name="update_categorie" id="" class="form-control">
-                                <!----categorie produits---->
-                                <option value="<?= $result_produits['id_categorie']; ?>" name="">
-                                    <?= $result_produits['nom_categorie']; ?>
-                                </option>
+                            <select class="form-control" name="update_categorie" required>Catégorie nouveau produit
+                                <?php $get_categorie_prod = $adminCategorie->getCategorie(); 
+                                 echo "<pre>";
+                                 var_dump($get_categorie_prod);
+                                 echo "</pre>";?>
+                                <?php while ($result_categorie_prod = $get_categorie_prod->fetch()) { 
+                                    
+                                ?>
+                                    <option value="<?= $result_categorie_prod['id']; ?>">
+                                        <?= $result_produits['nom_categorie']; ?>
+                                    </option>
+                                <?php  }; ?>
                             </select>
                             <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix" class="form-control">
 
