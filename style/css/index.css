@@ -7,33 +7,34 @@
 #h1index{
   margin-top: 5%;
   margin-left: 39%;
-  color: tomato;
+  color: rgb(0, 0, 0);
 }
 
 #h2index{
   margin-left: 28%;
-  color: tomato;
+  color: rgb(0, 0, 0);
 }
 
 #articleindex{
   margin-left: 5%;
   margin-right: 5%; 
   margin-top: 2%;  
+  margin-bottom: 5%;
   background-color: rgb(145, 238, 167);
   border-radius: 30px;
   font-size: large;
-  color: tomato;
+  color: rgb(0, 0, 0);
 }
 
 #presentation{
   margin-top: 5%;
   margin-left: 6%;
-  color: tomato;
+  color: rgb(0, 0, 0);
 }
 
 
 .box{
-  margin-top: 5%;
+  margin-top: 10%;
   margin-bottom: 25%;
   margin-left: 5%;
   margin-right: 5%;
@@ -54,7 +55,7 @@
   display: flex;
   justify-content: center;
   margin-top: 3%;
-  margin-left: 3%;
+  margin-left: 5%;
   margin-right: 3%;
 }
 
@@ -63,7 +64,10 @@
   justify-content: center;
 }
 
-
+.br{
+  color: #333;
+ 
+}
 
 
 /* FIN ACCUEIL */
