@@ -1,5 +1,6 @@
 <?php
 require_once('setting/db.php');
+// require('../../setting/data.php');
 class AdminUser
 {
     public function __construct()
@@ -15,6 +16,8 @@ class AdminUser
 
         $this->limite = 5;
         $this->debut = ($this->page - 1) * $this->limite;
+
+        // $data = secuData();
     }
 
     // public function idAdmin(){
@@ -40,10 +43,10 @@ class AdminUser
         // Modifie les informations et droit de l'utilisateurs
         if (isset($_POST['update'])) {
 
-            $new_id_droits = $_POST['new_droits'];
-            $new_login = $_POST['new_login'];
-            $new_email = $_POST['new_email'];
-            $id_user = $_POST['update'];
+            $new_id_droits = trim(htmlspecialchars($_POST['new_droits']));
+            $new_login =  trim(htmlspecialchars($_POST['new_login']));
+            $new_email = trim(htmlspecialchars($_POST['new_email']));
+            $id_user = trim(htmlspecialchars($_POST['update']));
 
             $req = 'UPDATE utilisateurs SET id_droits = ?, login = ?, email = ? WHERE id = ?';
             $prepare = $this->db->prepare($req);
