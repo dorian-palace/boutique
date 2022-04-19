@@ -50,11 +50,11 @@ class AdminProduit
         if (isset($_POST['submit_update'])) {
             echo 'ok1';
 
-            $titre = $_POST['update_titre'];
-            $description = $_POST['update_description'];
-            $stock = $_POST['update_stock'];
-            $id_categorie = $_POST['update_categorie'];
-            $prix = $_POST['update_prix'];
+            $titre = trim(htmlspecialchars($_POST['update_titre']));
+            $description = trim(htmlspecialchars($_POST['update_description']));
+            $stock = trim(htmlspecialchars($_POST['update_stock']));
+            $id_categorie = trim(htmlspecialchars($_POST['update_categorie']));
+            $prix = trim(htmlspecialchars($_POST['update_prix']));
             $id = $_POST['submit_update'];
 
             if (isset($_FILES['update_file'])) {
@@ -101,11 +101,11 @@ class AdminProduit
     {
         if (isset($_POST['submit_produit'])) {
 
-            $titre = $_POST['titre_produit'];
-            $description = $_POST['description_produit'];
-            $stock = $_POST['stock_produit'];
-            $id_categorie = $_POST['categorie_produit'];
-            $prix = $_POST['prix_produit'];
+            $titre = trim(htmlspecialchars($_POST['titre_produit']));
+            $description = trim(htmlspecialchars($_POST['description_produit']));
+            $stock = trim(htmlspecialchars($_POST['stock_produit']));
+            $id_categorie = trim(htmlspecialchars($_POST['categorie_produit']));
+            $prix = trim(htmlspecialchars($_POST['prix_produit']));
             $new_produit = $_POST['submit_produit'];
 
             $select = 'SELECT titre from produits WHERE titre = ? ';
