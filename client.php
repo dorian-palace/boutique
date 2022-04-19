@@ -9,7 +9,7 @@ $resultInfos = $clientInfos->fetch();
 $client_info->clientCommande();
 $clientCommande = $client_info->clientCommande($id_utilisateur);
 $resultCommande = $clientCommande->fetch();
-$panierClient = $client_info->clientPanier($id_utilisateur);
+// $panierClient = $client_info->clientPanier($id_utilisateur);
 // echo "<pre>";
 // var_dump($resultCommande);
 // echo "</pre>";
@@ -75,9 +75,9 @@ $panierClient = $client_info->clientPanier($id_utilisateur);
 
     </fieldset>
 
-    <fieldset>
+    <!-- <fieldset> -->
         <!---Affichage du panier une fois en db--->
-        <legend>Contenue panier</legend>
+        <!-- <legend>Contenue panier</legend>
         <?php if (isset($panierClient)) {
             foreach ($panierClient as $key => $value) {
 
@@ -99,7 +99,7 @@ $panierClient = $client_info->clientPanier($id_utilisateur);
 
         <?php }
         } ?>
-    </fieldset>
+    </fieldset> -->
 
 </body>
 </html>
