@@ -1,16 +1,12 @@
 <?php
-class Data
+
+
+function secuData($data)
 {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    $data = htmlentities($data);
 
-    public function __construct()
-    {
-    }
-
-    public static function secuData($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    return $data;
 }
