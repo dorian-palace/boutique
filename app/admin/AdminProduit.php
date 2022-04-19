@@ -1,5 +1,6 @@
 <?php
 require_once('setting/db.php');
+require('setting/data.php');
 // require_once('../pagination.php');
 
 class AdminProduit
@@ -22,6 +23,8 @@ class AdminProduit
 
         $this->limite = 5;
         $this->debut = ($this->page - 1) * $this->limite;
+
+        
     }
 
     public function page_Produit()
@@ -64,11 +67,11 @@ class AdminProduit
         if (isset($_POST['submit_update'])) {
             echo 'ok1';
 
-            $titre = trim(htmlspecialchars($_POST['update_titre']));
-            $description = trim(htmlspecialchars($_POST['update_description']));
-            $stock = trim(htmlspecialchars($_POST['update_stock']));
-            $id_categorie = trim(htmlspecialchars($_POST['update_categorie']));
-            $prix = trim(htmlspecialchars($_POST['update_prix']));
+            $titre = secuData($_POST['update_titre']);
+            $description = secuData($_POST['update_description']);
+            $stock = secuData($_POST['update_stock']);
+            $id_categorie = secuData($_POST['update_categorie']);
+            $prix = secuData($_POST['update_prix']);
             $id = $_POST['submit_update'];
 
             if (isset($_FILES['update_file'])) {
@@ -115,11 +118,11 @@ class AdminProduit
     {
         if (isset($_POST['submit_produit'])) {
 
-            $titre = trim(htmlspecialchars($_POST['titre_produit']));
-            $description = trim(htmlspecialchars($_POST['description_produit']));
-            $stock = trim(htmlspecialchars($_POST['stock_produit']));
-            $id_categorie = trim(htmlspecialchars($_POST['categorie_produit']));
-            $prix = trim(htmlspecialchars($_POST['prix_produit']));
+            $titre = secuData($_POST['titre_produit']);
+            $description = secuData($_POST['description_produit']);
+            $stock = secuData($_POST['stock_produit']);
+            $id_categorie = secuData($_POST['categorie_produit']);
+            $prix = secuData($_POST['prix_produit']);
             $new_produit = $_POST['submit_produit'];
 
             $select = 'SELECT titre from produits WHERE titre = ? ';
