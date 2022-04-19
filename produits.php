@@ -74,11 +74,13 @@ session_start()
 
             <?php foreach ($produits_id as $produit) {
 
-            ?>
+            ?>  <div class="retour">
                 <a href="produits.php" id="retour">Retour aux produits</a>
+                
+            </div>
 
-                <div class="container-produits">
-                    <?php echo "<img src='file/" . $produit['image'] . " 'class='image-produit '/>" ?>
+<div class="container-produits">
+    <?php echo "<img src='file/" . $produit['image'] . " 'class='image-produit '/>" ?>
                 
                     <div class="info-produit">
                         <div class="titre-produit"><?= $produit['titre'] ?></div>
@@ -134,7 +136,6 @@ session_start()
                 </div>
 
                 <div class="avis-produits">
-
                                 <?php require_once 'elements/avis.php' ?>
                             </div>
 
@@ -143,7 +144,7 @@ session_start()
                
 
 
-                ?>
+                
 
             <?php } ?>
 
@@ -217,7 +218,7 @@ session_start()
                 <?php while ($res = $result->fetch()) {
 
                 ?>
-                    <div class="card col-md-3 mr-3 mb-4 ">
+                    <div class="card col-md-3 mr-3 mb-4  ">
                         <?php echo "<img src='file/" . $res['image'] . " ' class='img-fluid '/>" ?>
                         <div class="card-body ">
                             <h5 class="card-title text-center"><?= $res['titre'] ?></h5>
