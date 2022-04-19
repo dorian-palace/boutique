@@ -45,6 +45,20 @@ class AdminProduit
 
     public function updateProduits()
     {
+        /*  Le code commence par diviser le nom du fichier en trois parties : extension, nom et taille.
+        Le code vérifie ensuite si l'extension se trouve dans un tableau (une liste ordonnée) avec d'autres extensions dont la taille est inférieure à 400000 octets.
+        Si c'est le cas, il passe à l'analyse du contenu du fichier.
+        La première ligne divise une chaîne de caractères en caractères individuels en utilisant explode().
+        Elle commence par séparer chaque caractère par un point et se termine lorsqu'elle en trouve un sans autre point.
+        Ensuite, elle utilise strtolower() pour convertir toutes les lettres majuscules en minuscule avant de vérifier s'il y a un autre point à la fin de $name.
+        Cela divisera "TEST" en "test".
+        Ensuite, il utilise end() comme marqueur de la fin de ce tableau et du début d'un autre tableau en dessous.
+        Enfin, $extensions est égal à ['jpg', 'png', 'jpeg'].
+        Le code va déplacer un fichier téléchargé par l'utilisateur sur le serveur.
+        La variable $name est une chaîne qui contient le nom du fichier téléchargé.
+        La variable $tabExtension est un tableau d'extensions possibles pour les fichiers et elle contient 'jpg', 'png', 'jpeg'.
+        La variable $maxSize est de 400000, ce qui signifie que tout fichier dépassant cette taille ne sera pas déplacé.
+        Si in_array($extension, $extensions) renvoie true et si la taille du fichier est inférieure à 400000 octets, il sera déplacé avec succès. */
         if (isset($_POST['submit_update'])) {
 
             $titre = $_POST['update_titre'];
