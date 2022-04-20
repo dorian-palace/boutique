@@ -10,6 +10,8 @@ session_start()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/produits.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   
 
     <title>Document</title>
@@ -22,7 +24,6 @@ session_start()
      <main>
         <?php require_once 'app/Produits.php';
                 require_once 'app/Panier.php';
-                require_once 'setting/Db.php';
 
 
             $produits = New Produits();
@@ -54,20 +55,20 @@ session_start()
                     ?>
                 <h4 class="text-info"><?= $produit['titre']?></h4>
                 <h4 class="text-danger"><?= number_format($produit['prix'],2,',',' ')?>€</h4>
-                <a class = "add" href="addpanier.php?id=<?=$produit['id']?>">Ajouter au panier</a>
+                <a class = "add" href="produits.php?id=<?=$produit['id']?>">Ajouter au panier</a>
 
                 
-        <?php }
+            <?php }
 
          }else{
 
              while($res = $result->fetch()){ ?>
                 
                 
-                <div class = "produits">
-                 
+                
                 <form action="#" method="post">
-
+                    
+                    <div class = "produits">
                
                     
                 <h4 class="text-info"><?= $res['titre']?></h4>
@@ -76,16 +77,15 @@ session_start()
 
               
               
-
-                <a class = "add" href="addpanier.php?id=<?=$res['id']?>">Ajouter au panier</a>
+                <a class = "add" href="produits.php?id=<?=$res['id']?>">Ajouter au panier</a>
+                
+                <?php require_once 'addpanier.php' ?>;
+                
+                </div>
+            </form>
 
                 
-
-                </form>
-                
-                 </div>
-                 
-                 
+    
                  <?php } 
                  
                 }

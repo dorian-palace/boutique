@@ -1,15 +1,12 @@
 <?php 
 session_start();
 require_once 'app/Panier.php';
-require_once 'setting/Db.php';
 
 
 
-$db = New Db_connect;
 
 
 
-var_dump($_SESSION);
 
 ?>
 <!DOCTYPE html>
@@ -19,6 +16,8 @@ var_dump($_SESSION);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    
 
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/panier.css">
@@ -45,30 +44,52 @@ var_dump($_SESSION);
     ?>
 
 
-        <form action="panier.php" method="post">
+        <form action="panier.php" method="post" class="form-panier">
         <div class="row">
 
-        <?php while($res = $produits->fetch()){  ?>
-             
-            <div class="name"><?=$res['titre']?></div>
-            <div class="price">prix : <?=number_format($res['prix'],2,',',' ')?>€</div>
-            <div class="quantity"><input type="text" name="panier[quantity][<?=$res['id'];?>]" value="<?=$_SESSION['panier'][$res['id']]?>"</div>
-            <a href="panier.php?delpanier=<?=$res['id'];?>">Supprimer</a>
             
+        <?php
             
-            
-            
-            <?php } ?>
+            if(empty($produits)){
 
-            <input type="submit" value="Envoyé" name="submit">
+                echo 'panier vide';
+
+            }else{
+    
+                while($res = $produits->fetch()){  ?>
+             
+             <div class="name"><?=$res['titre']?></div>
+             <div class="price">prix : <?=number_format($res['prix'],2,',',' ')?>€</div>
+             <div class="quantity"><input type="number" name="panier[quantity][<?=$res['id'];?>]" value="<?=$_SESSION['panier'][$res['id']]?>"</div>
+             <a href="panier.php?delpanier=<?=$res['id'];?>">Supprimer</a>
+             
+             <?php }
+            }
+
+
+          
             
-            <div class="count">Nombre d'articles : <?=$panier->count()?></div>
-            <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
+            if(!empty($produits)){ ?>
+
             
-            
-        </div>
-        </form>
-        
+                <div class="count">Nombre d'articles : <?= ($panier->count())?></div>
+                <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
+                
+                <input type="submit" value="Valider" name="submit">
+                
+                <form action="" method="post"></form>
+                
+            </div>
+                </form>
+                
+             <?php } 
+             
+            if(isset($_POST['sumbit'])){
+
+               header('location: commande.php ');
+            }
+             
+                 ?>
         
    
    
