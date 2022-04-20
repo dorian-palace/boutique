@@ -47,9 +47,12 @@
                 $password = $_POST['password'];
                 $email = $_POST['email'];
                 $confpassword = $_POST['confpassword'];
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+
 
                 // $user = new User($login,$password, $email);
-                $user = new User($login, $password, $email, $confpassword);
+                $user = new User($login, $password, $email,$confpassword,$nom,$prenom);
 
                 $user->confirmSingup();
             }
@@ -71,6 +74,13 @@
 
                 <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
                 <input type="email" class="inputForm" name="email"> 
+
+                <label for="prenom" class="'labelForm" placeholder="Votre prénom"> Prénom </label>
+                <input type="prenom" class="inputForm" name="prenom">
+
+                
+                <label for="nom"class="'labelForm" placeholder="Votre nom">nom</label>
+                <input type="prenom" class="inputForm" name="nom">
 
                 <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
                 <input type="password" class="inputForm" name="password">
