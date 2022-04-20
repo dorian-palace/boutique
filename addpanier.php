@@ -24,6 +24,11 @@ if(isset($_GET['id'])){
     ?>
     
     <div class="alert alert-success">
+<<<<<<< HEAD
+=======
+    <strong> Produit ajouté au panier</strong>
+  </div>
+>>>>>>> panier
 
       <strong> Produit ajouté au panier</strong>
       
