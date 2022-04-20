@@ -6,6 +6,7 @@ require('app/Panier.php');
 $panier = new Panier();
 $commande = new Commande();
 $id_user = $_SESSION['id'];
+
 echo "<pre>";
 var_dump($_SESSION);
 echo "</pre>";
@@ -14,7 +15,13 @@ echo "</pre>";
 if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
 
     $commande->valide();
+
+    // if (!empty($_SESSION['panier'])) {
+
+    //     unset($_SESSION['panier']);
+    // }
 }
+
 // echo 'ok ';
 // }
 
@@ -36,7 +43,7 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
     <div class="container">
         <h1 class="h3 mb-5">Validation de commande</h1>
 
-        <form action="" method="post">
+        <form action="confirmer.php" method="post">
             <div class="row">
 
                 <!-- Left -->
@@ -104,7 +111,7 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
                 <div class="col-lg-3">
                     <div class="card position-sticky top-0">
                         <div class="p-3 bg-light bg-opacity-10">
-                            <h6 class="card-title mb-3">Order Summary</h6>
+                            <h6 class="card-title mb-3">Commande</h6>
                             <div class="d-flex justify-content-between mb-1 small">
                                 <div class="count">Nombre d'articles : <?= ($panier->count()) ?></div>
 

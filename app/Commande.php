@@ -17,6 +17,7 @@ class Commande
     public function valide()
     {
         if (isset($_POST['submit'])) {
+
             $facturation = secuData($_POST['adr_ftr']);
             $livraison = secuData($_POST['adr_liv']);
             $id_user = $_SESSION['id'];
@@ -26,8 +27,7 @@ class Commande
             $stmt->execute(array(
                 $facturation, $livraison, $id_user
             ));
-            //INSERT INTO commande (id, adr_facturation, adr_livraison, id_utilisateur, date_commande) VALUES (5,3,3,3,CURRENT_TIMESTAMP)
-            //INSERT INTO commande (adr_facturation, adr_livraison, id_utilisateur, date_commande) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
+    
             // return $stmt;
         }
     }
