@@ -44,9 +44,9 @@ session_start()
 
             <?php
             if (isset($_GET['produits'], $_GET['categorie'])) { ?>
-               
-               <div class="retour">
-                    
+
+                <div class="retour">
+
                     <a href="produits.php" id="retour"><button class="btn btn-dark mb-3"">Retour aux produits</button></a>
 
                 </div>
@@ -56,238 +56,263 @@ session_start()
 
             foreach ($req_categories as $req_categorie) {
 
-                    
-            ?>
-                <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a>
-
-
-            <?php  }
-
 
             ?>
-        </div>
-        <?php
-        if (isset($_GET['produits'])) {
-
-            $get_produits = $_GET['produits'];
-
-            $produits_id = $db->query("SELECT * FROM produits WHERE id = '$get_produits'");
+                <a href=" produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a>
 
 
-        ?>
+                <?php  }
+    
 
-            <?php foreach ($produits_id as $produit) {
+                ?>
+                </div>
+                <?php
+                if (isset($_GET['produits'])) {
 
-            ?>  <div class="retour">
-                <a href="produits.php" id="retour"><button class="btn btn-dark mb-3">Retour aux produits</button></a>
-                
-            </div>
+                    $get_produits = $_GET['produits'];
 
-<div class="container-produits">
-    <?php echo "<img src='file/" . $produit['image'] . " 'class='image-produit '/>" ?>
-                
-                    <div class="info-produit">
-                        <div class="titre-produit"><?= $produit['titre'] ?></div>
-                        <div class="prix-produit"> <a href="#" id='prix'><?= $produit['prix'] ?>€</a>
+                    $produits_id = $db->query("SELECT * FROM produits WHERE id = '$get_produits'");
 
-                            <div class="description"><?= $produit['description'] ?></div>
+
+                ?>
+
+                    <?php foreach ($produits_id as $produit) {
+
+                    ?> <div class="retour">
+                            <a href="produits.php" id="retour"><button class="btn btn-dark mb-3">Retour aux produits</button></a>
 
                         </div>
 
+                        <div class="container-produits">
+                            <?php echo "<img src='file/" . $produit['image'] . " 'class='image-produit '/>" ?>
 
-                        <form action="#" method="post" class="add-panier">
+                            <div class="info-produit">
+                                <div class="titre-produit"><?= $produit['titre'] ?></div>
+                                <div class="prix-produit"> <a href="#" id='prix'><?= $produit['prix'] ?>€</a>
+
+                                    <div class="description"><?= $produit['description'] ?></div>
+
+                                </div>
 
 
-                            <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
+                                <form action="#" method="post" class="add-panier">
+
+
+                                    <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
 
 
 
-                        </form>
+                                </form>
 
-                        
 
-                        <?php
-                        if (isset($_POST['submit'])) {
 
-                            require_once 'addpanier.php'; ?>
+                                <?php
+                                if (isset($_POST['submit'])) {
 
-                            <div class="alert alert-success">
+                                    require_once 'addpanier.php'; ?>
 
-                                <strong> Produit ajouté au panier</strong>
+                                    <div class="alert alert-success">
+
+                                        <strong> Produit ajouté au panier</strong>
+
+                                    </div>
+
+
+
+
+
+                                <?php } ?>
+
+                                <form action="" method="post" class="avis_form">
+
+                                    <button type="button" name="btn_avis" class="btn btn-secondary text-left" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Poster un avis
+                                    </button>
+
+                                    <!-- <input type="submit" name="btn_avis" value="Poster un avis" class='btn btn-primary"'> -->
+
+                                </form>
+
 
                             </div>
-                            
-                                
 
+
+                        </div>
+
+                        <div class="avis-produits">
+                            <?php require_once 'elements/avis.php' ?>
+                        </div>
+
+
+                        <?php         //ICI PAGINATION
+            $limite = 5;
+            $nb_page = ceil($nb_elements / $limite); ?>
+                        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            <li class="page-item">
+
+                <?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
+                        < </a> <?php } ?>
+            </li class="page-item">
+
+            <li class="page-item">
+                <?php for ($i = 1; $i <= $nb_page; $i++) {
+                ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+                <?php } ?>
+            </li>
+
+            <li class="page-item">
+                <?php if ($page < $nb_page) { ?>
+                    <a href="?page=<?= $page + 1; ?>" class="page-link">></a>
+                <?php } ?>
+            </li>
+
+        </ul>
+    </nav>
+
+
+
+
+
+                    <?php } ?>
+
+                <?php
+                } elseif (isset($_GET['categorie'])) {
+
+                    $get_categorie = $_GET['categorie'];
+
+
+                    $req_categories = $db->query("SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id WHERE id_categorie = '$get_categorie'");
+
+                ?>
+                    <div class="retour">
+
+                        <a href="produits.php" "><button class=" btn btn-dark mb-3">Retour aux produits</button></a>
+                    </div>
+
+                    <div class="container row text-center offset-md-2 gap-3">
+                        <?php
+
+                        foreach ($req_categories as $req_categorie) {
+
+                        ?>
+
+
+
+                            <div class="card col-md-3 mr-3 mb-4">
+                                <?php echo "<img src='file/" . $req_categorie['image'] . " ' class='img-fluid '/>" ?>
+                                <div class="card-body ">
+                                    <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
+                                    <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
+
+
+                                    <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-danger mb-2">voir le produits</a>
+
+                                    <form action="produits.php?categorie=<?= $req_categorie['id_categorie'] ?>&id=<?= $req_categorie['id_produits'] ?>" method="POST">
+
+
+                                        <input type="submit" name='submit' value='ajouter au panier' class="btn btn-success">
+
+                                    </form>
+
+                                    <?php
+                                    if (isset($_POST['submit'])) {
+
+
+
+                                        if ($req_categorie['id_produits'] == $_GET['id']) {
+                                    ?>
+                                            <?php require_once 'addpanier.php'; ?>
+
+                                            <div class="alert alert-success mt-3">
+
+                                                <strong> Produit ajouté au panier</strong>
+
+                                            </div>
+
+                                    <?php }
+                                    }
+                                    ?>
+
+
+                                </div>
+
+                            </div>
 
 
                         <?php } ?>
-
-                        <form action="" method="post" class="avis_form">
-
-                            <button type="button" name="btn_avis" class="btn btn-secondary text-left" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Poster un avis
-                            </button>
-
-                            <!-- <input type="submit" name="btn_avis" value="Poster un avis" class='btn btn-primary"'> -->
-
-                        </form>
-
-
                     </div>
-                            
+                <?php
+                } else {
+                ?> <div class="container row text-center offset-md-2 gap-3  ">
 
-                </div>
+                        <?php while ($res = $result->fetch()) {
 
-                <div class="avis-produits">
-                                <?php require_once 'elements/avis.php' ?>
+                        ?>
+                            <div class="card col-md-3 mr-3 mb-4  ">
+                                <?php echo "<img src='file/" . $res['image'] . " ' class='img-fluid '/>" ?>
+                                <div class="card-body ">
+                                    <h5 class="card-title text-center"><?= $res['titre'] ?></h5>
+                                    <h5 class="prix"><?= number_format($res['prix'], 2, ',', ' ') ?>€</h5>
+
+
+                                    <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-danger mb-2">voir le produits</a>
+
+                                    <form action="produits.php?id=<?= $res['id'] ?>" method="post">
+
+
+                                        <a href="produits.php?produits=<?= $res['id'] ?>"><input type="submit" name='submit' value='ajouter au panier' class="btn btn-success"></a>
+
+                                    </form>
+
+                                    <?php
+                                    if (isset($_POST['submit'])) {
+
+                                        require_once 'addpanier.php';
+
+                                        if ($res['id'] == $_GET['id']) {
+                                    ?>
+                                            <div class="alert alert-success mt-3">
+
+                                                <strong> Produit ajouté au panier</strong>
+
+                                            </div>
+
+                                    <?php }
+                                    }
+                                    ?>
+
+                                </div>
+
                             </div>
 
 
+                        <?php } ?>
+                        <nav aria-label="Page navigation example  ">
 
-               
-
-
-                
-
-            <?php } ?>
-
-        <?php
-        } elseif (isset($_GET['categorie'])) {
-
-            $get_categorie = $_GET['categorie'];
-
-
-            $req_categories = $db->query("SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id WHERE id_categorie = '$get_categorie'");
-
-            ?>
-            <div class="retour">
-
-                <a href="produits.php" "><button class="btn btn-dark mb-3">Retour aux produits</button></a>
-            </div>
-
-            <div class="container row text-center offset-md-2 gap-3">
-                <?php
-
-                foreach ($req_categories as $req_categorie) {
-
-                ?>
-
-
-
-                    <div class="card col-md-3 mr-3 mb-4">
-                        <?php echo "<img src='file/" . $req_categorie['image'] . " ' class='img-fluid '/>" ?>
-                        <div class="card-body ">
-                            <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
-                            <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
-
-
-                            <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-danger mb-2">voir le produits</a>
-
-                            <form action="produits.php?categorie=<?= $req_categorie['id_categorie'] ?>&id=<?= $req_categorie['id_produits'] ?>" method="POST">
-
-
-                                <input type="submit" name='submit' value='ajouter au panier' class="btn btn-success">
-
-                            </form>
-
-                            <?php
-                            if (isset($_POST['submit'])) {
-
-
-
-                                if ($req_categorie['id_produits'] == $_GET['id']) {
-                            ?>
-                                    <?php require_once 'addpanier.php'; ?>
-
-                                    <div class="alert alert-success mt-3">
-
-                                        <strong> Produit ajouté au panier</strong>
-
-                                    </div>
-
-                            <?php }
-                            }
-                            ?>
-
-
-                        </div>
-
+                            <ul class="pagination justify-content-center ">
+                                <li class="page-item ">
+                                    <a class="page-link " href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Précedent</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Suivant</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
 
-
-                <?php } ?>
-            </div>
-        <?php
-        } else {
-        ?> <div class="container row text-center offset-md-2 gap-3  ">
-
-                <?php while ($res = $result->fetch()) {
-
+                <?php }
                 ?>
-                    <div class="card col-md-3 mr-3 mb-4  ">
-                        <?php echo "<img src='file/" . $res['image'] . " ' class='img-fluid '/>" ?>
-                        <div class="card-body ">
-                            <h5 class="card-title text-center"><?= $res['titre'] ?></h5>
-                            <h5 class="prix"><?= number_format($res['prix'], 2, ',', ' ') ?>€</h5>
-
-
-                            <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-danger mb-2">voir le produits</a>
-
-                            <form action="produits.php?id=<?= $res['id'] ?>" method="post">
-
-
-                                <a href="produits.php?produits=<?= $res['id'] ?>"><input type="submit" name='submit' value='ajouter au panier' class="btn btn-success"></a>
-
-                            </form>
-
-                            <?php
-                            if (isset($_POST['submit'])) {
-
-                                require_once 'addpanier.php';
-
-                                if ($res['id'] == $_GET['id']) {
-                            ?>
-                                    <div class="alert alert-success mt-3">
-
-                                        <strong> Produit ajouté au panier</strong>
-
-                                    </div>
-
-                            <?php }
-                            }
-                            ?>
-
-                        </div>
-
-                    </div>
-
-
-                <?php } ?>
-                <nav aria-label="Page navigation example  ">
-
-                    <ul class="pagination justify-content-center ">
-                        <li class="page-item ">
-                            <a class="page-link " href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Précedent</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Suivant</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-        <?php }
-        ?>
 
 
 
