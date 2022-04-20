@@ -44,7 +44,7 @@ require_once 'app/Panier.php';
     ?>
 
 
-        <form action="panier.php" method="post">
+        <form action="panier.php" method="post" class="form-panier">
         <div class="row">
 
             
@@ -72,7 +72,7 @@ require_once 'app/Panier.php';
             if(!empty($produits)){ ?>
 
             
-                <div class="count">Nombre d'articles : <?= var_dump($panier->count())?></div>
+                <div class="count">Nombre d'articles : <?= ($panier->count())?></div>
                 <div class="total">total :<?=number_format($panier->total(),2,',',' ');?>€</div>
                 
                 <input type="submit" value="Valider" name="submit">
