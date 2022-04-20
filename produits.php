@@ -169,35 +169,29 @@ session_start()
             <div class="container row text-center offset-md-2 gap-3">
                 <?php
 
-<<<<<<< HEAD
-            ?>
+
+            
             
                 
-<<<<<<< HEAD
-=======
                 foreach ($req_categories as $req_categorie) {
->>>>>>> produits
 
                 ?>
 
 
 
-<<<<<<< HEAD
-=======
                 
                 <form action="#" method="post">
                     
                     <div class = "produits">
                
->>>>>>> panier
                     
-=======
+
                     <div class="card col-md-3 mr-3 mb-4">
                         <?php echo "<img src='file/" . $req_categorie['image'] . " ' class='img-fluid '/>" ?>
                         <div class="card-body ">
                             <h5 class="card-title text-center"><?= $req_categorie['titre'] ?></h5>
                             <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
->>>>>>> produits
+
 
 
                             <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-danger mb-2">voir le produits</a>
