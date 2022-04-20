@@ -179,10 +179,6 @@ session_start()
 
 
 
-                
-                <form action="#" method="post">
-                    
-                    <div class = "produits">
                
                     
 
@@ -201,7 +197,7 @@ session_start()
 
                                 <input type="submit" name='submit' value='ajouter au panier' class="btn btn-success">
 
-                            </form>
+                        
 
                             <?php
                             if (isset($_POST['submit'])) {
