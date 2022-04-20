@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('app/commande/Commande.php');
+require('setting/data.php');
 $commande = new Commande();
 $id_user = $_SESSION['id'];
 echo "<pre>";

@@ -2,6 +2,7 @@
 <?php 
 
 require_once 'setting/db.php';
+require 'setting/data.php';
 
 class Commande {
 
