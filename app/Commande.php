@@ -27,7 +27,10 @@ class Commande
             $stmt->execute(array(
                 $facturation, $livraison, $id_user
             ));
-    
+            if ($stmt) {
+                header('Location: confirmer.php');
+            }
+
             // return $stmt;
         }
     }

@@ -8,13 +8,19 @@ $commande = new Commande();
 $id_user = $_SESSION['id'];
 
 echo "<pre>";
-var_dump($_SESSION);
+var_dump($_SESSION['id']);
 echo "</pre>";
 
 // if (isset($_POST['submit'])) {
 if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
 
     $commande->valide();
+
+    // if ($commande->valide()) {
+
+        // session_destroy($_SESSION['panier']);
+    // }
+
 
     // if (!empty($_SESSION['panier'])) {
 
@@ -43,7 +49,7 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
     <div class="container">
         <h1 class="h3 mb-5">Validation de commande</h1>
 
-        <form action="confirmer.php" method="post">
+        <form action="#" method="post">
             <div class="row">
 
                 <!-- Left -->

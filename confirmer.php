@@ -9,9 +9,10 @@ $resultUser = $infosUser->fetch();
 $adrUser = $client->clientCommande();
 $resultAdr = $adrUser->fetch();
 
-echo "<pre>";
-var_dump($_SESSION);
-echo "</pre>";
+unset($_SESSION['panier']);
+// echo "<pre>";
+// var_dump($_SESSION['panier']);
+// echo "</pre>";
 
 ?>
 <!DOCTYPE html>
