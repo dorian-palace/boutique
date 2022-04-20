@@ -44,8 +44,11 @@ session_start()
 
             <?php
             if (isset($_GET['produits'], $_GET['categorie'])) { ?>
-
-                <a href="produits.php" id="retour">Retour aux produits</a>
+               
+               <div class="retour">
+                    
+                    <a href="produits.php" id="retour">Retour aux produits</a>
+                </div>
 
             <?php }
 
@@ -156,8 +159,11 @@ session_start()
 
             $req_categories = $db->query("SELECT *, produits.id AS id_produits FROM produits INNER JOIN categories ON produits.id_categorie = categories.id WHERE id_categorie = '$get_categorie'");
 
+            ?>
+            <div class="retour">
 
-        ?><a href="produits.php">Retour aux produits</a>
+                <a href="produits.php"> Retour aux produits</a>
+            </div>
 
             <div class="container row text-center offset-md-2 gap-3">
                 <?php
@@ -175,7 +181,7 @@ session_start()
                             <h5 class="prix"><?= number_format($req_categorie['prix'], 2, ',', ' ') ?>€</h5>
 
 
-                            <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-succes">voir le produits</a>
+                            <a href="produits.php?produits=<?= $req_categorie['id_produits'] ?>" class="btn btn-danger mb-2">voir le produits</a>
 
                             <form action="produits.php?categorie=<?= $req_categorie['id_categorie'] ?>&id=<?= $req_categorie['id_produits'] ?>" method="POST">
 
@@ -225,7 +231,7 @@ session_start()
                             <h5 class="prix"><?= number_format($res['prix'], 2, ',', ' ') ?>€</h5>
 
 
-                            <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-succes">voir le produits</a>
+                            <a href="produits.php?produits=<?= $res['id'] ?>" class="btn btn-danger mb-2">voir le produits</a>
 
                             <form action="produits.php?id=<?= $res['id'] ?>" method="post">
 
