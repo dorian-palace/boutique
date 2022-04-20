@@ -2,14 +2,15 @@
 session_start();
 require_once('setting/db.php');
 require_once('app/login.php');
+require('setting/data.php');
 
 if (isset($_SESSION['id'])) {
     header('Location: index.php');
 }
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
+    $login = secuData($_POST['login']);
+    $password = secuData($_POST['password']);
     $log = new Login($login, $password);
     $log->Connexion($login, $password);
 }
