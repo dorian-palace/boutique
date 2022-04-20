@@ -1,5 +1,15 @@
 <?php
-session_start()
+session_start();
+
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+
+    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+
+} else {
+
+    $page = 1;
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -144,32 +154,7 @@ session_start()
                         </div>
 
 
-                        <?php         //ICI PAGINATION
-            $limite = 5;
-            $nb_page = ceil($nb_elements / $limite); ?>
-                        <nav aria-label="Page navigation example">
-        <ul class="pagination">
-
-            <li class="page-item">
-
-                <?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
-                        < </a> <?php } ?>
-            </li class="page-item">
-
-            <li class="page-item">
-                <?php for ($i = 1; $i <= $nb_page; $i++) {
-                ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
-                <?php } ?>
-            </li>
-
-            <li class="page-item">
-                <?php if ($page < $nb_page) { ?>
-                    <a href="?page=<?= $page + 1; ?>" class="page-link">></a>
-                <?php } ?>
-            </li>
-
-        </ul>
-    </nav>
+                       
 
 
 
@@ -289,27 +274,35 @@ session_start()
 
 
                         <?php } ?>
-                        <nav aria-label="Page navigation example  ">
+                        <?php         //ICI PAGINATION
+            $limite = 5;
+           
 
-                            <ul class="pagination justify-content-center ">
-                                <li class="page-item ">
-                                    <a class="page-link " href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Précedent</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Suivant</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+            $nb_page = ceil($nb_elements / $limite); ?>
+                        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            <li class="page-item">
+
+                <?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
+                        < </a> <?php } ?>
+            </li class="page-item">
+
+            <li class="page-item">
+                <?php for ($i = 1; $i <= $nb_page; $i++) {
+                ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+                <?php } ?>
+            </li>
+
+            <li class="page-item">
+                <?php if ($page < $nb_page) { ?>
+                    <a href="?page=<?= $page + 1; ?>" class="page-link">></a>
+                <?php } ?>
+            </li>
+
+        </ul>
+    </nav>
+                
 
                 <?php }
                 ?>
