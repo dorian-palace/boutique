@@ -1,4 +1,6 @@
-
+body{
+  color: aqua;
+}
 
 
 /* ACCEUIL */
@@ -64,10 +66,7 @@
   justify-content: center;
 }
 
-.br{
-  color: #333;
- 
-}
+
 
 
 /* FIN ACCUEIL */

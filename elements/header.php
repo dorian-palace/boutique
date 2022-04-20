@@ -14,9 +14,9 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid  p-b-5">
-    <a class="navbar-brand" href="#">Pasta di Giovanni</a>
+<nav class="navbar position:sticky navbar-expand-lg navbar-light bg-light " >
+  <div class="container-fluid  pb-5 ">
+    <a class="navbar-brand " href="#">Pasta di Giovanni</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -41,7 +41,7 @@
         </li>
        
       </ul>
-
+        
       <?php
 
       if(isset($_SESSION['id'])){
@@ -79,5 +79,11 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
+   
   </div>
+   <ul class="ulbonjour">
+      <li>
+        bonjour
+      </li>
+    </ul>
 </nav>
