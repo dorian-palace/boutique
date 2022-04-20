@@ -47,7 +47,8 @@ session_start()
                
                <div class="retour">
                     
-                    <a href="produits.php" id="retour">Retour aux produits</a>
+                    <a href="produits.php" id="retour"><button class="btn btn-dark mb-3"">Retour aux produits</button></a>
+
                 </div>
 
             <?php }
@@ -55,7 +56,7 @@ session_start()
 
             foreach ($req_categories as $req_categorie) {
 
-
+                    
             ?>
                 <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a>
 
@@ -78,7 +79,7 @@ session_start()
             <?php foreach ($produits_id as $produit) {
 
             ?>  <div class="retour">
-                <a href="produits.php" id="retour">Retour aux produits</a>
+                <a href="produits.php" id="retour"><button class="btn btn-dark mb-3">Retour aux produits</button></a>
                 
             </div>
 
@@ -162,7 +163,7 @@ session_start()
             ?>
             <div class="retour">
 
-                <a href="produits.php"> Retour aux produits</a>
+                <a href="produits.php" "><button class="btn btn-dark mb-3">Retour aux produits</button></a>
             </div>
 
             <div class="container row text-center offset-md-2 gap-3">
