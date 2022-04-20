@@ -178,11 +178,13 @@ main .categorie{
   margin-bottom: 10%;
 }
 
-.retour{
+.retour a{
 
   font-size: 22px;
   height: 60px;
   margin-right: 40%;
+  text-decoration: none;
+  color: black;
 
 
 }
