@@ -210,7 +210,21 @@ session_start()
 
                                     <div class="alert alert-success mt-3">
 
-                                        <strong> Produit ajouté au panier</strong>
+                                </div>
+
+                            </div>
+
+
+                        <?php } //fin du foreach ICI
+                        //ICI PAGINATION
+                        //l
+                        $pagiCat = $produits->pagiCategorie();
+                        $nb_elementsCat = $debut->fetchColumn();
+                        $limite = 5;
+                        $nb_pageCat = ceil($nb_elementsCat / $limite); ?>
+
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
 
                                     </div>
 
