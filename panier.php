@@ -39,7 +39,6 @@ require_once 'app/Panier.php';
     $panier = new panier ;
     $info_produits =  $info = new Produits;
 
-    $result = $info_produits->GetInfoProduits();
 
     
     
