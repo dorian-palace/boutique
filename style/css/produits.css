@@ -238,8 +238,15 @@ main .categorie{
   margin-bottom: 40%;
 }
 
+#avis-clients{
 
+  text-align: center;
+}
 
+#avis-message{
+
+  text-align: center;
+}
 
 
 

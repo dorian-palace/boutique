@@ -139,7 +139,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                         Poster un avis
                                     </button>
 
-                                    <!-- <input type="submit" name="btn_avis" value="Poster un avis" class='btn btn-primary"'> -->
+
 
                                 </form>
 
@@ -148,10 +148,13 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
 
                         </div>
-
-                        <div class="avis-produits">
-                            <?php require_once 'elements/avis.php' ?>
-                        </div>
+           
+                            
+                            <div class="avis-produits">
+                                <?php require_once 'elements/avis.php' ?>
+                            </div>
+                            
+                    
 
 
                        

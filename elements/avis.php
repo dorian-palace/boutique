@@ -43,7 +43,7 @@ if (isset($_SESSION['id'])) {
 //   echo 'veuillez vous connecter';
 // }
 
-?> <h3> Avis des clients :</h3>
+?> <h3 id='avis-clients'> Avis des clients :</h3>
     
     <?php 
     $res = $avis->fetchALL();
@@ -87,7 +87,7 @@ foreach($res as $result){
  
 if(empty($res)){
 
-  echo '<div class="avis-message"> pas encore d\'avis, ajouter en un !   </div>
+  echo '<div id="avis-message"> pas encore d\'avis, ajouter en un !   </div>
   ' ;
  
    }
@@ -113,7 +113,8 @@ if(empty($res)){
           <textarea name="avis_produit" id="avis" cols="40" rows="10" class="container-fluid">
 
           </textarea>
-          <input type="submit" data-toggle="modal" class="btn btn-secondary" data-target="#exampleModalLabel" name="poster"
+
+          <input type="submit" data-toggle="modal" class="btn btn-secondary" data-target="exampleModalLabel" name="poster">
           
         </form>
       </div>
