@@ -33,14 +33,7 @@ if(isset($_GET['id']) || isset($_GET['produits']) || isset($_GET['categorie'])){
     
     
 
-    <div class="alert alert-success">
-    <strong> Produit ajouté au panier</strong>
-  </div>
-
-      <strong> Produit ajouté au panier</strong>
-      
-  </div>
-
+   
 
 
     <?php 
