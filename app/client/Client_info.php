@@ -46,7 +46,11 @@ class Client_info
     public function clientCommande()
     {
         $id_utilisateurs = $_SESSION['id'];
+<<<<<<< HEAD
         $req = "SELECT adr_facturation,adr_livraison,date_commande,utilisateurs.id FROM utilisateurs INNER JOIN commande WHERE id_utilisateur = ?";
+=======
+        $req = "SELECT adr_facturation,adr_livraison,date_commande,statut,utilisateurs.id FROM utilisateurs INNER JOIN commande WHERE id_utilisateur = ?";
+>>>>>>> inscription
         $stmt = $this->db->prepare($req);
         $stmt->execute(array(
             $id_utilisateurs

@@ -1,5 +1,9 @@
 <?php
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> inscription
 class Form
 {
      private $formCode = '';
@@ -21,6 +25,10 @@ class Form
       * 
       * @return bool 
       */
+<<<<<<< HEAD
+=======
+      
+>>>>>>> inscription
      public function validate(array $form, array $champs)
      {
          //on parcourt totu les champs 
@@ -222,6 +230,32 @@ class Form
             return $this;
         }
 
+<<<<<<< HEAD
+=======
+        public function createForm(){
+
+            $form = new Form;
+            
+    
+            $form->debutForm('post','#',['class'=>'formUser'])
+    
+                    ->ajoutLabelFor('email', 'E-mail :',['class' => 'labelForm'])
+                    ->ajoutinput('email', 'email', 'votre email', ['class'=> 'inputForm','require'=>true])
+                    ->ajoutLabelFor('login', 'Nom d\'utilisateur :',['class'=> 'labelForm'])
+                    ->ajoutInput('text','login','votre login',['require' => true, 'class'=> 'inputForm'])
+                    ->ajoutLabelFor('pass','Mot de passe :',['class' => 'LabelForm'])
+                    ->ajoutInput('password','password','Entrez votre mot de passe ',['class' => 'inputForm', 'require' => true])
+                    ->ajoutLabelFor('pass','Confirmez le mode de passe :',['class'=> 'labelForm'])
+                    ->ajoutInput('password', 'conf_password','Confirmez le mot de passe',['class' => 'inputForm'])
+                    ->ajoutInput('submit','valider','', ['class' => 'btnForm'])
+                    
+                    ->finForm();
+    
+                    echo $form->create();
+                    
+        }
+
+>>>>>>> inscription
        
 
      } 

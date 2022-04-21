@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <?php
 
 require_once 'setting/db.php';
@@ -10,10 +11,22 @@ class Commande
     public function __construct()
     {
 
+=======
+<?php 
+
+require_once 'setting/db.php';
+
+class Commande {
+
+    public function __construct()
+    {
+        
+>>>>>>> inscription
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
     }
 
+<<<<<<< HEAD
     public function valide()
     {
         if (isset($_POST['submit'])) {
@@ -35,3 +48,17 @@ class Commande
         }
     }
 }
+=======
+    // public function valide(){
+
+
+    //     if(isset($_POST['submit'])){
+
+    //         $req = $this->db->preapre('INSERT INTO ')
+
+    //     }
+    // }
+
+
+}
+>>>>>>> inscription

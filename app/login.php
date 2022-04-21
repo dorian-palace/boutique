@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 require_once('setting/db.php');
+=======
+
+>>>>>>> inscription
 
 class Login
 {
