@@ -1,5 +1,8 @@
 <?php
 session_start();
+require('app/administrateur.php');
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +18,7 @@ session_start();
     <!--- HEADER --->
     <main>
         <aside>
-    
+
         </aside>
     </main>
     <!--- FOOTER --->
