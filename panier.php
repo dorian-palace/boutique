@@ -85,6 +85,7 @@ require_once 'app/Panier.php';
                 <div class="cart_container">
                     <div class="cart_title"><small> <?= ($panier->count())?> articles dans le panier </small></div>
                     <div class="cart_items">
+                        
                     <?php  while($res = $produits->fetch()){  ?>
                         <ul class="cart_list">
                             <li class="cart_item clearfix">
