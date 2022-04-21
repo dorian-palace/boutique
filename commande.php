@@ -5,10 +5,13 @@ require_once('setting/data.php');
 require('app/Panier.php');
 $panier = new Panier();
 $commande = new Commande();
-$id_user = $_SESSION['id'];
+
+if(isset($_SESSION['id'])){
+
+    $id_user = $_SESSION['id'];
+}
 
 echo "<pre>";
-var_dump($_SESSION['id']);
 echo "</pre>";
 
 // if (isset($_POST['submit'])) {
@@ -45,6 +48,10 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
 </head>
 
 <body>
+
+<header>
+    <?php include_once 'elements/header.php';?>
+</header>
 
     <div class="container">
         <h1 class="h3 mb-5">Validation de commande</h1>
@@ -135,6 +142,10 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
             </div>
     </div>
     </form>
+    <footer>
+    <?php include_once 'elements/footer.html';?>
+
+    </footer>
 </body>
 
 
