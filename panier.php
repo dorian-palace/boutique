@@ -83,7 +83,7 @@ require_once 'app/Panier.php';
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
-                    <div class="cart_title">Panier<small> <?= ($panier->count())?> article dans le panier </small></div>
+                    <div class="cart_title"><small> <?= ($panier->count())?> articles dans le panier </small></div>
                     <div class="cart_items">
                     <?php  while($res = $produits->fetch()){  ?>
                         <ul class="cart_list">
@@ -104,7 +104,7 @@ require_once 'app/Panier.php';
                                         <div class="cart_item_text"><?=number_format($res['prix'],2,',',' ')?>€</div>
                                     </div>
                                     <div class="cart_item_total cart_info_col">
-                                        <div class="cart_item_title">Total</div>
+                                        
                                         <div class="cart_item_text"><a href="panier.php?delpanier=<?=$res['id'];?>"><i class="gg-trash"></i></a></div>
                                     </div>
                                 </div>
@@ -119,10 +119,9 @@ require_once 'app/Panier.php';
                         </div>
                     </div>
 
-                        <form action="" method="post">
-
+                       
                             <div class="cart_buttons"> <a href="produits.php"> <button type="button"  name="continuer" class="button cart_button_clear">Continuer vos achats</button></a> <a href="commande.php"><button type="button" class="button cart_button_checkout">Proceder au paiement</button> </a></div>
-                        </form>
+                      
              
             <?php } ?>
 
