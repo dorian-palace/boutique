@@ -137,7 +137,11 @@ session_start()
                     </div>
                             
 
+<<<<<<< HEAD
                 </div>
+=======
+
+>>>>>>> produits
 
                 <div class="avis-produits">
                                 <?php require_once 'elements/avis.php' ?>
@@ -147,8 +151,14 @@ session_start()
 
                
 
-
-                
+                        </div>
+           
+                            
+                            <div class="avis-produits">
+                                <?php require_once 'elements/avis.php' ?>
+                            </div>
+                            
+                    
 
             <?php } ?>
 
