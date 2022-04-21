@@ -32,6 +32,7 @@ session_start()
         $produits = new Produits();
         $result = $produits->getProduits();
         $db = new Db_connect();
+        $debut = $produits->pagiProduits();
 
 
 
@@ -137,11 +138,7 @@ session_start()
                     </div>
                             
 
-<<<<<<< HEAD
                 </div>
-=======
-
->>>>>>> produits
 
                 <div class="avis-produits">
                                 <?php require_once 'elements/avis.php' ?>
@@ -152,13 +149,6 @@ session_start()
                
 
                         </div>
-           
-                            
-                            <div class="avis-produits">
-                                <?php require_once 'elements/avis.php' ?>
-                            </div>
-                            
-                    
 
             <?php } ?>
 

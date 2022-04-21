@@ -91,4 +91,19 @@ class Produits
 
         return $insert;
     }
+
+    public function pagiProduits()
+    {
+        $req = "SELECT count(*) FROM produits";
+        $stmt = $this->db->query($req);
+        return $stmt;
+    }
+
+    public function pagiCategorie()
+    {
+
+        $req = "SELECT count(*) FROM categories";
+        $stmt = $this->db->query($req);
+        return $stmt;
+    }
 }
