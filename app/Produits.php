@@ -42,6 +42,21 @@ class Produits{
         return $res;
     }
 
+    public function GetInfoProduits(){
+
+        
+        $id_utilisateur = $_SESSION['id'];
+
+        $select = $this->db->prepare('SELECT * FROM produits WHERE id = ?');
+
+        $select->execute(array($id_utilisateur));
+
+         $res = $select->fetch();
+
+        return $res ; 
+
+    }
+
 
 
 }
