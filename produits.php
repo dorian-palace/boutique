@@ -218,6 +218,7 @@ session_start()
                         <?php } //fin du foreach ICI
                         //ICI PAGINATION
                         //l
+                        
                         $pagiCat = $produits->pagiCategorie();
                         $nb_elementsCat = $debut->fetchColumn();
                         $limite = 5;
