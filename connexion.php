@@ -14,6 +14,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/header.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 
     <link rel="stylesheet" href="style/css/User.css">
     <title>Connexion</title>
@@ -30,7 +32,6 @@ session_start();
 
     <div class="container-form">
         <?php
-        var_dump($_SESSION);
         require_once('app/User.php');
 
         // if (isset($_SESSION['id'])) {
@@ -73,8 +74,10 @@ session_start();
                 <input type="password" class="inputForm" name="password">
 
 
+                <div class="text-center">
+                    <but ton type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
 
-                <button type="submit" name="valider" classe='btnFrom'>valider</button>
+                </div>
 
             </form>
         </div>
@@ -82,7 +85,7 @@ session_start();
             
                 <?php if(isset($_SESSION['login'])){
                 
-                ?> <h4>Binevenu <?=$_SESSION['login']?></h4>
+                ?> <h4 id='bienvenue'>Bienvenu <?=$_SESSION['login']?></h4>
 
                <?php } ?>
            
