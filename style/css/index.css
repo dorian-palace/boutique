@@ -114,3 +114,47 @@ body{
 }
 
 /* FIN CAROUSSEL */
+
+@media  screen and (min-width : 321px) and (max-device-width : 480px) {
+
+  #caroussel{
+
+    display: none;
+  }
+.box {
+
+  margin-top: 10%;
+  margin-bottom: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.divimgindex1{
+  
+  margin-bottom: 35%;
+  margin-top: 35%;
+  align-self: center;
+}
+
+
+.paraimg{
+  margin-top: 5%;
+}
+
+#antipasti{
+
+  margin-top: 30%;
+}
+
+.h1index {
+
+ 
+    text-align: center;
+    margin-right: 20%;
+ 
+}
+
+}
