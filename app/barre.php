@@ -2,10 +2,6 @@
 
 session_start();
 require_once'db.php';
-<<<<<<< HEAD
-
-=======
->>>>>>> produits
 
 
 if (isset($_GET['q']) and !empty($_GET['q'])) {
@@ -25,28 +21,11 @@ if (isset($_GET['q']) and !empty($_GET['q'])) {
  La ligne suivante définit une variable appelée $articles qui sera utilisée plus tard dans ce script, ainsi qu'une autre appelée $bdd dont nous parlerons plus tard.
  Ensuite, il vérifie si des articles ont été trouvés jusqu'à présent et si ce n'est pas le cas, il recommence le même processus jusqu'à ce que tous les articles aient été trouvés ou qu'il n'y ait plus d'articles. */
 
-<<<<<<< HEAD
     $q = htmlspecialchars($_GET['q']);
 
     $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu)LIKE "%' . $q . '%" ORDER BY id DESC');
     if ($articles->rowCount() ==  0) {
         $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $q . '%" ORDER BY id DESC');
-=======
-
-if(isset($_GET['q']) AND !empty($_GET['q'])) {
-
-   
-
-    $q = htmlspecialchars($_GET['q']);
-
-    $articles = $db->('SELECT titre FROM articles WHERE CONCAT(titre, contenu)LIKE "%'.$q.'%" ORDER BY id DESC');
-
-        if($articles->rowCount() ==  0) {
-
-            $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
-        }
-    
->>>>>>> 7f5217d74aa3b208312eec03e430d121ce204712
     }
 }
 
