@@ -225,6 +225,39 @@ session_start()
 
                         </div>
 
+                        <?php } //fin du foreach ICI
+                        //ICI PAGINATION
+                        //l
+                        
+                        $pagiCat = $produits->pagiCategorie();
+                        $nb_elementsCat = $debut->fetchColumn();
+                        $limite = 5;
+                        $nb_pageCat = ceil($nb_elementsCat / $limite); ?>
+
+                        <!-- <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+
+                                <li class="page-item">
+
+                                    <?php if ($pagiCat > 1) { ?> <a href="?page=<?= $pagiCat - 1  ?>" class="page-link ">
+                                            < </a> <?php } ?>
+                                </li class="page-item">
+
+                                <li class="page-item">
+                                    <?php for ($i = 1; $i <= $nb_pageCat; $i++) {
+                                    ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+                                    <?php } ?>
+                                </li>
+
+                                <li class="page-item">
+                                    <?php if ($pagiCat < $nb_pageCat) { ?>
+                                        <a href="?page=<?= $pagiCat + 1; ?>" class="page-link">></a>
+                                    <?php } ?>
+                                </li>
+
+                            </ul>
+                        </nav> -->
+                        ?>
                     </div>
 
 
