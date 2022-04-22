@@ -234,7 +234,7 @@ session_start()
                         $limite = 5;
                         $nb_pageCat = ceil($nb_elementsCat / $limite); ?>
 
-                        <!-- <nav aria-label="Page navigation example">
+                        <nav aria-label="Page navigation example">
                             <ul class="pagination">
 
                                 <li class="page-item">
@@ -256,7 +256,7 @@ session_start()
                                 </li>
 
                             </ul>
-                        </nav> -->
+                        </nav>
                         ?>
                     </div>
 
