@@ -238,7 +238,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                         $limite = 5;
                         $nb_pageCat = ceil($nb_elementsCat / $limite); ?>
 
-                        <nav aria-label="Page navigation example">
+                        <!-- <nav aria-label="Page navigation example">
                             <ul class="pagination">
 
                                 <li class="page-item">
@@ -260,7 +260,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 </li>
 
                             </ul>
-                        </nav>
+                        </nav> -->
                         ?>
                     </div>
                 <?php
