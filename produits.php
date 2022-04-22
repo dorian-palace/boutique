@@ -236,6 +236,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 //l
 
                                 $pagiCat = $produits->pagiCategorie();
+                                var_dump($pagiCat);
                                 $nb_elementsCat = $debut->fetchColumn();
                                 $limite = 5;
                                 $nb_pageCat = ceil($nb_elementsCat / $limite); ?>
