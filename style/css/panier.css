@@ -192,7 +192,7 @@ ul {
 }
 .empty-panier{
 
-    margin-top: 15%;
+    margin-top: 10%;
     text-align: center;
 }
 
@@ -350,11 +350,4 @@ a:hover {
     background-position-x: 95%;
     background-position-y: center
 }
-
-.form-panier{
-
-    display: flex;
-    justify-content: center;
-}
-
 
