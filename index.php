@@ -1,5 +1,5 @@
 <?php
-
+require_once 'app/Produits.php'
 ?>
 
 <!DOCTYPE html>
@@ -97,11 +97,19 @@
     </section>    
     
     
+    <div class="produit-recent">
+
+  
+
     
+
+    
+
+    </div>
                    
 
     <h1 id="presentation">
-        Présentation :
+        Notre histoire:
     </h1>
        
     <div id="articleindex">

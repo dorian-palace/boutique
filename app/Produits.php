@@ -19,13 +19,7 @@ class Produits{
 
         $produits->execute();
 
-    
-
-
         return $produits;
-
-
-
 
     }
 
