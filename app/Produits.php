@@ -1,7 +1,8 @@
-<?php 
+<?php
 require_once 'setting/db.php';
 
-class Produits{
+class Produits
+{
 
 
 
@@ -44,64 +45,67 @@ class Produits{
         $produits->execute($produits_id);
 
         $res =  $produits->fetch();
-        
     }
 
-    
+
 
 
     public function categorie()
     {
 
         $req_categories = $this->db->prepare("SELECT * FROM categories LIMIT $this->limite OFFSET $this->debut");
-   
+
 
         $req_categories = $this->db->prepare("SELECT * FROM categories");
         $req_categories->execute();
         $res = $req_categories->fetch();
 
         return $res;
-            
-
-        
     }
-    
-    public function avis(){
 
-            if(isset($_GET['produits'])){
+    public function avis()
+    {
 
-               
-                $get_produits = $_GET['produits'];
-                
-                $select = $this->db->prepare('SELECT * FROM avis INNER JOIN produits on produits.id = avis.id_produit INNER JOIN utilisateurs ON avis.id_utilisateur = utilisateurs.id  WHERE produits.id = ?  ');
-                $select->execute(array($get_produits));
-                
-                $res = $select;
-                
-                return $res;
-            }
+        if (isset($_GET['produits'])) {
 
 
-    
+            $get_produits = $_GET['produits'];
 
+            $select = $this->db->prepare('SELECT * FROM avis INNER JOIN produits on produits.id = avis.id_produit INNER JOIN utilisateurs ON avis.id_utilisateur = utilisateurs.id  WHERE produits.id = ?  ');
+            $select->execute(array($get_produits));
 
+            $res = $select;
 
+            return $res;
+        }
     }
-       
-    
-    public function addAvis($commentaire, $id_produit,$id_utilisateur){
 
-        
 
-       $insert = $this->db->prepare('INSERT INTO avis (commentaire,date,id_produit,id_utilisateur)VALUES(?,now(),?,?)');
+    public function addAvis($commentaire, $id_produit, $id_utilisateur)
+    {
 
-       $insert->execute(array($commentaire, $id_produit,$id_utilisateur,));
-        
+
+
+        $insert = $this->db->prepare('INSERT INTO avis (commentaire,date,id_produit,id_utilisateur)VALUES(?,now(),?,?)');
+
+        $insert->execute(array($commentaire, $id_produit, $id_utilisateur,));
+
 
         return $insert;
-
     }
 
+    public function pagiProduits()
+    {
+        $req = "SELECT count(*) FROM produits";
+        $stmt = $this->db->query($req);
+        return $stmt;
+    }
 
+    public function pagiCategorie()
+    {
+
+        $req = "SELECT count(*) FROM categories";
+        $stmt = $this->db->query($req);
+        return $stmt;
+    }
 }
-
