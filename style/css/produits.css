@@ -176,6 +176,10 @@ main .categorie{
 .categorie a{
 
   margin-bottom: 10%;
+  padding-left: 4%;
+  font-size: 20px;
+  font-family: 'Asap', sans-serif;
+
 }
 
 .retour a{
