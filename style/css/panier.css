@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 * {
     margin: 0;
     padding: 0;
@@ -202,7 +202,7 @@ ul {
         font-size: 40px;
         
 }
-=======
+
 .panier {
     
     min-height: 100vh;
@@ -344,19 +344,18 @@ a:hover {
     text-decoration: none
 }
 
-<<<<<<< HEAD
+
 #code {
     background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
     background-repeat: no-repeat;
     background-position-x: 95%;
     background-position-y: center
 }
-=======
+
 .form-panier{
 
     display: flex;
     justify-content: center;
 }
 
->>>>>>> panier
->>>>>>> inscription
+

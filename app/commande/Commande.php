@@ -10,7 +10,6 @@ class Commande
         $this->db = $this->db->return_connect();
     }
 
-<<<<<<< HEAD
     public function validationCommande($id_user)
     {
         if (isset($_POST['adr_fact']) && isset($_POST['adr_liv'])) {
@@ -28,7 +27,4 @@ class Commande
             return $stmt;
         }
     }
-=======
-    
->>>>>>> inscription
 }
