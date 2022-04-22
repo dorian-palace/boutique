@@ -261,7 +261,7 @@ session_start()
                     </div>
 
 
-                <?php } ?>
+                <?php  ?>
             </div>
         <?php
         } else {
