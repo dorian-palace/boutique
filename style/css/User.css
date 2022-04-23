@@ -20,6 +20,7 @@ body {
   /* redéfinition 400 + 2*20 */
   max-width: 440px;
   margin: 0 auto;
+
 }
 
 .inputForm {
@@ -68,5 +69,11 @@ margin-top: 2%;
   font-size: 30px;
   text-align: center;
   font-family: 'Asap', sans-serif;
+  margin-top: 3%;
 }
 
+.msg{
+
+  color: red;
+  text-align: center;
+}

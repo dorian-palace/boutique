@@ -24,14 +24,13 @@ class User
         $this->login = htmlspecialchars($login);
         $this->password =  htmlspecialchars($password);
         $this->email = htmlspecialchars($email);
-
     }
 
     public function signup()
 
     {
 
-        if(isset($_POST['nom'],$_POST['prenom'])){
+        if (isset($_POST['nom'], $_POST['prenom'])) {
 
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
@@ -42,7 +41,7 @@ class User
 
         $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
 
-        if ($insert->execute(array($this->login, $this->email, $hashed_password,$nom,$prenom))) {
+        if ($insert->execute(array($this->login, $this->email, $hashed_password, $nom, $prenom))) {
 
             return $insert;
         }
@@ -55,9 +54,13 @@ class User
 
         $confpassword = $_POST['confpassword'];
 
+
         if ($this->password == $confpassword) {
 
-            return true;
+           
+                return true;
+            
+            
         }
 
         return false;
@@ -85,11 +88,10 @@ class User
         if ($row == 0) {
 
             return true;
-        }else{
-            
+        } else {
+
             return false;
         }
-
     }
 
     public function confirmSingup()
@@ -99,27 +101,35 @@ class User
 
             if ($this->confPassword()) {
 
-                if ($this->valideEmail()) {
-
-                    if ($this->checkUserSignup()) {
+                if (strlen($this->password) >= 8) {
 
 
-                        $this->signup();
+                    if ($this->valideEmail()) {
 
-                        $this->displayMessage('inscription validée');
+                        if ($this->checkUserSignup()) {
+
+
+                            $this->signup();
+
+                            $this->displayMessage('inscription validée');
+                        } else {
+
+                            $this->displayMessage('utilisateur déjà pris');
+                        }
                     } else {
 
-                        $this->displayMessage('utilisateur déjà pris');
+                        $this->displayMessage('email non valide');
                     }
                 } else {
 
-                    $this->displayMessage('email non valide');
+                    $this->displayMessage('Le mot de passe doit contenir 8 caratères');
                 }
             } else {
 
                 $this->displayMessage('les mot de passe ne correspondent pas');
             }
-        } else {
+
+        }else{
 
             $this->displayMessage('Veuillez remplir tous les champs');
         }
@@ -132,28 +142,25 @@ class User
         $stmt->execute(array($this->login));
         $row = $stmt->rowCount();
 
-        
+
 
         if ($row == 1) {
 
             $userinfo = $stmt->fetch();
-            
-            
-            if(password_verify($this->password, $userinfo['password'])){
+             
+
+            if (password_verify($this->password, $userinfo['password'])) {
                 
-                            $_SESSION['login'] = $userinfo['login'];
-                            $_SESSION['id'] = $userinfo['id'];
-                            $_SESSION['email'] = $userinfo['email'];
-                            $_SESSION['password'] = $userinfo['password'];
+
+                $_SESSION['login'] = $userinfo['login'];
+                $_SESSION['id'] = $userinfo['id'];
+                $_SESSION['email'] = $userinfo['email'];
+                $_SESSION['password'] = $userinfo['password'];
 
                 return true;
-                
             };
             return false;
         }
-
-
-
     }
 
     public function checkUserLogin()
@@ -177,38 +184,34 @@ class User
 
         if ($this->emptyInput()) {
 
-                
-                if ($this->valideEmail()) {
 
-                    if ($this->checkUserLogin()) {
+            if ($this->valideEmail()) {
 
-                        $this->connect();
+                if ($this->checkUserLogin()) {
 
-                        $this->displayMessage('vous êtes connecté');
-                    } else {
+                    $this->connect();
 
-                        $this->displayMessage('L\'utilisateur n\'existe pas, veuillez vous inscrire');
-                    }
-
+                    $this->displayMessage('vous êtes connecté');
                 } else {
 
-                    $this->displayMessage('email non valide');
+                    $this->displayMessage('L\'utilisateur n\'existe pas, veuillez vous inscrire');
                 }
             } else {
 
-                $this->displayMessage('Veuillez remplir tout les champs');
+                $this->displayMessage('email non valide');
             }
-            
+        } else {
+
+            $this->displayMessage('Veuillez remplir tout les champs');
         }
-  
-             public function emptyInput()
+    }
+
+    public function emptyInput()
     {
 
-      
 
-        if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)) 
-        
-        {
+
+        if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)) {
 
             return true;
         }
@@ -226,11 +229,12 @@ class User
         }
     }
 
-    
 
-   
 
-    public function userInfo($id_utilisateur){
+
+
+    public function userInfo($id_utilisateur)
+    {
 
         $select = $this->db->prepare("SELECT * FROM  utilisateurs where id = ? ");
         $select->execute(array($id_utilisateur));
