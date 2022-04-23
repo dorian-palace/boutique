@@ -20,7 +20,14 @@
 <body>
 
     <header>
+<<<<<<< HEAD
         <?php require 'elements/header.php'; ?>
+=======
+
+        <?php require 'elements/header.php';
+        require_once 'app/Form.php'; ?>
+
+>>>>>>> index
     </header>
 
     <main class="user-main">
@@ -34,6 +41,7 @@
 
         <div class="container-form">
 
+<<<<<<< HEAD
         
 
 
@@ -97,6 +105,72 @@
 
 
             </form>
+=======
+        require 'app/User.php';
+
+
+
+
+
+        ?> <div class="container-form">
+
+            <h1 id="h1-inscription">Inscription</h1>
+
+            <?php
+
+
+    
+
+
+
+
+
+
+           
+
+            
+
+            if (isset($_POST['valider'])) {
+
+
+
+                if (isset($_POST['login'], $_POST['password'], $_POST['ConfirmPassword'],$_POST['email']) && !empty($_POST['login']) && !empty($_POST['password'])  && !empty($_POST['ConfirmPassword'])) {
+    
+    
+    
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $confpassword = $_POST['confpassword'];
+                    $login = $_POST['login'];
+    
+                    $user = new User($login,$password,$confpassword,$email);
+    
+                   $user->signup();
+            }
+
+        }
+          
+
+            if(isset($msg)){
+
+                echo $msg;
+            }
+            ?>
+            <form action="#" method="post">
+   
+                   
+                    <input type="text"  name="login">
+                    <input type="email"  name="email">
+                    <input type="password"  name="password">
+                    <input type="password"  name="confpassword">
+                   
+                   <input type="submit" name="valider">
+                    
+             
+            </form>
+            
+
+>>>>>>> index
 
         </div>
 

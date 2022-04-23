@@ -72,30 +72,38 @@ $req_categories = $db->query("SELECT * FROM categories");
 
             <i class="fas fa-shopping-cart"></i></a>
 
-          <li class="nav-item">
-            <a class="nav-link " href="inscription.php">Inscription</a>
-          </li>
+      <a href="setting/deconnexion.php">déconnexion</a>
+     <?php 
+      }
+    ?>  
+  <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
+  <a href="panier.php"><i class=""></i>
 
-          <li class="nav-item">
-            <a class="nav-link " href="connexion.php">Connexion</a>
-          </li>
+    
+<i class="fas fa-shopping-cart"></i></a>
+      <?php if(!isset($_SESSION['id'])){
 
-        <?php } ?>
-
-
-
-
-
+        ?>
+        <li class="nav-item">
+        <a class="nav-link " href="inscription.php">Inscription</a>
+        </li>
+        
+        <li class="nav-item">
+        <a class="nav-link " href="connexion.php">Connexion</a>
+        </li>
+        
+    <?php  } ?>
+        
+        
+        
+        
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-      </div>
+        </div>
+        
+        </div>
+        
+        </nav>
 
-    </div>
-    <!-- <ul class="ulbonjour">
-      <li>
-        bonjour
-      </li>
-    </ul> -->
-  </nav>

@@ -148,5 +148,8 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
     </footer>
 </body>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> index
 </html>
