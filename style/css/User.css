@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
 
 body {
   padding: 0%;
@@ -41,6 +41,9 @@ margin-top: 2%;
   margin-right: 0px;
   margin-right: 0px;
   width: 100%;
+  font-family: 'asap';
+  text-align: center;
+
 }
 
 .btnForm {
@@ -56,7 +59,7 @@ margin-top: 2%;
 }
 
 #h1-inscription{
-
+    font-family: 'Asap', sans-serif;
     margin-bottom: 3%;
 }
 

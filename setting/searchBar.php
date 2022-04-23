@@ -21,7 +21,7 @@ $resultS = $getSearch->fetch();
         <table>
             <tr>
                 <td>
-                    <input type="text" name="search" value="<?= $msg; ?>">
+                    <input type="text" name="search" value="">
                     <input type="submit" value="recherche">
                 </td>
             </tr>

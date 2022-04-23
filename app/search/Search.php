@@ -11,8 +11,11 @@ class Search
 
     public function Search()
     {
-        
-        $req = 'SELECT * FROM produits WHERE titre LIKE ? OR description LIKE ? ';
+        // supprime la page BARRE.PHP finit l'INNER JOIN pour la barre de recherche puis implémente la dans le syle bootstrap du header
+        $req = 'SELECT * FROM produits
+        JOIN categories
+        JOIN avis
+        WHERE titre LIKE ? OR description LIKE ? OR nom_categorie LIKE ? OR commentaire LIKE ? OR prix LIKE ? ';
         $stmt = $this->db->prepare($req);
         $stmt->execute(["%" . $_POST["search"] . "%", "%" . $_POST["search"] . "%"]);
         // $results = $stmt->fetchAll();

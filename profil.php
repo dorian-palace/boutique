@@ -19,64 +19,58 @@ require_once 'app/User.php';
     <header>
         <?php require_once 'elements/header.php' ?>
     </header>
-    
+
     <main class="class-user">
 
         <div class="container-form">
 
             <h1 id="h1-inscription">Modifier votre profil</h1>
-        
-        <?php
+
+            <?php
 
 
-        // if (isset($_POST['valider'])) {
+            // if (isset($_POST['valider'])) {
 
 
-        if (isset($_POST['new_login'], $_POST['new_password'], $_POST['new_email'], $_POST['conf_new_password'])) {
+            if (isset($_POST['new_login'], $_POST['new_password'], $_POST['new_email'], $_POST['conf_new_password'])) {
 
 
 
-            $update = new Update();
-            
-            $user = New User($_POST['new_login'], $_POST['new_password'], $_POST['new_email'], $_POST['conf_new_password']);
+                $update = new Update();
 
-            if($_POST['new_password'] == $_POST['conf_new_password']){
+                $user = new User($_POST['new_login'], $_POST['new_password'], $_POST['new_email'], $_POST['conf_new_password']);
 
-                if($user->checkUserSignup()){
+                if ($_POST['new_password'] == $_POST['conf_new_password']) {
 
-                    $update->update();
-                    $user->displayMessage('modification effectuée');
-                }else{
+                    if ($user->checkUserSignup()) {
 
-                    $user->displayMessage('utilisateur déjà pris');
+                        $update->update();
+                        $user->displayMessage('modification effectuée');
+                    } else {
+
+                        $user->displayMessage('utilisateur déjà pris');
+                    }
+                } else {
+
+                    $user->displayMessage('les mot de passe ne sont pas idntiques');
                 }
-            }else{
-
-                $user->displayMessage('les mot de passe ne sont pas idntiques');
             }
 
-            
-            
-            
-              
-        
-    } 
+            //}
 
-//}
+            if (isset($msg)) {
 
-    if(isset($msg)){
-
-        echo $msg;
-    }
-        ?>
+                echo $msg;
+            }
+            ?>
             <form action="#" e method="post">
 
 
                 <label for="new_login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
-                <input type="text" class="inputForm" name="new_login" value="<?=$_SESSION['login']?>">
+                <input type="text" class="inputForm" name="new_login" value="<?= $_SESSION['login'] ?>">
 
                 <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
-                <input type="email" class="inputForm" name="new_email" value="<?=$_SESSION['email']?>">
+                <input type="email" class="inputForm" name="new_email" value="<?= $_SESSION['email'] ?>">
 
                 <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
                 <input type="password" class="inputForm" name="new_password">
@@ -93,6 +87,9 @@ require_once 'app/User.php';
         </div>
     </main>
 
+    <footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
 </body>
 
 </html>

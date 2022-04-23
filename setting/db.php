@@ -16,6 +16,7 @@ class Db_connect{
 
              $this->db= new PDO('mysql:host=localhost;dbname=boutique',$username,$password);
              $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
         }catch(PDOException $e){
@@ -40,3 +41,4 @@ class Db_connect{
     }
 
 }
+

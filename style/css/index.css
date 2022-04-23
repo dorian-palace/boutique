@@ -1,0 +1,160 @@
+body{
+  color: aqua;
+}
+
+
+/* ACCEUIL */
+
+
+#h1index{
+  margin-top: 5%;
+  margin-left: 39%;
+  color: rgb(0, 0, 0);
+}
+
+#h2index{
+  margin-left: 28%;
+  color: rgb(0, 0, 0);
+}
+
+#articleindex{
+  margin-left: 5%;
+  margin-right: 5%; 
+  margin-top: 2%;  
+  margin-bottom: 5%;
+  background-color: rgb(145, 238, 167);
+  border-radius: 30px;
+  font-size: large;
+  color: rgb(0, 0, 0);
+}
+
+#presentation{
+  margin-top: 5%;
+  margin-left: 6%;
+  color: rgb(0, 0, 0);
+}
+
+
+.box{
+  margin-top: 10%;
+  margin-bottom: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  justify-content: space-between;
+} 
+
+.divimgindex1{
+  width: 250px;
+  height: 250px;
+  margin: 3px;
+}
+
+
+.paraimg{
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 3%;
+}
+
+.h1img{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+/* FIN ACCUEIL */
+
+
+
+
+
+
+/* CAROUSSEL */
+
+
+#caroussel{
+  width: 960px;
+  height: 540px;
+  overflow: hidden;
+  border: 2px solid #333;
+  margin-left:22%; 
+  margin-top:2%;  
+}
+
+.images{
+  display:flex;
+  animation-duration: 20s;
+  animation-name: mesImages;
+  animation-iteration-count: infinite; 
+}
+
+@keyframes mesImages{
+  0%{
+    transform: translateX(-0px);
+  }
+  25%{
+    transform: translateX(-960px);
+  }
+  50%{
+    transform: translateX(-1920px);
+  }
+  75%{
+    transform: translateX(-2879px);
+  }
+  100%{
+    transform: translateX(-0);
+  }
+}
+
+/* FIN CAROUSSEL */
+
+@media  screen and (min-width : 321px) and (max-device-width : 480px) {
+
+  #caroussel{
+
+    display: none;
+  }
+.box {
+
+  margin-top: 10%;
+  margin-bottom: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.divimgindex1{
+  
+  margin-bottom: 35%;
+  margin-top: 35%;
+  align-self: center;
+}
+
+
+.paraimg{
+  margin-top: 5%;
+}
+
+#antipasti{
+
+  margin-top: 30%;
+}
+
+.h1index {
+
+ 
+    text-align: center;
+    margin-right: 20%;
+ 
+}
+
+}

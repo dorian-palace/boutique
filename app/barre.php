@@ -2,6 +2,7 @@
 
 session_start();
 require_once'db.php';
+require_once'setting/data.php';
 
 
 if (isset($_GET['q']) and !empty($_GET['q'])) {
@@ -26,13 +27,17 @@ if(isset($_GET['q']) AND !empty($_GET['q'])) {
 
    
 
-    $q = htmlspecialchars($_GET['q']);
+    $q = secuData(($_GET['q']));
 
-    $articles = $db->('SELECT titre FROM articles WHERE CONCAT(titre, contenu)LIKE "%'.$q.'%" ORDER BY id DESC');
-    //modifie les ' " " ' ' " de la req
-        if($articles->rowCount() ==  0) {
+    $search = $db->("SELECT * FROM produits
+    WHERE (titre LIKE '%".$q."%') OR 
+    (description LIKE '%".$q."%') ORDER BY id DESC");
+        if($search->rowCount() ==  0) {
 
-            $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
+            $search = $db->("SELECT * FROM produits
+    WHERE (titre LIKE '%".$q."%') OR 
+    (description LIKE '%".$q."%') ORDER BY id DESC");
+            // $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
         }
     
     }
@@ -45,9 +50,9 @@ if(isset($_GET['q']) AND !empty($_GET['q'])) {
     <input type="submit" value="Valider" />
 </form>
 
-<?php if ($articles->rowCount() > 0) { ?>
+<?php if ($search->rowCount() > 0) { ?>
     <ul>
-        <?php while ($a = $articles->fetch()) { ?>
+        <?php while ($a = $search->fetch()) { ?>
             <li><?= $a['titre'] ?></li>
         <?php } ?>
     </ul>
