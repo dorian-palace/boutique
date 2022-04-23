@@ -20,6 +20,7 @@ body {
   /* redéfinition 400 + 2*20 */
   max-width: 440px;
   margin: 0 auto;
+
 }
 
 .inputForm {
@@ -54,9 +55,13 @@ margin-top: 2%;
   cursor: pointer;
 }
 
-.btnForm {
-  text-align: center;
+.btn{
+
+margin-left: 22%;
 }
+
+
+
 
 #h1-inscription{
     font-family: 'Asap', sans-serif;
@@ -66,7 +71,12 @@ margin-top: 2%;
 #session_title{
 
   text-align: center;
-  color: black;
-  margin-top: 5%;
-  font-size: 30px;
+  font-family: 'Asap', sans-serif;
+  margin-top: 3%;
+}
+
+.msg{
+
+  color: red;
+  text-align: center;
 }
