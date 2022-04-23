@@ -344,6 +344,9 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
 
     </main>
+    <footer>
+            <?php require 'elements/footer.html'; ?>
+        </footer>
 </body>
 
 </html>

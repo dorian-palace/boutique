@@ -107,8 +107,8 @@
 
 
     <footer>
-            <?php require 'elements/footer.html'; ?>
-        </footer>
+
+    </footer>
 
 </body>
 
