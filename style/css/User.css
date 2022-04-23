@@ -55,9 +55,13 @@ margin-top: 2%;
   cursor: pointer;
 }
 
-.btnForm {
-  text-align: center;
+.btn{
+
+margin-left: 22%;
 }
+
+
+
 
 #h1-inscription{
     font-family: 'Asap', sans-serif;

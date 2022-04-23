@@ -57,6 +57,8 @@
                 $user->confirmSingup();
 
                 
+
+
             }
         }
 
@@ -91,7 +93,7 @@
                 <input type="password" class="inputForm" name="confpassword" required>
 
 
-                <button type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
+                <button type="submit" name="valider" class='btn btn-dark ml-20 w-50'>valider</button>
 
 
             </form>
