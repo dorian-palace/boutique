@@ -90,8 +90,8 @@ session_start();
     </main>
 
     <footer>
-
-    </footer>
+            <?php require 'elements/footer.html'; ?>
+        </footer>
 
 </body>
 
