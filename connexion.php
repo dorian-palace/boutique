@@ -73,7 +73,7 @@ session_start();
 
 
                 <div class="text-center">
-                    <but ton type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
+                    <button ton type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
 
                 </div>
 
