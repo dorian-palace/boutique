@@ -33,14 +33,18 @@ $searchBar = new Search();
 <?php
 if (isset($_POST['search'])) {
     $getSearch =  $searchBar->Search();
-$resultS = $getSearch->fetch();
+    $resultS = $getSearch->fetch();
     //Si il y'a du text de rentrer dans la barre de recherche     
     $resultS;
+
     // cherche le mot rentré en db
     if (isset($resultS['id'])) { ?>
         <!--Si il y'a un résultat trouver en base de donner vas sur la page du produits associer a l'id-->
-        <a class="" href="../produits.php?produits=<?= $resultS['id'] ?>">$result</a>
+        <a class="" href="../produits.php?produits=<?= $resultS['id'] ?>"><?= $resultS['titre']; ?></a>
 <?php
+        // echo "<pre>";
+        // var_dump($resultS);
+        // echo "</pre>";
     } else {
         $msg = 'Aucun résultat';
     }
