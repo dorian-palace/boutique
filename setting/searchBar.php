@@ -1,8 +1,7 @@
 <?php session_start();
 require('../app/search/Search.php');
 $searchBar = new Search();
-$getSearch =  $searchBar->Search();
-$resultS = $getSearch->fetch();
+
 // var_dump($getSearch);
 ?>
 
@@ -33,6 +32,8 @@ $resultS = $getSearch->fetch();
 
 <?php
 if (isset($_POST['search'])) {
+    $getSearch =  $searchBar->Search();
+$resultS = $getSearch->fetch();
     //Si il y'a du text de rentrer dans la barre de recherche     
     $resultS;
     // cherche le mot rentré en db
