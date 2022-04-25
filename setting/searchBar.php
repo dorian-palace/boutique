@@ -42,9 +42,7 @@ if (isset($_POST['search'])) {
         <!--Si il y'a un résultat trouver en base de donner vas sur la page du produits associer a l'id-->
         <a class="" href="../produits.php?produits=<?= $resultS['id'] ?>"><?= $resultS['titre']; ?></a>
 <?php
-        // echo "<pre>";
-        // var_dump($resultS);
-        // echo "</pre>";
+   
     } else {
         $msg = 'Aucun résultat';
     }
