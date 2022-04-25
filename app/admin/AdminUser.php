@@ -17,23 +17,13 @@ class AdminUser
         $this->limite = 5;
         $this->debut = ($this->page - 1) * $this->limite;
 
-        // $data = secuData();
     }
-
-    // public function idAdmin(){
-    //     $req = 'SELECT id FROM droits';
-    //     $query = $this->db->query($req);
-    //ID ADMIN A RECUPERER POUR ACCES PAGE ADMIN
-
-    // }
 
     public function getUser()
     {
         //récupère les infos des utilisateurs
         $req = "SELECT * FROM utilisateurs LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->db->prepare($req);
-        // $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        // $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }
