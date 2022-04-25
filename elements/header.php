@@ -100,7 +100,7 @@ $searchBar = new Search();
           $_SESSION['recherche'] = $recherche;
 
           header('Location: searchBar.php');
-
+          die;
         }
 
         if (isset($msg)) {

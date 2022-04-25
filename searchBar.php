@@ -22,18 +22,25 @@ $searchBar = new Search();
 
 <?php
 
-    $getSearch =  $searchBar->Search();
-    $resultS = $getSearch->fetch();
-    //Si il y'a du text de rentrer dans la barre de recherche     
-    $resultS;
+$getSearch =  $searchBar->Search();
+$resultS = $getSearch->fetch();
+//Si il y'a du text de rentrer dans la barre de recherche     
+$resultS;
+$produitId = $resultS['id'];
+var_dump($resultS['id']);
 
-    // cherche le mot rentré en db
-    if (isset($resultS['id'])) { ?>
-        <!--Si il y'a un résultat trouver en base de donner vas sur la page du produits associer a l'id-->
-        <a class="" href="produits.php?produits=<?= $resultS['id'] ?>"><?= $resultS['titre']; ?></a>
+// cherche le mot rentré en db
+if (isset($resultS['id'])) {
+
+    header("Location: produits.php?produits=$produitId");
+?>
+    <!--Si il y'a un résultat trouver en base de donner vas sur la page du produits associer a l'id-->
+    <!-- <a class="" href="produits.php?produits=<?= $resultS['id'] ?>"><?= $resultS['titre']; ?></a> -->
 <?php
-   
-    } 
+
+} else {
+    //msg d'erreur pas de produits trouver
+}
 
 
 // if (isset($msg)) {
