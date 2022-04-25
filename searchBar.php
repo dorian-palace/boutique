@@ -1,6 +1,6 @@
 <?php session_start();
-require('app/search/Search.php');
-$searchBar = new Search();
+// require('app/search/Search.php');
+// $searchBar = new Search();
 
 // var_dump($getSearch);
 ?>
@@ -16,6 +16,10 @@ $searchBar = new Search();
 </head>
 
 <body>
+    <header>
+        <?php require_once 'elements/header.php'; ?>
+    </header>
+    <?= $msg ;?>
 </body>
 
 </html>
@@ -26,11 +30,13 @@ $getSearch =  $searchBar->Search();
 $resultS = $getSearch->fetch();
 //Si il y'a du text de rentrer dans la barre de recherche     
 $resultS;
-$produitId = $resultS['id'];
-var_dump($resultS['id']);
+
+// var_dump($resultS['id']);
 
 // cherche le mot rentré en db
 if (isset($resultS['id'])) {
+
+    $produitId = $resultS['id'];
 
     header("Location: produits.php?produits=$produitId");
 ?>
@@ -39,11 +45,10 @@ if (isset($resultS['id'])) {
 <?php
 
 } else {
-    //msg d'erreur pas de produits trouver
+    $msg = '<h1>Résultat introuvable</h1>';
 }
 
-
-// if (isset($msg)) {
-//     echo $msg;
-// }
+if (isset($msg)) {
+    echo $msg;
+}
 ?>
