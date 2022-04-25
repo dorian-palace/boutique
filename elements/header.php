@@ -1,8 +1,11 @@
 <?php require_once 'app/Produits.php';
+require_once('setting/data.php');
 $db = new Db_connect();
 $produits = new Produits();
 // $result = $produits->getProduits();
 $req_categories = $db->query("SELECT * FROM categories");
+require('app/search/Search.php');
+$searchBar = new Search();
 
 ?>
 <!DOCTYPE html>
@@ -43,8 +46,8 @@ $req_categories = $db->query("SELECT * FROM categories");
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="produits.php">Touts les produits</a></li>
               <?php foreach ($req_categories as $req_categorie) {
- ?>
-              <li><a class="dropdown-item" href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a></li> <?php } ?>
+              ?>
+                <li><a class="dropdown-item" href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a></li> <?php } ?>
               <!-- <li>
                 <hr class="dropdown-divider">
               </li>
@@ -56,44 +59,61 @@ $req_categories = $db->query("SELECT * FROM categories");
 
         <?php
 
-if(isset($_SESSION['id'])){
+        if (isset($_SESSION['id'])) {
 
-  ?>
-    <li class="nav-item">
-    <a class="nav-link " href="profil.php" >Profil</a>
-  </li>
+        ?>
+          <li class="nav-item">
+            <a class="nav-link " href="profil.php">Profil</a>
+          </li>
 
-  <a href="setting/deconnexion.php">déconnexion</a>
- <?php 
-  }
-?>  
-<a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
-<a href="panier.php"><i class=""></i>
+          <a href="setting/deconnexion.php">déconnexion</a>
+        <?php
+        }
+        ?>
+        <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
+        <a href="panier.php"><i class=""></i>
 
 
-<i class="fas fa-shopping-cart"></i></a>
-  <?php if(!isset($_SESSION['id'])){
+          <i class="fas fa-shopping-cart"></i></a>
+        <?php if (!isset($_SESSION['id'])) {
 
-    ?>
-    <li class="nav-item">
-    <a class="nav-link " href="inscription.php">Inscription</a>
-    </li>
-    
-    <li class="nav-item">
-    <a class="nav-link " href="connexion.php">Connexion</a>
-    </li>
-    
-<?php  } ?>
-    
-    
-    
-    
-    <form class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+        ?>
+          <li class="nav-item">
+            <a class="nav-link " href="inscription.php">Inscription</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="connexion.php">Connexion</a>
+          </li>
+
+        <?php  } ?>
+
+
+
+
+        <?php
+        if (isset($_POST['submit'])) {
+
+          unset($_SESSION['recherche']);
+
+          $recherche = secuData($_POST['search']);
+          $_SESSION['recherche'] = $recherche;
+
+          header('Location: searchBar.php');
+
+        }
+
+        if (isset($msg)) {
+          echo $msg;
+        }
+        ?>
+        <form class="d-flex" method="POST">
+
+          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+          <input class="btn btn-outline-success" type="submit" name="submit">
+        </form>
+      </div>
+
     </div>
-    
-    </div>
-    
-    </nav>
+
+  </nav>

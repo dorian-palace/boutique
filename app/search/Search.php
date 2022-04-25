@@ -1,5 +1,5 @@
 <?php
-require_once('../setting/db.php');
+require_once('setting/db.php');
 class Search
 {
 
@@ -14,7 +14,7 @@ class Search
 
         $req = 'SELECT * FROM produits WHERE (titre LIKE ?) OR (description LIKE ?)';
         $stmt = $this->db->prepare($req);
-        $stmt->execute(["%" . $_POST["search"] . "%", "%" . $_POST["search"] . "%"]);
+        $stmt->execute(["%" . $_SESSION["recherche"] . "%", "%" . $_SESSION["recherche"] . "%"]);
 
         return $stmt;
     }
