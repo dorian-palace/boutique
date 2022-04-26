@@ -20,12 +20,12 @@ class AdminCategorie
 
         if (isset($_POST['new_categorie'])) {
 
-            $name_categorie = $_POST['name_categorie'];
+            $name_categorie = secuData($_POST['name_categorie']);
 
             $req_exist = 'SELECT nom_categorie FROM categories WHERE nom_categorie = ? ';
             $stmt = $this->db->prepare($req_exist);
             $stmt->execute(array(
-                $name_categorie
+                 $name_categorie
             ));
             $count = $stmt->rowCount();
 

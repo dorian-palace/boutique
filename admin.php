@@ -7,6 +7,19 @@ $adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
 $adminUser = new AdminUser();
 
+
+$adminUser->isAdmin();
+// $isAdmin = $droits;
+// $isAdmin = $droits->fetch();
+
+$admin = $adminUser->isAdmin();
+
+
+if($admin === false){
+    header('Location: index.php');
+}
+
+
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
 } else {
@@ -24,6 +37,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $adminUser->deleteUser($delete);
     $adminProduit->deleteProduits($delete);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +55,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
 <body>
     <!--- HEADER --->
+    <header>
+        <?php include_once 'elements/header.php'; ?>
+    </header>
     <main>
         <!--- Création produit --->
         <?php $adminProduit->newProduits(); ?>
@@ -83,12 +100,12 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control">
 
                             <select class="form-control" name="update_categorie" required>Catégorie nouveau produit
-                                <?php $get_categorie_prod = $adminCategorie->getCategorie(); 
-                                 echo "<pre>";
-                                 var_dump($get_categorie_prod);
-                                 echo "</pre>";?>
-                                <?php while ($result_categorie_prod = $get_categorie_prod->fetch()) { 
-                                    
+                                <?php $get_categorie_prod = $adminCategorie->getCategorie();
+                                echo "<pre>";
+                                var_dump($get_categorie_prod);
+                                echo "</pre>"; ?>
+                                <?php while ($result_categorie_prod = $get_categorie_prod->fetch()) {
+
                                 ?>
                                     <option value="<?= $result_categorie_prod['id']; ?>">
                                         <?= $result_produits['nom_categorie']; ?>
@@ -188,6 +205,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     </div>
 
     <!--- FOOTER --->
+    <footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
 </body>
 
 </html>

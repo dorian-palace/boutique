@@ -1,0 +1,347 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
+
+body{
+    
+    font-size: 20px;
+}
+
+.display-produits{
+
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+    
+
+}
+
+
+
+ 
+
+.btn{
+
+    margin: auto;
+    
+}
+
+.produits form a {
+
+    text-align: center;
+}
+
+
+.prix{
+
+
+    color: red;
+
+}
+
+.produits .prix{
+
+    text-align: center;
+
+}
+
+.container-produits {  display: grid;
+    grid-template-columns: 1fr 0.4fr 1.6fr 1fr;
+    grid-template-rows: 1fr 2fr 0.1fr 1fr;
+    gap: 4px 40px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "image-produit image-produit info-produit info-produit"
+      "image-produit image-produit info-produit info-produit"
+      ". . . ."
+      "avis avis . .";
+      margin-left: 8%;
+    max-width: fit-content;
+
+    
+  }
+  
+  .image-produit {
+      
+
+    grid-area: image-produit;
+
+}
+  
+  .info-produit {  display: grid;
+    grid-template-columns: 1fr 1.4fr 0.6fr;
+    grid-auto-rows: auto;
+    gap: px px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "titre-produit titre-produit titre-produit"
+      "prix-produit prix-produit prix-produit"
+      "add-panier add-panier add-panier";
+    grid-area: info-produit;
+    max-width: fit-content;
+    margin-left: 8%;
+  }
+  
+  .titre-produit { 
+    font-family: 'Asap', sans-serif;
+    font-size: 30px;
+    grid-area: titre-produit; }
+  
+  .prix-produit {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      "description description description"
+      "description description description";
+    grid-area: prix-produit;
+  }
+  
+  .description { 
+    font-family: 'Asap', sans-serif;  
+    grid-area: description; }
+  
+  .add-panier {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      ". . ."
+      ". . .";
+    grid-area: add-panier;
+  }
+  
+  .avis { grid-area: avis; }
+
+
+  .titre-produit{
+
+        height: 20%;
+        margin-bottom: 0;
+
+  }
+  
+  .prix-produit{
+
+    
+    margin-top: 10%;
+    margin-bottom: 5%;
+    
+
+  }
+
+  #prix {
+
+    font-size: 30px;
+    color: red;
+    text-decoration: none;
+
+  }
+
+  .add-panier{
+
+    display: inline-block;
+  }
+
+
+  main{
+    margin-top: 4%;
+    margin-left: 4%;
+  }
+  
+
+   main .categorie a  {
+
+            
+    list-style: none;
+    color: black;
+    display: flex;
+    text-decoration: none;
+
+}
+
+main .categorie{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.categorie a{
+
+  margin-bottom: 10%;
+  padding-left: 4%;
+  font-size: 20px;
+  font-family: 'Asap', sans-serif;
+
+}
+
+.retour a{
+
+  font-size: 22px;
+  height: 60px;
+  margin-right: 40%;
+  text-decoration: none;
+  color: black;
+
+
+}
+.retour :hover{
+
+  color:red;
+}
+ #retour{
+
+                
+    list-style: none;
+    color: black;
+
+    text-decoration: none;
+    margin-bottom: 10%;
+
+}
+
+.image-produit{
+
+    width: 100%;
+    align-items: center;    
+    border: 2px solid #555;
+}
+
+
+
+.add-avis a {
+
+
+    text-decoration: none;
+    color: black;
+    list-style: none;
+
+
+}
+
+.add-avis{
+
+    margin-top: 4%;
+    margin-left: 2%;
+}
+
+.page-link{
+
+    color: black;
+}
+
+.avis-produits{
+
+  margin-bottom: 40%;
+}
+
+#avis-clients{
+
+  text-align: center;
+}
+
+#avis-message{
+
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 844px){
+
+      
+    main{
+
+        margin-left: 12%;
+    }
+ 
+    .container-produits{
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+
+
+        margin-right: 30%;
+
+    }
+
+    .container{
+      display: flex;
+
+      justify-content: center;
+
+      
+
+    }
+
+        .image-produit{
+            
+           
+          width: 100%;
+            border: 1px solid #555;
+            border: 1px solid #555;
+           
+    }
+     
+        .info-produit{
+
+            margin-bottom: 40%;
+        }
+
+        .categorie {
+
+            
+            list-style: none;
+            color: black;
+
+            text-decoration: none;
+
+        }
+
+
+        @media screen and (min-width : 1600px) {
+
+
+
+          .image-produit{
+            
+            
+              height: 200px;
+              border: 1px solid #555;
+              border: 1px solid #555;
+             
+      }
+
+          
+
+
+          }
+  }
