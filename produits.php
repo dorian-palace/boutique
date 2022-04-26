@@ -236,30 +236,35 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 //ICI PAGINATION
                                 //l
 
-                                $pagiCat = $produits->pagiCategorie();
-                                var_dump($pagiCat);
+                                @$pagiCat = $produits->pagiCategorie();
                                 $nb_elementsCat = $debut->fetchColumn();
                                 $limite = 5;
-                                $nb_pageCat = ceil($nb_elementsCat / $limite); ?>
+                                var_dump($pagiCat);
+                                
+                                $nb_pageCat = ceil($nb_elementsCat / $limite);
+                                @$pagiCat = intval($pagiCat);
+                                $nb_pageCat = intval($nb_pageCat);
+                                // echo"zeezaeazeazezaeazea";
+                                ?>
 
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
 
                                             <li class="page-item">
 
-                                                <?php if ($pagiCat > 1) { ?> <a href="?page=<?= $pagiCat - 1  ?>" class="page-link ">
-                                                        < </a> <?php } ?>
-                                            </li class="page-item">
+                                                <?php if ($pagiCat > 1) { ?> <a href="produits?categorie=<?=$req_categorie['id_categorie']?>&page=<?= $pagiCat - 1  ?>" class="page-link ">
+                                                </li class="page-item">
+                                                 </a> <?php } ?>
 
                                             <li class="page-item">
                                                 <?php for ($i = 1; $i <= $nb_pageCat; $i++) {
-                                                ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+                                                ?><a href="produits?categorie=<?=$req_categorie['id_categorie']?>&page=<?= $i; ?>"><?= $i; ?></a>
                                                 <?php } ?>
                                             </li>
 
                                             <li class="page-item">
                                                 <?php if ($pagiCat < $nb_pageCat) { ?>
-                                                    <a href="?page=<?= $pagiCat + 1; ?>" class="page-link">></a>
+                                                    <a href="produits?categorie=<?=$req_categorie['id_categorie']?>&page=<?= $pagiCat + 1; ?>" class="page-link">></a>
                                                 <?php } ?>
                                             </li>
 
@@ -268,7 +273,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                     </div>
 
 
-                                    <?php  ?>
+                                    
                                 </div>
                             <?php
                         } else {
@@ -318,7 +323,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                         <?php }
                                     $nb_elements = $debut->fetchColumn();
                                     $limite = 5;
-                                    $nb_page = ceil($nb_elements / $limite); ?>?>
+                                    $nb_page = ceil($nb_elements / $limite); ?>
                                         <nav aria-label="Page navigation example  ">
 
                                             <ul class="pagination ">
