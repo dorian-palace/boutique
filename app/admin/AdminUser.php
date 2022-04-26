@@ -59,7 +59,7 @@ class AdminUser
 
     public function isAdmin()
     {
-        $id = $_SESSION['id'];
+        @$id = $_SESSION['id'];
 
         $req = 'SELECT utilisateurs.id_droits FROM utilisateurs WHERE id = ?';
         $stmt = $this->db->prepare($req);
@@ -70,7 +70,7 @@ class AdminUser
 
         $data = $stmt->fetch();
         // var_dump($data);
-        $id_droit = $data['id_droits'];
+        @$id_droit = $data['id_droits'];
 
         if ($id_droit == 13)
             return true;

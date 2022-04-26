@@ -1,5 +1,10 @@
 <?php require_once 'app/Produits.php';
 require_once('setting/data.php');
+require_once('app/admin/AdminUser.php');
+$adminUser = new AdminUser();
+$adminUser->isAdmin();
+$admin = $adminUser->isAdmin();
+
 $db = new Db_connect();
 $produits = new Produits();
 // $result = $produits->getProduits();
@@ -61,7 +66,13 @@ $searchBar = new Search();
 
         if (isset($_SESSION['id'])) {
 
+          if ($admin === true) {
         ?>
+            <li class="nav-item">
+              <a class="nav-link " href="admin.php">Admin</a>
+            </li>
+          <?php }
+          ?>
           <li class="nav-item">
             <a class="nav-link " href="profil.php">Profil</a>
           </li>
