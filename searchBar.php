@@ -19,7 +19,6 @@
     <header>
         <?php require_once 'elements/header.php'; ?>
     </header>
-    <?= $msg ;?>
 </body>
 
 </html>
