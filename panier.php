@@ -66,7 +66,7 @@ require_once 'app/Panier.php';
 
                         <h4>Ajouter des articles maintenant </h4>
 
-                        <a href="produits.php" class="btn btn-success h-25">Touts les produits</a>
+                        <a href="produits.php" class="btn btn-success w-25">Touts les produits</a>
 
                     </div>
 
