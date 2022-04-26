@@ -184,15 +184,6 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
                         ?>
 
-
-
-
-                            <form action="#" method="post">
-
-                                <div class="produits">
-
-
-
                                     <div class="card col-md-3 mr-3 mb-4">
                                         <?php echo "<img src='file/" . $req_categorie['image'] . " ' class='img-fluid '/>" ?>
                                         <div class="card-body ">
@@ -231,49 +222,49 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
 
                                         </div>
-
+                                    </div>
                                     <?php } //fin du foreach ICI
                                 //ICI PAGINATION
                                 //l
 
-                                @$pagiCat = $produits->pagiCategorie();
+                                $pagiCat = $produits->pagiCategorie();
                                 $nb_elementsCat = $debut->fetchColumn();
                                 $limite = 5;
                                 var_dump($pagiCat);
-                                
+
                                 $nb_pageCat = ceil($nb_elementsCat / $limite);
                                 @$pagiCat = intval($pagiCat);
                                 $nb_pageCat = intval($nb_pageCat);
                                 // echo"zeezaeazeazezaeazea";
-                                ?>
+                                    ?>
 
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
 
                                             <li class="page-item">
 
-                                                <?php if ($pagiCat > 1) { ?> <a href="produits?categorie=<?=$req_categorie['id_categorie']?>&page=<?= $pagiCat - 1  ?>" class="page-link ">
-                                                </li class="page-item">
-                                                 </a> <?php } ?>
+                                                <?php if ($pagiCat > 1) { ?> <a href="produits?categorie=<?= $req_categorie['id_categorie'] ?>&page=<?= $pagiCat - 1  ?>" class="page-link ">
+                                            </li class="page-item">
+                                            </a> <?php } ?>
 
-                                            <li class="page-item">
-                                                <?php for ($i = 1; $i <= $nb_pageCat; $i++) {
-                                                ?><a href="produits?categorie=<?=$req_categorie['id_categorie']?>&page=<?= $i; ?>"><?= $i; ?></a>
-                                                <?php } ?>
-                                            </li>
+                                        <li class="page-item">
+                                            <?php for ($i = 1; $i <= $nb_pageCat; $i++) {
+                                            ?><a href="produits?categorie=<?= $req_categorie['id_categorie'] ?>&page=<?= $i; ?>"><?= $i; ?></a>
+                                            <?php } ?>
+                                        </li>
 
-                                            <li class="page-item">
-                                                <?php if ($pagiCat < $nb_pageCat) { ?>
-                                                    <a href="produits?categorie=<?=$req_categorie['id_categorie']?>&page=<?= $pagiCat + 1; ?>" class="page-link">></a>
-                                                <?php } ?>
-                                            </li>
+                                        <li class="page-item">
+                                            <?php if ($pagiCat < $nb_pageCat) { ?>
+                                                <a href="produits?categorie=<?= $req_categorie['id_categorie'] ?>&page=<?= $pagiCat + 1; ?>" class="page-link">></a>
+                                            <?php } ?>
+                                        </li>
 
                                         </ul>
                                     </nav>
                                     </div>
 
 
-                                    
+
                                 </div>
                             <?php
                         } else {
@@ -320,25 +311,25 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                         </div>
 
 
-                                        <?php }
+                                    <?php }
                                     $nb_elements = $debut->fetchColumn();
                                     $limite = 5;
                                     $nb_page = ceil($nb_elements / $limite); ?>
-                                        <nav aria-label="Page navigation example  ">
+                                    <nav aria-label="Page navigation example  ">
 
-                                            <ul class="pagination ">
-                                                <li class="page-item"><?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
-                                                            < </a> <?php } ?></li>
+                                        <ul class="pagination ">
+                                            <li class="page-item"><?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
+                                                        < </a> <?php } ?></li>
 
-                                                <li class="page-item"><?php for ($i = 1; $i <= $nb_page; $i++) {
-                                                                        ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
-                                                    <?php } ?></li>
-                                                <li class="page-item"> <?php if ($page < $nb_page) { ?>
-                                                        <a href="?page=<?= $page + 1; ?>" class="page-link">></a>
-                                                    <?php } ?>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                            <li class="page-item"><?php for ($i = 1; $i <= $nb_page; $i++) {
+                                                                    ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
+                                                <?php } ?></li>
+                                            <li class="page-item"> <?php if ($page < $nb_page) { ?>
+                                                    <a href="?page=<?= $page + 1; ?>" class="page-link">></a>
+                                                <?php } ?>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
 
                             <?php }
@@ -352,8 +343,8 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
     </main>
     <footer>
-            <?php require 'elements/footer.html'; ?>
-        </footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
 </body>
 
 </html>
