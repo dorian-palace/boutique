@@ -226,8 +226,8 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                     <?php } //fin du foreach ICI
                                 //ICI PAGINATION
                                 //l
-
-                                $pagiCat = $produits->pagiCategorie();
+                                $zeub = new Produits(); //
+                                $pagiCat = $zeub->pagiCategorie(); 
                                 $nb_elementsCat = $debut->fetchColumn();
                                 $limite = 5;
                                 var_dump($pagiCat);
