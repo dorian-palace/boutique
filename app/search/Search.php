@@ -1,5 +1,5 @@
 <?php
-require_once('../setting/db.php');
+require_once('setting/db.php');
 class Search
 {
 
@@ -11,15 +11,11 @@ class Search
 
     public function Search()
     {
-        
-        $req = 'SELECT * FROM produits WHERE titre LIKE ? OR description LIKE ? ';
-        $stmt = $this->db->prepare($req);
-        $stmt->execute(["%" . $_POST["search"] . "%", "%" . $_POST["search"] . "%"]);
-        // $results = $stmt->fetchAll();
-        // var_dump($results);
-        // if(isset($results['id'])){
 
-        // }
+        $req = 'SELECT * FROM produits WHERE (titre LIKE ?) OR (description LIKE ?)';
+        $stmt = $this->db->prepare($req);
+        $stmt->execute(["%" . $_SESSION["recherche"] . "%", "%" . $_SESSION["recherche"] . "%"]);
+
         return $stmt;
     }
 }

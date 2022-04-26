@@ -16,24 +16,13 @@ class AdminUser
 
         $this->limite = 5;
         $this->debut = ($this->page - 1) * $this->limite;
-
-        // $data = secuData();
     }
-
-    // public function idAdmin(){
-    //     $req = 'SELECT id FROM droits';
-    //     $query = $this->db->query($req);
-    //ID ADMIN A RECUPERER POUR ACCES PAGE ADMIN
-
-    // }
 
     public function getUser()
     {
         //récupère les infos des utilisateurs
         $req = "SELECT * FROM utilisateurs LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->db->prepare($req);
-        // $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        // $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }
@@ -66,5 +55,30 @@ class AdminUser
         ));
         return $prepare;
         $msg = 'Utilisateurs supprimer';
+    }
+
+    public function isAdmin()
+    {
+        $id = $_SESSION['id'];
+
+        $req = 'SELECT utilisateurs.id_droits FROM utilisateurs WHERE id = ?';
+        $stmt = $this->db->prepare($req);
+        $stmt->execute(array(
+            $id
+        ));
+
+
+        $data = $stmt->fetch();
+        // var_dump($data);
+        $id_droit = $data['id_droits'];
+
+        if ($id_droit == 13)
+            return true;
+
+        else
+            return false; # code.
+
+
+
     }
 }

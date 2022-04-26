@@ -39,6 +39,9 @@ unset($_SESSION['panier']);
             <div class="text"> <span class="d-block new mb-1"><?= $resultUser['prenom'] . ' ' . $resultUser['nom']; ?></span> </div> <span class="d-block address mb-3">Adresse de facturation: <?= $resultAdr['adr_facturation']; ?> Adresse de livraison: <?= $resultAdr['adr_livraison']; ?> </span>
         </div>
     </div>
+    <footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
 </body>
 
 </html>

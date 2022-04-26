@@ -26,7 +26,9 @@ $resultCommande = $clientCommande->fetch();
 </head>
 
 <body>
-
+    <header>
+        <?php include_once 'elements/header.php'; ?>
+    </header>
     <div class="container_infos_user">
         <fieldset>
             <!-- <legend>Information utilisateur</legend> -->
@@ -74,6 +76,9 @@ $resultCommande = $clientCommande->fetch();
         } ?>
 
     </fieldset>
+    <footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
 
 </body>
 

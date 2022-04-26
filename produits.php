@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
 } else {
@@ -345,6 +346,9 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
 
     </main>
+    <footer>
+            <?php require 'elements/footer.html'; ?>
+        </footer>
 </body>
 
 </html>

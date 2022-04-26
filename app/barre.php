@@ -2,6 +2,7 @@
 
 session_start();
 require_once'db.php';
+require_once'setting/data.php';
 
 
 if (isset($_GET['q']) and !empty($_GET['q'])) {
@@ -21,11 +22,24 @@ if (isset($_GET['q']) and !empty($_GET['q'])) {
  La ligne suivante définit une variable appelée $articles qui sera utilisée plus tard dans ce script, ainsi qu'une autre appelée $bdd dont nous parlerons plus tard.
  Ensuite, il vérifie si des articles ont été trouvés jusqu'à présent et si ce n'est pas le cas, il recommence le même processus jusqu'à ce que tous les articles aient été trouvés ou qu'il n'y ait plus d'articles. */
 
-    $q = htmlspecialchars($_GET['q']);
 
-    $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu)LIKE "%' . $q . '%" ORDER BY id DESC');
-    if ($articles->rowCount() ==  0) {
-        $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $q . '%" ORDER BY id DESC');
+if(isset($_GET['q']) AND !empty($_GET['q'])) {
+
+   
+
+    $q = secuData(($_GET['q']));
+
+    $search = $db->("SELECT * FROM produits
+    WHERE (titre LIKE '%".$q."%') OR 
+    (description LIKE '%".$q."%') ORDER BY id DESC");
+        if($search->rowCount() ==  0) {
+
+            $search = $db->("SELECT * FROM produits
+    WHERE (titre LIKE '%".$q."%') OR 
+    (description LIKE '%".$q."%') ORDER BY id DESC");
+            // $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
+        }
+    
     }
 }
 
@@ -36,9 +50,9 @@ if (isset($_GET['q']) and !empty($_GET['q'])) {
     <input type="submit" value="Valider" />
 </form>
 
-<?php if ($articles->rowCount() > 0) { ?>
+<?php if ($search->rowCount() > 0) { ?>
     <ul>
-        <?php while ($a = $articles->fetch()) { ?>
+        <?php while ($a = $search->fetch()) { ?>
             <li><?= $a['titre'] ?></li>
         <?php } ?>
     </ul>

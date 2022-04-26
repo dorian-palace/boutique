@@ -1,6 +1,16 @@
+<?php require_once 'app/Produits.php';
+require_once('setting/data.php');
+$db = new Db_connect();
+$produits = new Produits();
+// $result = $produits->getProduits();
+$req_categories = $db->query("SELECT * FROM categories");
+require('app/search/Search.php');
+$searchBar = new Search();
 
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,78 +22,98 @@
 
   <title>Document</title>
 </head>
+
 <body>
 
-<nav class="navbar position:sticky navbar-expand-lg navbar-light bg-light " >
-  <div class="container-fluid  pb-5 ">
-    <a class="navbar-brand " href="#">Pasta di Giovanni</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="produits.php">Produits</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Produits
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="produits.php">Touts les produits</a></li>
-            <li><a class="dropdown-item" href="">pâtes</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-       
-      </ul>
-        
-      <?php
+  <nav class="navbar position:sticky navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid  pb-5 ">
+      <a class="navbar-brand " href="#">Pasta di Giovanni</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="produits.php">Produits</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Produits
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="produits.php">Touts les produits</a></li>
+              <?php foreach ($req_categories as $req_categorie) {
+              ?>
+                <li><a class="dropdown-item" href="produits.php?categorie=<?= $req_categorie['id'] ?>"><?= $req_categorie['nom_categorie'] ?></a></li> <?php } ?>
+              <!-- <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </li>
 
-      if(isset($_SESSION['id'])){
+        </ul>
 
-      ?>
-        <li class="nav-item">
-        <a class="nav-link " href="profil.php" >Profil</a>
-      </li>
+        <?php
 
-      <a href="setting/deconnexion.php">déconnexion</a>
-     <?php }else{
+        if (isset($_SESSION['id'])) {
 
-    ?>
-  <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
-  <a href="panier.php"><i class=""></i>
+        ?>
+          <li class="nav-item">
+            <a class="nav-link " href="profil.php">Profil</a>
+          </li>
 
-<i class="fas fa-shopping-cart"></i></a>
-
-        <li class="nav-item">
-          <a class="nav-link " href="inscription.php">Inscription</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link " href="connexion.php">Connexion</a>
-        </li>
-
-     <?php } ?> 
-
-      
-     
+          <a href="setting/deconnexion.php">déconnexion</a>
+        <?php
+        }
+        ?>
+        <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
+        <a href="panier.php"><i class=""></i>
 
 
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+          <i class="fas fa-shopping-cart"></i></a>
+        <?php if (!isset($_SESSION['id'])) {
+
+        ?>
+          <li class="nav-item">
+            <a class="nav-link " href="inscription.php">Inscription</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="connexion.php">Connexion</a>
+          </li>
+
+        <?php  } ?>
+
+
+
+
+        <?php
+        if (isset($_POST['submit'])) {
+
+          unset($_SESSION['recherche']);
+
+          $recherche = secuData($_POST['search']);
+          $_SESSION['recherche'] = $recherche;
+
+          header('Location: searchBar.php');
+          die;
+        }
+
+        if (isset($msg)) {
+          echo $msg;
+        }
+        ?>
+        <form class="d-flex" method="POST">
+
+          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+          <input class="btn btn-outline-success" type="submit" name="submit">
+        </form>
+      </div>
+
     </div>
-   
-  </div>
-   <ul class="ulbonjour">
-      <li>
-        bonjour
-      </li>
-    </ul>
-</nav>
+
+  </nav>

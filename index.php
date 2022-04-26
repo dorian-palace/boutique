@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+require_once 'app/Produits.php'
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +59,7 @@
             <h1 class="h1img">
                 Pâtes
             </h1>
-            <img src="pexel/pates.png" alt=""> 
+            <img src="pexel/pates.png" alt="" class="img-cat"> 
             <p class="paraimg">
                 Rotelle, Fusili, Penne rigate, Gnocchetti sardi, Malfadine, Bucatini, Spaghetti, Zitone, Orecchiette, Puntalette, Filini, Gnocchi, Risotto aspèrges, poireaux et cèpes. Gamme de la marque "Pasta di Giovanni".
             </p>
@@ -68,7 +69,7 @@
             <h1 class="h1img">
                 Huiles
             </h1>
-            <img src="pexel/huile.png" alt=""> 
+            <img src="pexel/huile.png" alt=""class="img-cat"> 
             <p class="paraimg">
                 Pasta di Giovanni vous propose une large sélection d'excellentes huiles d'olive extra vierge et d'olives provenant de presque toutes les régions d'Italie. Savez-vous ce qui signifie "extra vierge"? Lisez notre Guide a l'huile d'olive extra vierge pour tout apprendre sur la meilleure huile d'olive italienne !
             </p>
@@ -78,7 +79,7 @@
             <h1 class="h1img">
                 Antipasti
             </h1>
-            <img src="pexel/antipasti.png" alt=""> 
+            <img src="pexel/antipasti.png" alt="" class="img-cat"> 
             <p class="paraimg">
                 Jambon de parme, jambon à l'os supérieur, mortadelle, saucisson toscane, spianata, mignon, scudetto, coralini, saucisse italienne.
             </p>
@@ -88,7 +89,7 @@
             <h1 class="h1img">
                 Fromage
             </h1>
-            <img src="pexel/fromage.png" alt="">
+            <img src="pexel/fromage.png" alt="" class="img-cat">
             <p class="paraimg">
                 Mozzarella, Gorgonzola, Pecorino, Parmezan, Brousse, Crottin de chavignole, Emental, Comté, Fromage de chèvre, Roquefort, Saint-marcelin, Saint-félicien, Tome de savoie, Yaourt, Tiramisu, Fiadone.
             </p>
@@ -97,11 +98,19 @@
     </section>    
     
     
+    <div class="produit-recent">
+
+  
+
     
+
+    
+
+    </div>
                    
 
     <h1 id="presentation">
-        Présentation :
+        Notre histoire:
     </h1>
        
     <div id="articleindex">

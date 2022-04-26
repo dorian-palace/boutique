@@ -52,46 +52,51 @@ session_start();
             }
         
         }
-            ?>
+            
 
-         
+            if(!isset($_SESSION['id'])){
 
-        
+             ?>   
 
-            <h1 id="h1-inscription">Connexion</h1>
+            <h1 id="h1-inscription">Connexion</h1>  
             <form action="#" e method="post">
+    
+    
+    <label for="login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
+    <input type="text" class="inputForm" name="login" required">
+    
+    <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
+    <input type="email" class="inputForm" name="email" required>
+    
+    <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
+    <input type="password" class="inputForm" name="password" required>
+    
+    
+    <div class="text-center">
+        <button ton type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
+        
+    </div>
+    
+</form>
+</div>
 
+            
 
-                <label for="login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
-                <input type="text" class="inputForm" name="login">
-
-                <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
-                <input type="email" class="inputForm" name="email">
-
-                <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
-                <input type="password" class="inputForm" name="password">
-
-
-                <div class="text-center">
-                    <but ton type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
-
-                </div>
-
-            </form>
-        </div>
-
+        <?php } ?> 
             
                 <?php if(isset($_SESSION['login'])){
                 
                 ?> <h4 id='bienvenue'>Bienvenu <?=$_SESSION['login']?></h4>
 
+                <a href="produits.php" class="btn btn-success d-flex  justify-content-center  ">Voir Touts les produits</a>
                <?php } ?>
+
            
     </main>
 
     <footer>
-
-    </footer>
+            <?php require 'elements/footer.html'; ?>
+        </footer>
 
 </body>
 
