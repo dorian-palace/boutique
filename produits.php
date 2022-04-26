@@ -288,12 +288,12 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                                 <form action="produits.php?id=<?= $res['id'] ?>" method="post">
 
 
-                                                    <a href="produits.php?produits=<?= $res['id'] ?>"><input type="submit" name='submit' value='ajouter au panier' class="btn btn-success"></a>
+                                                    <a href="produits.php?produits=<?= $res['id'] ?>"><input type="submit" name='addpanier' value='ajouter au panier' class="btn btn-success"></a>
 
                                                 </form>
 
                                                 <?php
-                                                if (isset($_POST['submit'])) {
+                                                if (isset($_POST['addpanier'])) {
 
                                                     require_once 'addpanier.php';
 
