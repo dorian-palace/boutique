@@ -61,28 +61,32 @@ $searchBar = new Search();
               <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
+          <?php
+
+if (isset($_SESSION['id'])) {
+
+  if ($admin === true) {
+?>
+    <li class="nav-item">
+      <a class="nav-link " href="admin.php">Admin</a>
+    </li>
+  <?php }
+  ?>
+  <li class="nav-item">
+    <a class="nav-link " href="profil.php">Profil</a>
+  </li>
+
+    <li class="nav-item">
+      <a class="nav-link  href="setting/deconnexion.php">déconnexion</a>
+    </li>
+<?php
+}
+?>
 
         </ul>
 
-        <?php
-
-        if (isset($_SESSION['id'])) {
-
-          if ($admin === true) {
-        ?>
-            <li class="nav-item">
-              <a class="nav-link " href="admin.php">Admin</a>
-            </li>
-          <?php }
-          ?>
-          <li class="nav-item">
-            <a class="nav-link " href="profil.php">Profil</a>
-          </li>
-
-          <a href="setting/deconnexion.php">déconnexion</a>
-        <?php
-        }
-        ?>
+        
+        
         <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
         <a href="panier.php"><i class=""></i>
 

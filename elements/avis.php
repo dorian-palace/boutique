@@ -55,7 +55,7 @@ foreach($res as $result){
   
   ?>
 
-<div class="container mt-5 ">
+<div class="container mt-2 ">
   <div class="row d-flex justify-content-center">
     <div class="col-md-8">
       <div class="headings d-flex justify-content-between align-items-center mb-3">

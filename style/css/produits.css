@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
 
+*{
+  margin: 0;
+  padding: 0;
+}
 body{
     
     font-size: 20px;
@@ -239,7 +243,6 @@ main .categorie{
 
 .avis-produits{
 
-  margin-bottom: 40%;
 }
 
 #avis-clients{
@@ -277,6 +280,7 @@ main .categorie{
     main{
 
         margin-left: 12%;
+
     }
  
     .container-produits{
@@ -326,6 +330,13 @@ main .categorie{
 
         }
 
+        button{
+
+          margin-bottom: 10%;
+        }
+
+        
+      }
 
         @media screen and (min-width : 1600px) {
 
@@ -344,4 +355,4 @@ main .categorie{
 
 
           }
-  }
+  

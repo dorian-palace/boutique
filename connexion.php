@@ -88,7 +88,7 @@ session_start();
                 
                 ?> <h4 id='bienvenue'>Bienvenu <?=$_SESSION['login']?></h4>
 
-                <a href="produits.php" class="btn btn-success d-flex  justify-content-center  ">Voir Touts les produits</a>
+                <a href="produits.php" class="btn btn-success   ">Voir Touts les produits</a>
                <?php } ?>
 
            
