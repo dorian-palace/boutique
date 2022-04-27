@@ -226,10 +226,10 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                     <?php } //fin du foreach ICI
                                 //ICI PAGINATION
                                 //l
-                                $zeub = new Produits(); //
-                                $pagiCat = $zeub->pagiCategorie(); 
+                                $produits2 = new Produits(); //
+                                $pagiCat = $produits2->pagiCategorie(); 
                                 $nb_elementsCat = $debut->fetchColumn();
-                                $limite = 5;
+                                $limite = 6;
                                 var_dump($pagiCat);
 
                                 $nb_pageCat = ceil($nb_elementsCat / $limite);
@@ -313,7 +313,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
                                     <?php }
                                     $nb_elements = $debut->fetchColumn();
-                                    $limite = 5;
+                                    $limite = 6;
                                     $nb_page = ceil($nb_elements / $limite); ?>
                                     <nav aria-label="Page navigation example  ">
 
