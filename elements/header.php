@@ -1,4 +1,6 @@
-<?php require_once 'app/Produits.php';
+<?php 
+// require_once 'app/Produits.php';
+require_once('setting/db.php');
 require_once('setting/data.php');
 require_once('app/admin/AdminUser.php');
 $adminUser = new AdminUser();
@@ -6,7 +8,7 @@ $adminUser->isAdmin();
 $admin = $adminUser->isAdmin();
 
 $db = new Db_connect();
-$produits = new Produits();
+// $produits = new Produits();
 // $result = $produits->getProduits();
 $req_categories = $db->query("SELECT * FROM categories");
 require('app/search/Search.php');
