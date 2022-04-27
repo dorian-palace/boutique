@@ -15,7 +15,7 @@ $adminUser->isAdmin();
 $admin = $adminUser->isAdmin();
 
 
-if($admin === false){
+if ($admin === false) {
     header('Location: index.php');
 }
 
@@ -101,10 +101,10 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
                             <select class="form-control" name="update_categorie" required>Catégorie nouveau produit
                                 <?php $get_categorie_prod = $adminCategorie->getCategorie();
-                                echo "<pre>";
-                                var_dump($get_categorie_prod);
-                                echo "</pre>"; ?>
-                                <?php while ($result_categorie_prod = $get_categorie_prod->fetch()) {
+
+
+
+                                while ($result_categorie_prod = $get_categorie_prod->fetch()) {
 
                                 ?>
                                     <option value="<?= $result_categorie_prod['id']; ?>">

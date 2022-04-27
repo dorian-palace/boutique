@@ -6,7 +6,3 @@ $avis = new avisProduit();
 
 
 $test = $avis->newAvis();
-
-echo "<pre>";
-var_dump($test);
-echo "</pre>";

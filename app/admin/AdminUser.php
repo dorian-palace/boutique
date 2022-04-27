@@ -69,7 +69,7 @@ class AdminUser
 
 
         $data = $stmt->fetch();
-        // var_dump($data);
+
         @$id_droit = $data['id_droits'];
 
         if ($id_droit == 13)
