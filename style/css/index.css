@@ -17,7 +17,8 @@ body{
 }
 
 #h2index{
-  margin-left: 28%;
+  text-align: center;
+  margin-left: 10%;
   color: rgb(0, 0, 0);
   font-family: 'Asap', sans-serif;
 }
