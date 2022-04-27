@@ -99,7 +99,7 @@ require_once 'app/Panier.php';
 
                                                                 <div class="cart_item_quantity cart_info_col">
                                                                     <div class="cart_item_title">Quantité</div>
-                                                                    <div class="cart_item_text"><input type="number" name="panier[quantity][<?= $res['id']; ?>]" value="<?= $_SESSION['panier'][$res['id']] ?>" class="form-control w-25 p-3"></div>
+                                                                    <div class="cart_item_text"><input type="number" name="panier[quantity][<?= $res['id']; ?>]" value="<?= $_SESSION['panier'][$res['id']] ?>" class="form-control  p-3"></div>
                                                                 </div>
                                                                 <div class="cart_item_price cart_info_col">
                                                                     <div class="cart_item_title">Prix</div>

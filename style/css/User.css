@@ -20,6 +20,7 @@ body {
   /* redéfinition 400 + 2*20 */
   max-width: 440px;
   margin: 0 auto;
+  margin-top: 6%;
 
 }
 
@@ -78,5 +79,10 @@ margin-left: 22%;
 .msg{
 
   color: red;
+  text-align: center;
+}
+
+#bienvenue{
+
   text-align: center;
 }

@@ -105,16 +105,24 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 <form action="#" method="post" class="add-panier">
 
 
-                                    <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><input type="submit" name='submit' value='Ajouter au panier' class="btn btn-success"></a>
+                                    <a href="produits.php?categorie=<?= $req_categorie['id'] ?>"><input type="submit" name='addpanier' value='Ajouter au panier' class="btn btn-success"></a>
 
+                                    <form action="" method="post" class="avis_form">
 
+                                    <button type="button" name="btn_avis" class="btn btn-secondary  " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Poster un avis
+                                    </button>
+
+                                    <!-- <input type="submit" name="btn_avis" value="Poster un avis" class='btn btn-primary"'> -->
+
+                                </form>
 
                                 </form>
 
 
 
                                 <?php
-                                if (isset($_POST['submit'])) {
+                                if (isset($_POST['addpanier'])) {
 
                                     require_once 'addpanier.php'; ?>
 
@@ -130,15 +138,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
                                 <?php } ?>
 
-                                <form action="" method="post" class="avis_form">
-
-                                    <button type="button" name="btn_avis" class="btn btn-secondary text-left" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Poster un avis
-                                    </button>
-
-                                    <!-- <input type="submit" name="btn_avis" value="Poster un avis" class='btn btn-primary"'> -->
-
-                                </form>
+                                
 
 
                             </div>
