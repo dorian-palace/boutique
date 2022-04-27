@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'app/Produits.php'
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ require_once 'app/Produits.php'
             <h1 class="h1img">
                 Pâtes
             </h1>
-            <img src="pexel/pates.png" alt="" class="img-cat"> 
+            <img src="pexel/pates.png" alt="" class="img-cat" href""> 
             <p class="paraimg">
                 Rotelle, Fusili, Penne rigate, Gnocchetti sardi, Malfadine, Bucatini, Spaghetti, Zitone, Orecchiette, Puntalette, Filini, Gnocchi, Risotto aspèrges, poireaux et cèpes. Gamme de la marque "Pasta di Giovanni".
             </p>
