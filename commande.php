@@ -81,7 +81,7 @@ if (!empty($_POST['adr_ftr']) && !empty($_POST['adr_liv'])) {
                                     </svg>
                                 </span>
                             </h2>
-                            <div id="collapseCC" class="accordion-collapse collapse show" data-bs-parent="#accordionPayment" style="">
+                            <div id="collapseCC" class="accordion-collapse collapse show" data-bs-parent="#accordionPayment">
                                 <div class="accordion-body">
                                     <div class="mb-3">
                                         <label class="form-label">Card Number</label>
