@@ -44,6 +44,7 @@ $resultCommande = $clientCommande->fetch();
                 </thead>
                 <tbody>
                     <tr>
+                        
                         <td><?= $resultInfos['login']; ?></td>
                         <td><?= $resultInfos['email']; ?></td>
                         <td><?= $resultInfos['prenom']; ?></td>
@@ -66,6 +67,7 @@ $resultCommande = $clientCommande->fetch();
                     </thead>
                     <tbody>
                         <tr>
+                            
                             <td><?= $value; ?></td>
                         </tr>
                     </tbody>

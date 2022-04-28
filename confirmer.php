@@ -29,6 +29,9 @@ unset($_SESSION['panier']);
 </head>
 
 <body>
+    <header>
+        <?php include_once 'elements/header.php'?>
+    </header>
     <div class="container mt-5 d-flex justify-content-center">
         <div class="card p-4 mt-3">
             <div class="first d-flex justify-content-between align-items-center mb-3">
