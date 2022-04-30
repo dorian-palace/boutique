@@ -17,7 +17,8 @@ body{
 }
 
 #h2index{
-  margin-left: 28%;
+  text-align: center;
+  margin-left: 10%;
   color: rgb(0, 0, 0);
   font-family: 'Asap', sans-serif;
 }
@@ -94,9 +95,10 @@ body{
 #caroussel{
   width: 960px;
   height: 540px;
+  align-self: center;
   overflow: hidden;
   border: 2px solid #333;
-  margin-left:22%; 
+  margin-left:18%; 
   margin-top:2%;  
 }
 

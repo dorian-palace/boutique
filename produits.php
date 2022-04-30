@@ -124,19 +124,26 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 <?php
                                 if (isset($_POST['addpanier'])) {
 
-                                    require_once 'addpanier.php'; ?>
+                                    require_once 'addpanier.php'; 
+                                   if(isset($_SESSION['id'])){
 
-                                    <div class="alert alert-success">
+                                    ?>          
 
-                                        <strong> Produit ajouté au panier</strong>
+                                    <div class="alert alert-success mt-3">
+
+                                    <strong> Produit ajouté au panier</strong>
 
                                     </div>
+                                    <?php }else{ ?>
 
+                                    <div class="alert alert-danger mt-3">
 
+                                    <strong> veuillez vous connecter</strong>
 
+                                    </div>
+                                    <?php   } 
 
-
-                                <?php } ?>
+                                 } ?>
 
                                 
 
@@ -197,26 +204,39 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                             <form action="produits.php?categorie=<?= $req_categorie['id_categorie'] ?>&id=<?= $req_categorie['id_produits'] ?>" method="POST">
 
 
-                                                <input type="submit" name='submit' value='ajouter au panier' class="btn btn-success">
+                                                <input type="submit" name='addpanier' value='ajouter au panier' class="btn btn-success">
 
                                             </form>
 
                                             <?php
-                                            if (isset($_POST['submit'])) {
+                                            if (isset($_POST['addpanier'])) {
 
 
 
                                                 if ($req_categorie['id_produits'] == $_GET['id']) {
                                             ?>
-                                                    <?php require_once 'addpanier.php'; ?>
+                                                    <?php require_once 'addpanier.php'; 
+
+
+                                                    if(isset($_SESSION['id'])){
+
+                                                    ?>          
 
                                                     <div class="alert alert-success mt-3">
 
-                                                        <strong> Produit ajouté au panier</strong>
+                                                    <strong> Produit ajouté au panier</strong>
 
                                                     </div>
+                                                    <?php }else{ ?>
 
-                                            <?php }
+                                                    <div class="alert alert-danger mt-3">
+
+                                                    <strong> veuillez vous connecter</strong>
+
+                                                    </div>
+                                                    <?php   }  
+
+                                         }
                                             }
                                             ?>
 
@@ -295,14 +315,26 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                                     require_once 'addpanier.php';
 
                                                     if ($res['id'] == $_GET['id']) {
-                                                ?>
+                                                    
+                                                        if(isset($_SESSION['id'])){
+
+                                                            ?>          
+                                                        
                                                         <div class="alert alert-success mt-3">
-
+                                                            
                                                             <strong> Produit ajouté au panier</strong>
-
+                                                            
                                                         </div>
+                                                    <?php }else{ ?>
 
-                                                <?php }
+                                                        <div class="alert alert-danger mt-3">
+                                                            
+                                                            <strong> veuillez vous connecter</strong>
+                                                            
+                                                        </div>
+                                                        <?php   } 
+
+                                                     }
                                                 }
                                                 ?>
 

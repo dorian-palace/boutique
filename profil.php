@@ -12,6 +12,7 @@ require_once 'app/User.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/User.css">
     <link rel="stylesheet" href="style/css/header.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
@@ -79,7 +80,7 @@ require_once 'app/User.php';
                 <input type="password" class="inputForm" name="conf_new_password">
 
 
-                <button type="submit" name="valider" classe='btnFrom'>valider</button>
+                <button  type="submit" name="valider" class='btn btn-dark ml-20 w-50'>valider</button>
 
             </form>
 

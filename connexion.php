@@ -72,10 +72,10 @@ session_start();
     <input type="password" class="inputForm" name="password" required>
     
     
-    <div class="text-center">
-        <button ton type="submit" name="valider" class='btn btn-dark text-center w-50'>valider</button>
+    
+        <button  type="submit" name="valider" class='btn btn-dark ml-20 w-50'>valider</button>
         
-    </div>
+    
     
 </form>
 </div>

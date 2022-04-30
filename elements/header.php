@@ -32,8 +32,8 @@ $searchBar = new Search();
 
 <body>
 
-  <nav class="navbar position:sticky navbar-expand-lg navbar-light bg-light ">
-    <div class="container-fluid  pb-5 ">
+  <nav class="navbar  navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid  ">
       <a class="navbar-brand " href="#">Pasta di Giovanni</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -43,9 +43,7 @@ $searchBar = new Search();
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="produits.php">Produits</a>
-          </li>
+       
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Produits
@@ -61,7 +59,11 @@ $searchBar = new Search();
               <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
-          <?php
+          
+
+        </ul>
+
+        <?php
 
 if (isset($_SESSION['id'])) {
 
@@ -70,28 +72,29 @@ if (isset($_SESSION['id'])) {
     <li class="nav-item">
       <a class="nav-link " href="admin.php">Admin</a>
     </li>
+
   <?php }
   ?>
   <li class="nav-item">
     <a class="nav-link " href="profil.php">Profil</a>
   </li>
 
+  <li class="nav-item">
+    <a class="nav-link " href="client.php">information</a>
+  </li>
+
     <li class="nav-item">
-      <a class="nav-link  href="setting/deconnexion.php">déconnexion</a>
+      <a class="nav-link " href="setting/deconnexion.php">déconnexion</a>
     </li>
 <?php
 }
 ?>
-
-        </ul>
-
         
-        
-        <a href="panier.php"><i class="fa-solid fa-basket-shopping-simple"></i></a>
+        <a href="panier.php" class=""><i class="fa-solid fa-basket-shopping-simple"></i></a>
         <a href="panier.php"><i class=""></i>
 
 
-          <i class="fas fa-shopping-cart"></i></a>
+          <i class="fas fa-shopping-cart "></i></a>
         <?php if (!isset($_SESSION['id'])) {
 
         ?>

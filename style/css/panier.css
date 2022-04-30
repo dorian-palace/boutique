@@ -198,6 +198,7 @@ ul {
 #empty-panier{
 
         font-size: 40px;
+        margin-top: 6%;
         
 }
 
@@ -314,7 +315,6 @@ input:focus::-webkit-input-placeholder {
     color: white;
     width: 100%;
     font-size: 0.7rem;
-    margin-top: 4vh;
     padding: 1vh;
     border-radius: 0
 }
