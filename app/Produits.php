@@ -122,6 +122,7 @@ class Produits
 
         $req = 'SELECT * FROM produits INNER JOIN categories on categories.id = produits.id_categorie INNER JOIN sous_categorie ON sous_categorie.id = produits.id_sous_categorie ';
         $query = $this->db->query($req);
-        return $query;
+        $data = $query->fetchAll();
+        return $data;
     }
 }

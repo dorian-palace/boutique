@@ -7,6 +7,10 @@ $adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
 $adminUser = new AdminUser();
 
+$adminCategorie->newSousCat();
+$adminCategorie->newCategorie();
+// $getAll_categorie = $adminCategorie->getCategorie();
+$getSousCat = $adminCategorie->getSousCat();
 
 $adminUser->isAdmin();
 // $isAdmin = $droits;
@@ -78,12 +82,22 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                         <?php $get_categorie = $adminCategorie->getCategorie(); ?>
 
                         <select class="form-control" name="categorie_produit" required>Catégorie nouveau produit
-                            <?php while ($result_categorie = $get_categorie->fetch()) { ?>
+                            <?php foreach ($get_categorie as $result_categorie) { ?>
                                 <option value="<?= $result_categorie['id']; ?>">
                                     <?= $result_categorie['nom_categorie']; ?>
                                 </option>
                             <?php  }; ?>
                         </select>
+
+                        <!---SOUS CATEGORIE PRODUITS--->
+                        <select name="sousCategorie_produits" id="">
+                            <?php foreach ($getSousCat as  $res_sousCat) {  ?>
+                                <option value="<?= $res_sousCat['id']; ?>">
+                                    <?= $res_sousCat['nom_sous_categorie']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+
                         <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required class="form-control">
                         <input type="file" name="file" id="" class="form-control">
                         <input type="submit" name="submit_produit" class="form-control">
@@ -105,17 +119,25 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control">
 
                             <select class="form-control" name="update_categorie" required>Catégorie nouveau produit
-                                <?php $get_categorie_prod = $adminCategorie->getCategorie();
 
 
-
-                                while ($result_categorie_prod = $get_categorie_prod->fetch()) {
+                                <?php
+                                foreach ($get_categorie as $result_categorie_prod) {
 
                                 ?>
                                     <option value="<?= $result_categorie_prod['id']; ?>">
-                                        <?= $result_produits['nom_categorie']; ?>
+                                        <?= $result_categorie_prod['nom_categorie']; ?>
                                     </option>
                                 <?php  }; ?>
+                            </select>
+
+                            <select name="update_sousCatproduits" id="">
+                                <?php foreach ($getSousCat as  $res_sousCat) {  ?>
+                                    <option value="<?= $res_sousCat['id']; ?>">
+                                        <?= $res_sousCat['nom_sous_categorie']; ?>
+                                    </option>
+                                <?php
+                                } ?>
                             </select>
                             <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix" class="form-control">
 
@@ -134,7 +156,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
             <!--- Création catégorie --->
             <?php $adminCategorie->newCategorie(); ?>
-            <?php $nb_categorie = $adminCategorie->getCategorie(); ?>
+
             <div class="form-group">
                 <form action="" method="post">
                     <fieldset>
@@ -142,38 +164,35 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                         <input type="text" name="name_categorie" placeholder="catégorie">
                         <input type="submit" name="new_categorie">
 
-                        <?php while ($result_cat = $nb_categorie->fetch()) {  ?>
-                            <select name="" id="">
+                        <select name="" id="">
+                            <?php foreach ($get_categorie as $result_cat) {  ?>
                                 <option value="<?= $result_cat['id']; ?>">
                                     <?= $result_cat['nom_categorie']; ?>
                                 </option>
-                            </select>
-                            <button type="submit" name="supprimer" value="<?= $result_cat['id'] ?>">delete</button>
-                        <?php } ?>
+                            <?php } ?>
+                        </select>
+                        <button type="submit" name="supprimer" value="<?= $result_cat['id'] ?>">delete</button>
 
                     </fieldset>
                 </form>
             </div>
 
             <!--SOUS CATEGORIE-->
-            <?php $adminCategorie->newSousCat();
-            $adminCategorie->newCategorie();
-            $getAll_categorie = $adminCategorie->getCategorie();
-            $getSousCat = $adminCategorie->getSousCat(); ?>
+
 
             <form action="" method="post">
                 <fieldset>
                     <legend>supprésion sous categorie</legend>
-                    <?php while ($nb_sousCat = $getSousCat->fetch()) {  ?>
                     <select name="" id="">
-                       
+                        <?php foreach ($getSousCat as  $res_sousCat) {  ?>
+
                             <option value="">
-                                <?= $nb_sousCat['nom_sous_categorie']; ?>
+                                <?= $res_sousCat['nom_sous_categorie']; ?>
                             </option>
 
+                        <?php } ?>
                     </select>
-                    <button type="submit" name="delete_sousCat" value="<?= $nb_sousCat['id']; ?>">delete</button>
-                <?php } ?>
+                    <button type="submit" name="delete_sousCat" value="<?= $res_sousCat['id']; ?>">delete</button>
                 </fieldset>
             </form>
 
@@ -181,12 +200,12 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
             <div class="form-group">
                 <form action="" method="post">
                     <fieldset>
-                        <legend>Création et supprésion de sous catégorie</legend>
+                        <legend>Création sous catégorie</legend>
 
 
 
                         <select name="selectCat" id="">
-                            <?php while ($allCategorie = $getAll_categorie->fetch()) { ?>
+                            <?php foreach ($get_categorie as $allCategorie) { ?>
                                 <option value="<?= $allCategorie['id']; ?>">
                                     <?= $allCategorie['nom_categorie']; ?>
                                 </option>
@@ -257,7 +276,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     <!--- FOOTER --->
     <footer>
-        <?php require 'elements/footer.html'; ?>
+        <?php
+        // var_dump($get_categorie);
+        require 'elements/footer.html'; ?>
     </footer>
 </body>
 
