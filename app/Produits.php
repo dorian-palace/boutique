@@ -109,5 +109,19 @@ class Produits
         return $stmt;
     }
 
+    public function getSousCat()
+    {
 
+        $req = 'SELECT * FROM sous_categorie';
+        $query = $this->db->query($req);
+        return $query;
+    }
+
+    public function getProduitsSousCat()
+    {
+
+        $req = 'SELECT * FROM produits INNER JOIN categories on categories.id = produits.id_categorie INNER JOIN sous_categorie ON sous_categorie.id = produits.id_sous_categorie ';
+        $query = $this->db->query($req);
+        return $query;
+    }
 }
