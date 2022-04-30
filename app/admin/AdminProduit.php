@@ -72,6 +72,7 @@ class AdminProduit
             $stock = secuData($_POST['update_stock']);
             $id_categorie = secuData($_POST['update_categorie']);
             $prix = secuData($_POST['update_prix']);
+            $id_sous_categorie =secuData($_POST['update_sousCatproduits']);
             $id = $_POST['submit_update'];
 
             if (isset($_FILES['update_file'])) {
@@ -97,16 +98,16 @@ class AdminProduit
                     $file = $uniqueName . "." . $extension;
                     move_uploaded_file($tmpName, './file/' . $name);
 
-                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?, image = ? WHERE id = ?';
+                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?, image = ?, id_sous_categorie = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie, $prix, $name, $id
+                        $titre, $description, $stock, $id_categorie, $prix, $name, $id, $id_sous_categorie
                     ));
                 } else {
                     $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie,  $prix, $id
+                        $titre, $description, $stock, $id_categorie,  $prix, $id, $id_sous_categorie
                     ));
                     echo 'ok2';
                 }
@@ -123,6 +124,7 @@ class AdminProduit
             $stock = secuData($_POST['stock_produit']);
             $id_categorie = secuData($_POST['categorie_produit']);
             $prix = secuData($_POST['prix_produit']);
+            $id_sous_categorie = secuData($_POST['sousCategorie_produits']);
             $new_produit = $_POST['submit_produit'];
 
             $select = 'SELECT titre from produits WHERE titre = ? ';
@@ -158,10 +160,10 @@ class AdminProduit
                         $file = $uniqueName . "." . $extension;
                         move_uploaded_file($tmpName, './file/' . $name);
 
-                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?)";
+                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image, id_sous_categorie) VALUES (?,?,?,?,?,?,?)";
                         $prepare = $this->db->prepare($req);
                         $prepare->execute(array(
-                            $titre, $description, $stock, $id_categorie, $prix, $name
+                            $titre, $description, $stock, $id_categorie, $prix, $name, $id_sous_categorie
                         ));
                         $msg = 'Produit ajouter';
                     } else {
