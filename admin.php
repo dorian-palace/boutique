@@ -15,7 +15,7 @@ $adminUser->isAdmin();
 $admin = $adminUser->isAdmin();
 
 
-if($admin === false){
+if ($admin === false) {
     header('Location: index.php');
 }
 
@@ -29,6 +29,11 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 if (isset($_POST['supprimer'])) {
     $id = $_POST['supprimer'];
     $adminCategorie->deleteCategorie($id);
+}
+
+if (isset($_POST['delete_sousCat'])) {
+    $id = $_POST['delete_sousCat'];
+    $adminCategorie->deleteSousCat($id);
 }
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
@@ -149,6 +154,52 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     </fieldset>
                 </form>
             </div>
+
+            <!--SOUS CATEGORIE-->
+            <?php $adminCategorie->newSousCat();
+            $adminCategorie->newCategorie();
+            $getAll_categorie = $adminCategorie->getCategorie();
+            $getSousCat = $adminCategorie->getSousCat(); ?>
+
+            <form action="" method="post">
+                <fieldset>
+                    <legend>supprésion sous categorie</legend>
+                    <?php while ($nb_sousCat = $getSousCat->fetch()) {  ?>
+                    <select name="" id="">
+                       
+                            <option value="">
+                                <?= $nb_sousCat['nom_sous_categorie']; ?>
+                            </option>
+
+                    </select>
+                    <button type="submit" name="delete_sousCat" value="<?= $nb_sousCat['id']; ?>">delete</button>
+                <?php } ?>
+                </fieldset>
+            </form>
+
+
+            <div class="form-group">
+                <form action="" method="post">
+                    <fieldset>
+                        <legend>Création et supprésion de sous catégorie</legend>
+
+
+
+                        <select name="selectCat" id="">
+                            <?php while ($allCategorie = $getAll_categorie->fetch()) { ?>
+                                <option value="<?= $allCategorie['id']; ?>">
+                                    <?= $allCategorie['nom_categorie']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+
+
+                        <input type="text" name="name_sousCat">
+                        <input type="submit" name="new_sousCat">
+                    </fieldset>
+                </form>
+            </div>
+
 
             <?php $adminUser->getUser(); ?>
             <?php $adminUser->updateUser(); ?>

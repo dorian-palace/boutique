@@ -108,4 +108,6 @@ class Produits
         $stmt = $this->db->query($req);
         return $stmt;
     }
+
+
 }
