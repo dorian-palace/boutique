@@ -57,7 +57,8 @@ class AdminCategorie
         $req = 'SELECT * FROM categories ';
         $stmt = $this->db->prepare($req);
         $stmt->execute();
-        return $stmt;
+        $data = $stmt->fetchAll();
+        return $data;
     }
 
     public function newSousCat()
@@ -93,7 +94,8 @@ class AdminCategorie
 
         $req = 'SELECT * FROM sous_categorie';
         $query = $this->db->query($req);
-        return $query;
+        $data = $query->fetchAll();
+        return $data;
     }
 
     public function deleteSousCat($id){
