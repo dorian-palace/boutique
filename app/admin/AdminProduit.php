@@ -101,10 +101,10 @@ class AdminProduit
                     $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?, image = ?, id_sous_categorie = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie, $prix, $name, $id, $id_sous_categorie
+                        $titre, $description, $stock, $id_categorie, $prix, $name,$id_sous_categorie, $id
                     ));
                 } else {
-                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ? WHERE id = ?';
+                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ? , id_sous_categorie = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
                         $titre, $description, $stock, $id_categorie,  $prix, $id, $id_sous_categorie
