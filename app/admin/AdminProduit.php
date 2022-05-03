@@ -65,14 +65,12 @@ class AdminProduit
         La variable $maxSize est de 400000, ce qui signifie que tout fichier dépassant cette taille ne sera pas déplacé.
         Si in_array($extension, $extensions) renvoie true et si la taille du fichier est inférieure à 400000 octets, il sera déplacé avec succès. */
         if (isset($_POST['submit_update'])) {
-            echo 'ok1';
 
             $titre = secuData($_POST['update_titre']);
             $description = secuData($_POST['update_description']);
             $stock = secuData($_POST['update_stock']);
             $id_categorie = secuData($_POST['update_categorie']);
             $prix = secuData($_POST['update_prix']);
-            $id_sous_categorie =secuData($_POST['update_sousCatproduits']);
             $id = $_POST['submit_update'];
 
             if (isset($_FILES['update_file'])) {
@@ -98,18 +96,18 @@ class AdminProduit
                     $file = $uniqueName . "." . $extension;
                     move_uploaded_file($tmpName, './file/' . $name);
 
-                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?, image = ?, id_sous_categorie = ? WHERE id = ?';
+                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?, image = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie, $prix, $name,$id_sous_categorie, $id
+                        $titre, $description, $stock, $id_categorie, $prix, $name, $id
                     ));
                 } else {
                     $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ? , id_sous_categorie = ? WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
-                        $titre, $description, $stock, $id_categorie,  $prix, $id, $id_sous_categorie
+                        $titre, $description, $stock, $id_categorie,  $prix, $id
                     ));
-                    echo 'ok2';
+
                 }
             }
         }
@@ -124,7 +122,6 @@ class AdminProduit
             $stock = secuData($_POST['stock_produit']);
             $id_categorie = secuData($_POST['categorie_produit']);
             $prix = secuData($_POST['prix_produit']);
-            $id_sous_categorie = secuData($_POST['sousCategorie_produits']);
             $new_produit = $_POST['submit_produit'];
 
             $select = 'SELECT titre from produits WHERE titre = ? ';
@@ -160,10 +157,10 @@ class AdminProduit
                         $file = $uniqueName . "." . $extension;
                         move_uploaded_file($tmpName, './file/' . $name);
 
-                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image, id_sous_categorie) VALUES (?,?,?,?,?,?,?)";
+                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?,?)";
                         $prepare = $this->db->prepare($req);
                         $prepare->execute(array(
-                            $titre, $description, $stock, $id_categorie, $prix, $name, $id_sous_categorie
+                            $titre, $description, $stock, $id_categorie, $prix, $name
                         ));
                         $msg = 'Produit ajouter';
                     } else {
