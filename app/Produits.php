@@ -63,22 +63,6 @@ class Produits
         return $res;
     }
 
-    public function sous_categorie(){
-
-            
-         
-            $req = $this->db->prepare("SELECT titre, description, prix,image,id_sous_categorie,produits.id AS id_produits
-            , categories.nom_categorie , categories.id AS categId , sous_categorie.nom_sous_categorie
-            FROM Produits 
-            INNER JOIN sous_categorie on produits.id_sous_categorie = sous_categorie.id 
-            INNER JOIN categories ON sous_categorie.id_categorie = categories.id 
-            ");
-            $req->execute();
-            $data = $req->fetchAll();
-            return $data;
-
-    }
-
     public function avis()
     {
 
