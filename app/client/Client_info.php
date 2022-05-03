@@ -46,12 +46,20 @@ class Client_info
     public function clientCommande()
     {
         $id_utilisateurs = $_SESSION['id'];
-        $req = "SELECT adr_facturation,adr_livraison,date_commande,utilisateurs.id FROM utilisateurs INNER JOIN commande WHERE id_utilisateur = ?";
+        $req = "SELECT adr_facturation,adr_livraison,date_commande,utilisateurs.id FROM utilisateurs INNER JOIN commande WHERE id_utilisateur = ? LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->db->prepare($req);
         $stmt->execute(array(
             $id_utilisateurs
         ));
         // $stmt->fetch();
         return $stmt;
+    }
+
+    public function pagiCommande(){
+        $req = "SELECT count(*) FROM commande";
+        $stmt = $this->db->query($req);
+        // $data = $stmt->fetchCollumn();
+        return $stmt; 
+
     }
 }

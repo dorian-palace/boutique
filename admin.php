@@ -7,10 +7,10 @@ $adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
 $adminUser = new AdminUser();
 
-$adminCategorie->newSousCat();
+
 $adminCategorie->newCategorie();
 // $getAll_categorie = $adminCategorie->getCategorie();
-$getSousCat = $adminCategorie->getSousCat();
+
 
 $adminUser->isAdmin();
 // $isAdmin = $droits;
@@ -35,10 +35,7 @@ if (isset($_POST['supprimer'])) {
     $adminCategorie->deleteCategorie($id);
 }
 
-if (isset($_POST['delete_sousCat'])) {
-    $id = $_POST['delete_sousCat'];
-    $adminCategorie->deleteSousCat($id);
-}
+
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     //delete admin
@@ -89,15 +86,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <?php  }; ?>
                         </select>
 
-                        <!---SOUS CATEGORIE PRODUITS--->
-                        <select name="sousCategorie_produits" id="">
-                            <?php foreach ($getSousCat as  $res_sousCat) {  ?>
-                                <option value="<?= $res_sousCat['id']; ?>">
-                                    <?= $res_sousCat['nom_sous_categorie']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-
                         <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required class="form-control">
                         <input type="file" name="file" id="" class="form-control">
                         <input type="submit" name="submit_produit" class="form-control">
@@ -131,14 +119,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                                 <?php  }; ?>
                             </select>
 
-                            <select name="update_sousCatproduits" id="">
-                                <?php foreach ($getSousCat as  $res_sousCat) {  ?>
-                                    <option value="<?= $res_sousCat['id']; ?>">
-                                        <?= $res_sousCat['nom_sous_categorie']; ?>
-                                    </option>
-                                <?php
-                                } ?>
-                            </select>
                             <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix" class="form-control">
 
                             <input type="file" name="update_file" class="form-control">
@@ -177,47 +157,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                 </form>
             </div>
 
-            <!--SOUS CATEGORIE-->
-
-
-            <form action="" method="post">
-                <fieldset>
-                    <legend>supprésion sous categorie</legend>
-                    <select name="" id="">
-                        <?php foreach ($getSousCat as  $res_sousCat) {  ?>
-
-                            <option value="">
-                                <?= $res_sousCat['nom_sous_categorie']; ?>
-                            </option>
-
-                        <?php } ?>
-                    </select>
-                    <button type="submit" name="delete_sousCat" value="<?= $res_sousCat['id']; ?>">delete</button>
-                </fieldset>
-            </form>
-
-
-            <div class="form-group">
-                <form action="" method="post">
-                    <fieldset>
-                        <legend>Création sous catégorie</legend>
-
-
-
-                        <select name="selectCat" id="">
-                            <?php foreach ($get_categorie as $allCategorie) { ?>
-                                <option value="<?= $allCategorie['id']; ?>">
-                                    <?= $allCategorie['nom_categorie']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-
-
-                        <input type="text" name="name_sousCat">
-                        <input type="submit" name="new_sousCat">
-                    </fieldset>
-                </form>
-            </div>
 
 
             <?php $adminUser->getUser(); ?>
