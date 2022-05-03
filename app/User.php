@@ -1,7 +1,7 @@
 <?php
 
 
-require  'setting/db.php';
+require_once  'setting/db.php';
 
 
 
@@ -15,40 +15,33 @@ class User
     private $password;
     private $email;
 
-    public function __construct($login, $password, $email, $confpassword)
+    public function __construct($login, $password, $email)
     {
 
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
 
-        $this->login = $login;
-        $this->password = $password;
-        $this->email = $email;
-        $this->confpassword = $confpassword;
-    }
-
-    public function sigup()
-    {
-
-        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droits,id_adresse)VALUES(?,?,?,1,1)');
-
-        $insert->execute(array($this->login, $this->email, $this->password));
-
-
-
-        return $insert;
+        $this->login = htmlspecialchars($login);
+        $this->password =  htmlspecialchars($password);
+        $this->email = htmlspecialchars($email);
     }
 
     public function signup()
+
     {
 
+        if (isset($_POST['nom'], $_POST['prenom'])) {
+
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+        }
 
 
-        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,id_droits,id_adresse)VALUES(?,?,?,"1","1")');
+        $insert = $this->db->prepare('INSERT INTO utilisateurs(login,email,password,prenom,nom,id_droits)VALUES(?,?,?,?,?,"1")');
 
         $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
 
-        if ($insert->execute(array($this->login, $this->email, $hashed_password))) {
+        if ($insert->execute(array($this->login, $this->email, $hashed_password, $nom, $prenom))) {
 
             return $insert;
         }
@@ -59,9 +52,15 @@ class User
     public function confPassword()
     {
 
-        if ($this->password == $this->confpassword) {
+        $confpassword = $_POST['confpassword'];
 
-            return true;
+
+        if ($this->password == $confpassword) {
+
+           
+                return true;
+            
+            
         }
 
         return false;
@@ -89,11 +88,10 @@ class User
         if ($row == 0) {
 
             return true;
-        }else{
-            
+        } else {
+
             return false;
         }
-
     }
 
     public function confirmSingup()
@@ -103,27 +101,35 @@ class User
 
             if ($this->confPassword()) {
 
-                if ($this->valideEmail()) {
-
-                    if ($this->checkUserSignup()) {
+                if (strlen($this->password) >= 8) {
 
 
-                        $this->signup();
+                    if ($this->valideEmail()) {
 
-                        $this->displayMessage('inscription validée');
+                        if ($this->checkUserSignup()) {
+
+
+                            $this->signup();
+
+                            $this->displayMessage('inscription validée');
+                        } else {
+
+                            $this->displayMessage('utilisateur déjà pris');
+                        }
                     } else {
 
-                        $this->displayMessage('utilisateur déjà pris');
+                        $this->displayMessage('email non valide');
                     }
                 } else {
 
-                    $this->displayMessage('email non valide');
+                    $this->displayMessage('Le mot de passe doit contenir 8 caratères');
                 }
             } else {
 
                 $this->displayMessage('les mot de passe ne correspondent pas');
             }
-        } else {
+
+        }else{
 
             $this->displayMessage('Veuillez remplir tous les champs');
         }
@@ -132,30 +138,28 @@ class User
     public function connect()
     {
 
-        $stmt = $this->db->prepare("SELECT * FROM Utilisateurs WHERE login = ?");
+        $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE login = ?");
         $stmt->execute(array($this->login));
         $row = $stmt->rowCount();
+
+
 
         if ($row == 1) {
 
             $userinfo = $stmt->fetch();
-            
-            
-            if(password_verify($this->password, $userinfo['password'])){
-                
-                            $_SESSION['login'] = $userinfo['login'];
-                            $_SESSION['id'] = $userinfo['id'];
-                            $_SESSION['email'] = $userinfo['email'];
-                            $_SESSION['password'] = $userinfo['password'];
+
+
+            if (password_verify($this->password, $userinfo['password'])) {
+
+                $_SESSION['login'] = $userinfo['login'];
+                $_SESSION['id'] = $userinfo['id'];
+                $_SESSION['email'] = $userinfo['email'];
+                $_SESSION['password'] = $userinfo['password'];
 
                 return true;
-                
             };
             return false;
         }
-
-
-
     }
 
     public function checkUserLogin()
@@ -179,26 +183,21 @@ class User
 
         if ($this->emptyInput()) {
 
-            if ($this->confPassword()) {
 
-                if ($this->valideEmail()) {
+            if ($this->valideEmail()) {
 
-                    if ($this->checkUserLogin()) {
+                if ($this->checkUserLogin()) {
 
-                        $this->connect();
+                    $this->connect();
 
-                        $this->displayMessage('vous êtes connecté');
-                    } else {
-
-                        $this->displayMessage('L\'utilisateur n\'existe pas, veuillez vous inscrire');
-                    }
+                    $this->displayMessage('vous êtes connecté');
                 } else {
 
-                    $this->displayMessage('email non valide');
+                    $this->displayMessage('L\'utilisateur n\'existe pas, veuillez vous inscrire');
                 }
             } else {
 
-                $this->displayMessage('les mot de passe ne correspondent pas');
+                $this->displayMessage('email non valide');
             }
         } else {
 
@@ -206,9 +205,10 @@ class User
         }
     }
 
-  
     public function emptyInput()
     {
+
+
 
         if (!empty($this->login) || !empty($this->password) || !empty($this->email) || !empty($this->confpassword)) {
 
@@ -228,11 +228,12 @@ class User
         }
     }
 
-    
 
-   
 
-    public function userInfo($id_utilisateur){
+
+
+    public function userInfo($id_utilisateur)
+    {
 
         $select = $this->db->prepare("SELECT * FROM  utilisateurs where id = ? ");
         $select->execute(array($id_utilisateur));

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
 
 body {
   padding: 0%;
@@ -20,6 +20,8 @@ body {
   /* redéfinition 400 + 2*20 */
   max-width: 440px;
   margin: 0 auto;
+  margin-top: 6%;
+
 }
 
 .inputForm {
@@ -41,6 +43,9 @@ margin-top: 2%;
   margin-right: 0px;
   margin-right: 0px;
   width: 100%;
+  font-family: 'asap';
+  text-align: center;
+
 }
 
 .btnForm {
@@ -51,19 +56,33 @@ margin-top: 2%;
   cursor: pointer;
 }
 
-.btnForm {
-  text-align: center;
+.btn{
+
+margin-left: 22%;
 }
 
-#h1-inscription{
 
+
+
+#h1-inscription{
+    font-family: 'Asap', sans-serif;
     margin-bottom: 3%;
 }
 
 #session_title{
 
   text-align: center;
-  color: black;
-  margin-top: 5%;
-  font-size: 30px;
+  font-family: 'Asap', sans-serif;
+  margin-top: 3%;
+}
+
+.msg{
+
+  color: red;
+  text-align: center;
+}
+
+#bienvenue{
+
+  text-align: center;
 }

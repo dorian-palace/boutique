@@ -1,5 +1,6 @@
 <?php
 require_once('setting/db.php');
+// require('../../setting/data.php');
 class AdminUser
 {
     public function __construct()
@@ -17,20 +18,11 @@ class AdminUser
         $this->debut = ($this->page - 1) * $this->limite;
     }
 
-    // public function idAdmin(){
-    //     $req = 'SELECT id FROM droits';
-    //     $query = $this->db->query($req);
-    //ID ADMIN A RECUPERER POUR ACCES PAGE ADMIN
-
-    // }
-
     public function getUser()
     {
         //récupère les infos des utilisateurs
-        $req = 'SELECT * FROM utilisateurs LIMIT :limite OFFSET :debut';
+        $req = "SELECT * FROM utilisateurs LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->db->prepare($req);
-        $stmt->bindValue('limite', $this->limite, PDO::PARAM_INT);
-        $stmt->bindValue('debut', $this->debut, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }
@@ -40,9 +32,9 @@ class AdminUser
         // Modifie les informations et droit de l'utilisateurs
         if (isset($_POST['update'])) {
 
-            $new_id_droits = $_POST['new_droits'];
-            $new_login = $_POST['new_login'];
-            $new_email = $_POST['new_email'];
+            $new_id_droits = secuData($_POST['new_droits']);
+            $new_login =  secuData($_POST['new_login']);
+            $new_email = secuData($_POST['new_email']);
             $id_user = $_POST['update'];
 
             $req = 'UPDATE utilisateurs SET id_droits = ?, login = ?, email = ? WHERE id = ?';
@@ -63,5 +55,30 @@ class AdminUser
         ));
         return $prepare;
         $msg = 'Utilisateurs supprimer';
+    }
+
+    public function isAdmin()
+    {
+        @$id = $_SESSION['id'];
+
+        $req = 'SELECT utilisateurs.id_droits FROM utilisateurs WHERE id = ?';
+        $stmt = $this->db->prepare($req);
+        $stmt->execute(array(
+            $id
+        ));
+
+
+        $data = $stmt->fetch();
+
+        @$id_droit = $data['id_droits'];
+
+        if ($id_droit == 13)
+            return true;
+
+        else
+            return false; # code.
+
+
+
     }
 }

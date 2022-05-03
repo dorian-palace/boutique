@@ -2,12 +2,27 @@
 session_start();
 require('app/admin/AdminUser.php');
 require('app/admin/AdminProduit.php');
-require('app/admin/AdminRegion.php');
 require('app/admin/AdminCategorie.php');
 $adminProduit = new AdminProduit();
 $adminCategorie = new AdminCategorie();
-$adminRegion = new AdminRegion();
 $adminUser = new AdminUser();
+
+$adminCategorie->newSousCat();
+$adminCategorie->newCategorie();
+// $getAll_categorie = $adminCategorie->getCategorie();
+$getSousCat = $adminCategorie->getSousCat();
+
+$adminUser->isAdmin();
+// $isAdmin = $droits;
+// $isAdmin = $droits->fetch();
+
+$admin = $adminUser->isAdmin();
+
+
+if ($admin === false) {
+    header('Location: index.php');
+}
+
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
@@ -18,7 +33,11 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 if (isset($_POST['supprimer'])) {
     $id = $_POST['supprimer'];
     $adminCategorie->deleteCategorie($id);
-    $adminRegion->deleteRegions($id);
+}
+
+if (isset($_POST['delete_sousCat'])) {
+    $id = $_POST['delete_sousCat'];
+    $adminCategorie->deleteSousCat($id);
 }
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
@@ -27,6 +46,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $adminUser->deleteUser($delete);
     $adminProduit->deleteProduits($delete);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +64,12 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
 <body>
     <!--- HEADER --->
+    <header>
+        <?php include_once 'elements/header.php'; ?>
+    </header>
     <main>
         <!--- Création produit --->
         <?php $adminProduit->newProduits(); ?>
-        <?php $get_regions = $adminRegion->getRegions(); ?>
         <div class="container">
             <div class="form-group">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -56,23 +78,26 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                         <input type="text" placeholder="titre" name="titre_produit" required class="form-control">
                         <input type="text" placeholder="description" name="description_produit" required class="form-control">
                         <input type="text" placeholder="stock" name="stock_produit" required class="form-control">
-                        <select name="region_produit" required class="form-control">
-                            <?php while ($result_regions = $get_regions->fetch()) {  ?>
-                                <option value="<?= $result_regions['id']; ?>">
-                                    <?= $result_regions['nom_region']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
 
                         <?php $get_categorie = $adminCategorie->getCategorie(); ?>
 
                         <select class="form-control" name="categorie_produit" required>Catégorie nouveau produit
-                            <?php while ($result_categorie = $get_categorie->fetch()) { ?>
+                            <?php foreach ($get_categorie as $result_categorie) { ?>
                                 <option value="<?= $result_categorie['id']; ?>">
                                     <?= $result_categorie['nom_categorie']; ?>
                                 </option>
                             <?php  }; ?>
                         </select>
+
+                        <!---SOUS CATEGORIE PRODUITS--->
+                        <select name="sousCategorie_produits" id="">
+                            <?php foreach ($getSousCat as  $res_sousCat) {  ?>
+                                <option value="<?= $res_sousCat['id']; ?>">
+                                    <?= $res_sousCat['nom_sous_categorie']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+
                         <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required class="form-control">
                         <input type="file" name="file" id="" class="form-control">
                         <input type="submit" name="submit_produit" class="form-control">
@@ -81,7 +106,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
             </div>
             <?php $adminProduit->updateProduits(); ?>
             <?php $get_produits = $adminProduit->getProduits(); ?>
-            <?php while ($result_produits = $get_produits->fetch()) { ?>
+            <?php while ($result_produits = $get_produits->fetch()) {
+
+            ?>
                 <div class="form-group">
 
                     <form action="" method="post" enctype="multipart/form-data">
@@ -91,19 +118,26 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <input type="text" value="<?= $result_produits['description']; ?>" name="update_description" class="form-control">
                             <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control">
 
-                            <select name="update_region" id="" class="form-control">
-                                <!---region produits-->
-                                <option value="<?= $result_produits['id_regions']; ?>" name="">
-                                    <?= $result_produits['nom_region']; ?>
-                                </option>
+                            <select class="form-control" name="update_categorie" required>Catégorie nouveau produit
 
+
+                                <?php
+                                foreach ($get_categorie as $result_categorie_prod) {
+
+                                ?>
+                                    <option value="<?= $result_categorie_prod['id']; ?>">
+                                        <?= $result_categorie_prod['nom_categorie']; ?>
+                                    </option>
+                                <?php  }; ?>
                             </select>
 
-                            <select name="update_categorie" id="" class="form-control">
-                                <!----categorie produits---->
-                                <option value="<?= $result_produits['id_categorie']; ?>" name="">
-                                    <?= $result_produits['nom_categorie']; ?>
-                                </option>
+                            <select name="update_sousCatproduits" id="">
+                                <?php foreach ($getSousCat as  $res_sousCat) {  ?>
+                                    <option value="<?= $res_sousCat['id']; ?>">
+                                        <?= $res_sousCat['nom_sous_categorie']; ?>
+                                    </option>
+                                <?php
+                                } ?>
                             </select>
                             <input type="number" step="0.01" value="<?= $result_produits['prix']; ?>" name="update_prix" class="form-control">
 
@@ -122,7 +156,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
             <!--- Création catégorie --->
             <?php $adminCategorie->newCategorie(); ?>
-            <?php $nb_categorie = $adminCategorie->getCategorie(); ?>
+
             <div class="form-group">
                 <form action="" method="post">
                     <fieldset>
@@ -130,18 +164,61 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                         <input type="text" name="name_categorie" placeholder="catégorie">
                         <input type="submit" name="new_categorie">
 
-                        <?php while ($result_cat = $nb_categorie->fetch()) {  ?>
-                            <select name="" id="">
+                        <select name="" id="">
+                            <?php foreach ($get_categorie as $result_cat) {  ?>
                                 <option value="<?= $result_cat['id']; ?>">
                                     <?= $result_cat['nom_categorie']; ?>
                                 </option>
-                            </select>
-                            <button type="submit" name="supprimer" value="<?= $result_cat['id'] ?>">delete</button>
-                        <?php } ?>
+                            <?php } ?>
+                        </select>
+                        <button type="submit" name="supprimer" value="<?= $result_cat['id'] ?>">delete</button>
 
                     </fieldset>
                 </form>
             </div>
+
+            <!--SOUS CATEGORIE-->
+
+
+            <form action="" method="post">
+                <fieldset>
+                    <legend>supprésion sous categorie</legend>
+                    <select name="" id="">
+                        <?php foreach ($getSousCat as  $res_sousCat) {  ?>
+
+                            <option value="">
+                                <?= $res_sousCat['nom_sous_categorie']; ?>
+                            </option>
+
+                        <?php } ?>
+                    </select>
+                    <button type="submit" name="delete_sousCat" value="<?= $res_sousCat['id']; ?>">delete</button>
+                </fieldset>
+            </form>
+
+
+            <div class="form-group">
+                <form action="" method="post">
+                    <fieldset>
+                        <legend>Création sous catégorie</legend>
+
+
+
+                        <select name="selectCat" id="">
+                            <?php foreach ($get_categorie as $allCategorie) { ?>
+                                <option value="<?= $allCategorie['id']; ?>">
+                                    <?= $allCategorie['nom_categorie']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+
+
+                        <input type="text" name="name_sousCat">
+                        <input type="submit" name="new_sousCat">
+                    </fieldset>
+                </form>
+            </div>
+
 
             <?php $adminUser->getUser(); ?>
             <?php $adminUser->updateUser(); ?>
@@ -161,31 +238,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     </form>
                 </div>
             <?php } ?>
-
-            <?php $adminRegion->newRegions(); ?>
-            <?php $nb_regions = $adminRegion->getRegions(); ?>
-            <div class="form-group">
-                <form action="" method="post">
-                    <fieldset>
-                        <legend>Ajout et suppréssion de régions</legend>
-                        <input type="text" name="regions" placeholder="régions" class="form-control">
-                        <input type="submit" name="new_regions" class="form-control">
-
-                        <?php while ($delete_regions = $nb_regions->fetch()) {  ?>
-
-                            <select name="" id="" class="form-control">
-                                <option value="<?= $delete_regions['id']; ?>">
-                                    <?= $delete_regions['nom_region']; ?>
-                                </option>
-                            </select>
-                            <button type="submit" name="supprimer" value="<?= $delete_regions['id'] ?>">delete</button>
-                        <?php } ?>
-
-                    </fieldset>
-                </form>
-            </div>
-            <aside>
-            </aside>
 
     </main>
 
@@ -223,6 +275,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     </div>
 
     <!--- FOOTER --->
+    <footer>
+        <?php
+        // var_dump($get_categorie);
+        require 'elements/footer.html'; ?>
+    </footer>
 </body>
 
 </html>

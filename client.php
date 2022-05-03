@@ -9,7 +9,6 @@ $resultInfos = $clientInfos->fetch();
 $client_info->clientCommande();
 $clientCommande = $client_info->clientCommande($id_utilisateur);
 $resultCommande = $clientCommande->fetch();
-// $panierClient = $client_info->clientPanier($id_utilisateur);
 // echo "<pre>";
 // var_dump($resultCommande);
 // echo "</pre>";
@@ -26,7 +25,9 @@ $resultCommande = $clientCommande->fetch();
 </head>
 
 <body>
-
+    <header>
+        <?php include_once 'elements/header.php'; ?>
+    </header>
     <div class="container_infos_user">
         <fieldset>
             <!-- <legend>Information utilisateur</legend> -->
@@ -42,6 +43,7 @@ $resultCommande = $clientCommande->fetch();
                 </thead>
                 <tbody>
                     <tr>
+                        
                         <td><?= $resultInfos['login']; ?></td>
                         <td><?= $resultInfos['email']; ?></td>
                         <td><?= $resultInfos['prenom']; ?></td>
@@ -64,6 +66,7 @@ $resultCommande = $clientCommande->fetch();
                     </thead>
                     <tbody>
                         <tr>
+                            
                             <td><?= $value; ?></td>
                         </tr>
                     </tbody>
@@ -74,6 +77,7 @@ $resultCommande = $clientCommande->fetch();
         } ?>
 
     </fieldset>
+<<<<<<< HEAD
 
     <!-- <fieldset> -->
         <!---Affichage du panier une fois en db--->
@@ -100,6 +104,12 @@ $resultCommande = $clientCommande->fetch();
         <?php }
         } ?>
     </fieldset> -->
+=======
+    <footer>
+        <?php require 'elements/footer.html'; ?>
+    </footer>
+>>>>>>> 12d796718434308ac47e51f03b13c4e933f7b3ff
 
 </body>
+
 </html>
