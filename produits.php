@@ -257,30 +257,7 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 $nb_pageCat = intval($nb_pageCat);
                                 // echo"zeezaeazeazezaeazea";
                                     ?>
-
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-
-                                            <li class="page-item">
-
-                                                <?php if ($pagiCat > 1) { ?> <a href="produits?categorie=<?= $req_categorie['id_categorie'] ?>&page=<?= $pagiCat - 1  ?>" class="page-link ">
-                                            </li class="page-item">
-                                            </a> <?php } ?>
-
-                                        <li class="page-item">
-                                            <?php for ($i = 1; $i <= $nb_pageCat; $i++) {
-                                            ?><a href="produits?categorie=<?= $req_categorie['id_categorie'] ?>&page=<?= $i; ?>"><?= $i; ?></a>
-                                            <?php } ?>
-                                        </li>
-
-                                        <li class="page-item">
-                                            <?php if ($pagiCat < $nb_pageCat) { ?>
-                                                <a href="produits?categorie=<?= $req_categorie['id_categorie'] ?>&page=<?= $pagiCat + 1; ?>" class="page-link">></a>
-                                            <?php } ?>
-                                        </li>
-
-                                        </ul>
-                                    </nav>
+                                   
                                     </div>
 
 
@@ -347,13 +324,14 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                     $nb_elements = $debut->fetchColumn();
                                     $limite = 6;
                                     $nb_page = ceil($nb_elements / $limite); ?>
-                                    <nav aria-label="Page navigation example  ">
+                                    
+                                    <nav aria-label="Page navigation example">
 
-                                        <ul class="pagination ">
+                                        <ul class="pagination d-flex justify-content-center">
                                             <li class="page-item"><?php if ($page > 1) { ?> <a href="?page=<?= $page - 1  ?>" class="page-link ">
                                                         < </a> <?php } ?></li>
 
-                                            <li class="page-item"><?php for ($i = 1; $i <= $nb_page; $i++) {
+                                            <li class="page-item "><?php for ($i = 1; $i <= $nb_page; $i++) {
                                                                     ?><a href="?page=<?= $i; ?>"><?= $i; ?></a>
                                                 <?php } ?></li>
                                             <li class="page-item"> <?php if ($page < $nb_page) { ?>
@@ -362,7 +340,10 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
                                             </li>
                                         </ul>
                                     </nav>
+                                   
                                 </div>
+
+
 
                             <?php }
                             ?>

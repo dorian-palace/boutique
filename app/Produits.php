@@ -17,14 +17,14 @@ class Produits
             $this->page = 1;
         }
 
-        $this->limite = 5;
+        $this->limite = 6;
         $this->debut = ($this->page - 1) * $this->limite;
     }
 
     public function  getProduits()
     {
 
-        $produits = $this->db->prepare("SELECT * FROM produits LIMIT $this->limite OFFSET $this->debut");
+        $produits = $this->db->prepare("SELECT * FROM produits ORDER BY ID DESC LIMIT $this->limite OFFSET $this->debut");
 
         $produits->execute();
 
@@ -53,10 +53,8 @@ class Produits
     public function categorie()
     {
 
-        $req_categories = $this->db->prepare("SELECT * FROM categories LIMIT $this->limite OFFSET $this->debut");
+        $req_categories = $this->db->prepare("SELECT * FROM categories ORDER BY ID DESC");
 
-
-        $req_categories = $this->db->prepare("SELECT * FROM categories");
         $req_categories->execute();
         $res = $req_categories->fetch();
 
