@@ -102,7 +102,7 @@ class AdminProduit
                         $titre, $description, $stock, $id_categorie, $prix, $name, $id
                     ));
                 } else {
-                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ? , id_sous_categorie = ? WHERE id = ?';
+                    $req = 'UPDATE produits SET titre = ?, description = ?, stock = ?, id_categorie = ?, prix = ?  WHERE id = ?';
                     $stmt = $this->db->prepare($req);
                     $stmt->execute(array(
                         $titre, $description, $stock, $id_categorie,  $prix, $id
@@ -157,7 +157,7 @@ class AdminProduit
                         $file = $uniqueName . "." . $extension;
                         move_uploaded_file($tmpName, './file/' . $name);
 
-                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?,?)";
+                        $req = "INSERT INTO PRODUITS (titre, description, stock, id_categorie, prix, image) VALUES (?,?,?,?,?,?)";
                         $prepare = $this->db->prepare($req);
                         $prepare->execute(array(
                             $titre, $description, $stock, $id_categorie, $prix, $name
