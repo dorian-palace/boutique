@@ -22,6 +22,7 @@ class Panier{
 
             $this->recalc();
         }
+
         $this->db = new Db_connect();
         $this->db = $this->db->return_connect();
     }

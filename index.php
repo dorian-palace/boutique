@@ -14,6 +14,9 @@ session_start();
     <link rel="stylesheet" href="style/css/index.css">
     <link rel="icon" type="image/png" sizes="50x50" href="pexel/PastadiGiovanni1.png">
     <title>Accueil</title>
+    
+
+    
 </head>
 
 <body>

@@ -26,6 +26,7 @@ $searchBar = new Search();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style/css/header.css">
   <script src="https://kit.fontawesome.com/db53e44f28.js" crossorigin="anonymous"></script>
+  <script src="auto.js"></script>
 
   <title>Document</title>
 </head>
@@ -127,13 +128,20 @@ if (isset($_SESSION['id'])) {
           echo $msg;
         }
         ?>
-        <form class="d-flex" method="POST">
 
-          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-          <input class="btn btn-outline-success" type="submit" name="submit">
+<div class="form-container">
+        <form class="form" method="GET" action="recherche.php/?search=">
+            <input name="search" id="search" type="text" class="input" placeholder="" />
+            <!-- <input type="submit" id="submit" name="submit" class="submit"> -->
+            <button type="submit" class='result' value="submit">Tout les resultats</button>
         </form>
-      </div>
 
     </div>
+    <div class="results-container">
+        <ul class=" results-list" id="list">
+
+        </ul>
+    </div>
+
 
   </nav>
