@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../app/search/Search.php';
+require_once '../app/Search.php';
 
 $word = $_POST['search'];
 

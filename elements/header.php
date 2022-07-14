@@ -1,6 +1,5 @@
 <?php 
 // require_once 'app/Produits.php';
-require_once('setting/db.php');
 require_once('setting/data.php');
 require_once('app/admin/AdminUser.php');
 $adminUser = new AdminUser();
@@ -11,8 +10,6 @@ $db = new Db_connect();
 // $produits = new Produits();
 // $result = $produits->getProduits();
 $req_categories = $db->query("SELECT * FROM categories");
-require('app/search/Search.php');
-$searchBar = new Search();
 
 ?>
 <!DOCTYPE html>
@@ -129,19 +126,27 @@ if (isset($_SESSION['id'])) {
         }
         ?>
 
+
+
+
+
+
+
+
+ 
 <div class="form-container">
         <form class="form" method="GET" action="recherche.php/?search=">
             <input name="search" id="search" type="text" class="input" placeholder="" />
-            <!-- <input type="submit" id="submit" name="submit" class="submit"> -->
+            <div class="results-container">
+        <ul class=" results-list" id="list">
+
+        </ul>
+    </div> 
             <button type="submit" class='result' value="submit">Tout les resultats</button>
         </form>
 
     </div>
-    <div class="results-container">
-        <ul class=" results-list" id="list">
-
-        </ul>
-    </div>
-
-
+    
+      
+    
   </nav>

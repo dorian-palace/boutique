@@ -47,10 +47,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
                             // console.table(strStart[i])
                             // console.table(strAll[i])
 
-                            const myJSONstart = JSON.stringify(strStart[i].nom);
-                            // console.log(myJSONstart)
-                            // console.log(strStart[i].id)
-                            res.innerHTML += "<li><a href='element.php?id=" + strStart[i].id + "'>" + myJSONstart + "</a></li>";
+                            const myJSONstart = JSON.stringify(strStart[i].titre);
+                           console.log(myJSONstart)
+                            res.innerHTML += "<li><a href='produits.php?produits=" + strStart[i].id + "'>" + myJSONstart + "</a></li>";
 
                         }
 
