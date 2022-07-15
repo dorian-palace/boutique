@@ -1,5 +1,8 @@
 <?php
-require_once('../setting/db.php');
+// require_once("../setting/db.php") ;
+
+include(dirname(__DIR__).'/setting/db.php');
+
 
 class Search
 {
@@ -10,19 +13,11 @@ class Search
         $this->db = $this->db->return_connect();
     }
 
-    public function Search()
-    {
-
-        $req = 'SELECT * FROM produits WHERE (titre LIKE ?) OR (description LIKE ?)';
-        $stmt = $this->db->prepare($req);
-        $stmt->execute(["%" . $_SESSION["recherche"] . "%", "%" . $_SESSION["recherche"] . "%"]);
-
-        return $stmt;
-    }
+  
 
     public function startSearch($search)
     {
-        $req = "SELECT id, titre from produits WHERE titre like '$search%'";
+        $req = "SELECT * from produits WHERE titre like '$search%'";
         $req = $this->db->query($req);
         $stmt = $req->fetchAll();
         return $stmt;

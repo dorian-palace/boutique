@@ -128,14 +128,9 @@ if (isset($_SESSION['id'])) {
 
 
 
-
-
-
-
-
  
 <div class="form-container">
-        <form class="form" method="GET" action="recherche.php/?search=">
+        <form class="form" method="GET" action="resultats.php">
             <input name="search" id="search" type="text" class="input" placeholder="" />
             <div class="results-container">
         <ul class=" results-list" id="list">
