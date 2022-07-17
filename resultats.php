@@ -49,8 +49,11 @@
            
             </div>
             </div>
+            
+          
+
         <?php } ?>
-           
+        <a href="produits.php" class="btn btn-success w-25">tout les produits</a>
 </body>
 </html>
 

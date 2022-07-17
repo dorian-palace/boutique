@@ -229,9 +229,6 @@ class User
     }
 
 
-
-
-
     public function userInfo($id_utilisateur)
     {
 

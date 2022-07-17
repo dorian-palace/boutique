@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if(isset($log)){
+      header( "refresh:2;url=index.php" );
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +23,7 @@ session_start();
     <link rel="stylesheet" href="style/css/User.css">
     <title>Connexion</title>
 </head>
+
 
 <body>
     <header>
@@ -49,6 +56,8 @@ session_start();
 
                 $log->ConfirmConnect();
                 
+                
+              
             }
         
         }
@@ -89,7 +98,16 @@ session_start();
                 ?> <h4 id='bienvenue'>Bienvenu <?=$_SESSION['login']?></h4>
 
                 <a href="produits.php" class="btn btn-success   ">Voir Touts les produits</a>
-               <?php } ?>
+
+
+               <?php
+                
+             
+            }
+            
+            
+            
+            ?>
 
            
     </main>
