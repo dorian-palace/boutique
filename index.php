@@ -12,7 +12,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/css/header.css">
     <link rel="stylesheet" href="style/css/index.css">
-    <link rel="icon" type="image/png" sizes="50x50" href="pexel/PastadiGiovanni1.png">
+    <link rel="icon" type="image/png" sizes="50x50" href="file/PastadiGiovanni1.png">
     <title>Accueil</title>
     
 
@@ -46,10 +46,10 @@ session_start();
 
     <div id="caroussel">
         <div class="images">
-            <img src="pexel/caroussel1.png" alt="">
-            <img src="pexel/caroussel2.png" alt="">
-            <img src="pexel/caroussel3.png" alt="">
-            <img src="pexel/caroussel4.png" alt="">
+            <img src="file/caroussel1.png" alt="">
+            <img src="file/caroussel2.png" alt="">
+            <img src="file/caroussel3.png" alt="">
+            <img src="file/caroussel4.png" alt="">
 
         </div>
     </div>
@@ -62,7 +62,7 @@ session_start();
             <h1 class="h1img">
                 Pâtes
             </h1>
-            <img src="pexel/pates.png" alt="" class="img-cat" href""> 
+            <img src="file/pates.png" alt="" class="img-cat" href""> 
             <p class="paraimg">
                 Rotelle, Fusili, Penne rigate, Gnocchetti sardi, Malfadine, Bucatini, Spaghetti, Zitone, Orecchiette, Puntalette, Filini, Gnocchi, Risotto aspèrges, poireaux et cèpes. Gamme de la marque "Pasta di Giovanni".
             </p>
@@ -72,7 +72,7 @@ session_start();
             <h1 class="h1img">
                 Huiles
             </h1>
-            <img src="pexel/huile.png" alt=""class="img-cat"> 
+            <img src="file/huile.png" alt=""class="img-cat"> 
             <p class="paraimg">
                 Pasta di Giovanni vous propose une large sélection d'excellentes huiles d'olive extra vierge et d'olives provenant de presque toutes les régions d'Italie. Savez-vous ce qui signifie "extra vierge"? Lisez notre Guide a l'huile d'olive extra vierge pour tout apprendre sur la meilleure huile d'olive italienne !
             </p>
@@ -82,7 +82,7 @@ session_start();
             <h1 class="h1img">
                 Antipasti
             </h1>
-            <img src="pexel/antipasti.png" alt="" class="img-cat"> 
+            <img src="file/antipasti.png" alt="" class="img-cat"> 
             <p class="paraimg">
                 Jambon de parme, jambon à l'os supérieur, mortadelle, saucisson toscane, spianata, mignon, scudetto, coralini, saucisse italienne.
             </p>
@@ -92,7 +92,7 @@ session_start();
             <h1 class="h1img">
                 Fromage
             </h1>
-            <img src="pexel/fromage.png" alt="" class="img-cat">
+            <img src="file/fromage.png" alt="" class="img-cat">
             <p class="paraimg">
                 Mozzarella, Gorgonzola, Pecorino, Parmezan, Brousse, Crottin de chavignole, Emental, Comté, Fromage de chèvre, Roquefort, Saint-marcelin, Saint-félicien, Tome de savoie, Yaourt, Tiramisu, Fiadone.
             </p>
