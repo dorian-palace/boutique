@@ -23,8 +23,10 @@
 
         $res = $search->startSearch($_GET['search']);
         ?>
+                
         
         <div class="container row text-center offset-md-2 gap-3  ">
+
         <?php
         foreach ($res as $result) {
 
@@ -43,19 +45,20 @@
 
                 <form action="produits.php?id=<?= $result['id'] ?>" method="post">
 
-
+            
              
                 </form>
            
             </div>
-            </div>
+         </div>
             
           
 
         <?php } ?>
-        <a href="produits.php" class="btn btn-success w-25">tout les produits</a>
+
+        <a href="produits.php" class="btn btn-success w-25 ">Voir touts les produits</a>
 </body>
+    <?php require_once('elements/footer.html'); ?>
 </html>
 
-<?php
 

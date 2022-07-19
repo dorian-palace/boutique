@@ -24,6 +24,8 @@ if ($admin === false) {
 }
 
 
+
+
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
 } else {
@@ -172,7 +174,10 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <input type="email" value="<?= $result['email']; ?>" name="new_email" class="form-control">
                             <input type="text" value="<?= $result['id_droits']; ?>" name="new_droits" class="form-control">
                             <button type="submit" value=" <?= $result['id'] ?>" name="update" class="form-control">Update</button>
-                            <a class="a_admin" href="admin.php?delete=<?= $result['id'] ?>">Supprimer</a>
+                            <?php if($result['login'] != 'admin'){?>
+                                    
+                                <a class="a_admin" href="admin.php?delete=<?= $result['id'] ?>">Supprimer</a>
+                           <?php } ?>
                         </fieldset>
                     </form>
                 </div>
