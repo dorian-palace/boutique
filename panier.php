@@ -99,8 +99,10 @@ require_once 'app/Panier.php';
 
                                                                 <div class="cart_item_quantity cart_info_col">
                                                                     <div class="cart_item_title">Quantité</div>
-                                                                    <div class="cart_item_text"><input type="number" name="panier[quantity][<?= $res['id']; ?>]" value="<?= $_SESSION['panier'][$res['id']] ?>" class="form-control  "></div>
+                                                                    <div class="cart_item_text"><input type="number" name="panier[quantity][<?= $res['id']; ?>]" value="<?= $_SESSION['panier'][$res['id']] ?>" class="form-control mb-3  "></div>
+                                                                    <input type="submit" class="btn btn-secondary btn " name="valider" value="valider">
                                                                 </div>
+                                                               
                                                                 <div class="cart_item_price cart_info_col">
                                                                     <div class="cart_item_title">Prix</div>
                                                                     <div class="cart_item_text"><?= number_format($res['prix'], 2, ',', ' ') ?>€</div>

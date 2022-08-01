@@ -74,9 +74,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                 <form action="" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend>Ajout Produit</legend>
-                        <input type="text" placeholder="titre" name="titre_produit" required class="form-control">
-                        <input type="text" placeholder="description" name="description_produit" required class="form-control">
-                        <input type="text" placeholder="stock" name="stock_produit" required class="form-control">
+                        <input type="text" placeholder="titre" name="titre_produit" required class="form-control" value="penne rigate">
+                        <input type="text" placeholder="description" name="description_produit" required class="form-control" value="A base d’un assemblage exclusif de blés anciens bio cultivés dans les Pouilles (Italia) et d’eau de source, nos « pasta » tréfilées au bronze et séchées à basse température sont préparées à Gragnano.">
+                        <input type="text" placeholder="stock" name="stock_produit" required class="form-control" value="10">
 
                         <?php $get_categorie = $adminCategorie->getCategorie(); ?>
 
@@ -88,8 +88,8 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <?php  }; ?>
                         </select>
 
-                        <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required class="form-control">
-                        <input type="file" name="file" id="" class="form-control">
+                        <input type="number" step="0.01" placeholder="prix_produit" name="prix_produit" required class="form-control" value="7">
+                        <input type="file" name="file" id="" class="form-control" value="penne.jpg">
                         <input type="submit" name="submit_produit" class="form-control">
                     </fieldset>
                 </form>
@@ -104,9 +104,9 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                     <form action="" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend>Modification et suppréssion produits</legend>
-                            <input type="text" value="<?= $result_produits['titre']; ?>" name="update_titre" class="form-control">
-                            <input type="text" value="<?= $result_produits['description']; ?>" name="update_description" class="form-control">
-                            <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control">
+                            <input type="text" value="<?= $result_produits['titre']; ?>" name="update_titre" class="form-control" >
+                            <input type="text" value="<?= $result_produits['description']; ?>" name="update_description" class="form-control" ">
+                            <input type="text" value="<?= $result_produits['stock']; ?>" name="update_stock" class="form-control" >
 
                             <select class="form-control" name="update_categorie" required>Catégorie nouveau produit
 
@@ -176,7 +176,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
                             <button type="submit" value=" <?= $result['id'] ?>" name="update" class="form-control">Update</button>
                             <?php if($result['login'] != 'admin'){?>
                                     
-                                <a class="a_admin" href="admin.php?delete=<?= $result['id'] ?>">Supprimer</a>
+                                
                            <?php } ?>
                         </fieldset>
                     </form>

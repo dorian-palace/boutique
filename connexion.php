@@ -72,13 +72,13 @@ if(isset($log)){
     
     
     <label for="login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
-    <input type="text" class="inputForm" name="login" required">
+    <input type="text" class="inputForm" name="login" required" value="tony">
     
     <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
-    <input type="email" class="inputForm" name="email" required>
+    <input type="email" class="inputForm" name="email" required value="tonyguillot84@gmail.com">
     
     <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
-    <input type="password" class="inputForm" name="password" required>
+    <input type="password" class="inputForm" name="password" required value="toto199800912">
     
     
     

@@ -74,23 +74,23 @@
 
 
                   <label for="login" class="'labelForm" placeholder="Votre nom d'utilisateur">nom d'utilisateur :</label>
-                <input type="text" class="inputForm" name="login" required>
+                <input type="text" class="inputForm" name="login"  value='tony'required>
 
                 <label for="email" class="'labelForm" placeholder="Votre email"> Email </label>
-                <input type="email" class="inputForm" name="email">
+                <input type="email" class="inputForm" name="email" value="tonyguillot84@gmail.com">
 
                 <label for="prenom" class="'labelForm" placeholder="Votre prénom"> Prénom </label>
-                <input type="prenom" class="inputForm" name="prenom"required>
+                <input type="prenom" class="inputForm" name="prenom"required value="tony">
 
                 
                 <label for="nom"class="'labelForm" placeholder="Votre nom">nom</label>
-                <input type="prenom" class="inputForm" name="nom" required>
+                <input type="prenom" class="inputForm" name="nom" required value="guillot">
 
                 <label for="password" class="'labelForm" placeholder="Votre mot de pass">mot de passe :</label>
-                <input type="password" class="inputForm" name="password" required>
+                <input type="password" class="inputForm" name="password" required value="toto199800912">
 
                 <label for="email" class="'labelForm" placeholder="confirmation">confirmez le mot de passe </label>
-                <input type="password" class="inputForm" name="confpassword" required>
+                <input type="password" class="inputForm" name="confpassword" required value="toto199800912">
 
 
                 <button type="submit" name="valider" class='btn btn-dark ml-20 w-50'>valider</button>
