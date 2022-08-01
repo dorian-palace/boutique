@@ -11,14 +11,14 @@ body{
 
 #h1index{
   margin-top: 5%;
-  margin-left: 39%;
+  margin-left: 45%;
   color: rgb(0, 0, 0);
   font-family: 'Asap', sans-serif;
 }
 
 #h2index{
   text-align: center;
-  margin-left: 10%;
+  margin-left: 5%;
   color: rgb(0, 0, 0);
   font-family: 'Asap', sans-serif;
 }
@@ -98,7 +98,7 @@ body{
   align-self: center;
   overflow: hidden;
   border: 2px solid #333;
-  margin-left:18%; 
+  margin-left:30%; 
   margin-top:2%;  
 }
 
